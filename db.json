@@ -1,0 +1,764 @@
+{
+  "accounts": {
+    
+      "PartyId": 300000005317794,
+      "PartyNumber": "1Yp",
+      "SourceSystem": null,
+      "SourceSystemReferenceValue": null,
+      "OrganizationProfileId": 300000005317794,
+      "OrganizationName": "Test 1 ",
+      "UniqueNameSuffix": null,
+      "PartyUniqueName": "Test 1 ",
+      "Type": "ZCA_CUSTOMER",
+      "SalesProfileNumber": "CCN-UAT_100001",
+      "OwnerPartyId": null,
+      "OwnerPartyNumber": null,
+      "OwnerEmailAddress": null,
+      "OwnerName": null,
+      "PrimaryContactPartyId": 300000005317798,
+      "PrimaryContactPartyNumber": "1Yq",
+      "PrimaryContactSourceSystem": null,
+      "PrimaryContactSourceSystemReferenceValue": null,
+      "PrimaryContactName": "Sebastian  Dominguez",
+      "PrimaryContactJobTitle": null,
+      "PrimaryContactEmail": "prueba@test.com",
+      "PrimaryContactPhone": "+1 (452) 525-1995",
+      "ExistingCustomerFlag": false,
+      "ExistingCustomerFlagLastUpdateDate": null,
+      "NamedFlag": false,
+      "LastAssignmentDateTime": null,
+      "AssignmentExceptionFlag": false,
+      "SalesProfileStatus": "ACTIVE",
+      "IndustryCodeType": "CUSTOMER_CATEGORY",
+      "IndustryCode": null,
+      "ParentAccountPartyId": null,
+      "ParentAccountPartyNumber": null,
+      "ParentAccountSourceSystem": null,
+      "ParentAccountSourceSystemReferenceValue": null,
+      "ParentAccountName": null,
+      "YearEstablished": null,
+      "ControlYear": null,
+      "YearIncorporated": null,
+      "StockSymbol": null,
+      "FiscalYearendMonth": null,
+      "CurrentFiscalYearPotentialRevenueAmount": null,
+      "PreferredFunctionalCurrency": null,
+      "AnalysisFiscalYear": null,
+      "NextFiscalYearPotentialRevenueAmount": null,
+      "TaxpayerIdentificationNumber": null,
+      "CertificationLevel": null,
+      "CertificationReasonCode": null,
+      "DUNSNumber": null,
+      "DUNSCreditRating": null,
+      "ParentDUNSNumber": null,
+      "DomesticUltimateDUNSNumber": null,
+      "GlobalUltimateDUNSNumber": null,
+      "CEOName": null,
+      "CEOTitle": null,
+      "PublicPrivateOwnershipFlag": false,
+      "ImportIndicator": null,
+      "ExportIndicator": null,
+      "SmallBusinessIndicator": null,
+      "WomanOwnedIndicator": null,
+      "GeneralServicesAdministrationFlag": false,
+      "MinorityOwnedIndicator": null,
+      "MinorityOwnedType": null,
+      "RentOrOwnIndicator": null,
+      "LaborSurplusIndicator": null,
+      "OutOfBusinessIndicator": null,
+      "HQBranchIndicator": null,
+      "ParentOrSubsidiaryIndicator": null,
+      "DisadvantageIndicator": null,
+      "EmployeesAtPrimaryAddress": null,
+      "EmployeesAtPrimaryAddressEstimation": null,
+      "EmployeesAtPrimaryAddressMinimum": null,
+      "EmployeesAtPrimaryAddressText": null,
+      "EmployeesTotal": null,
+      "TotalEmployeesEstimatedIndicator": null,
+      "TotalEmployeesIndicator": null,
+      "TotalEmployeesMinimumIndicator": null,
+      "TotalEmployeesText": null,
+      "OrganizationSize": null,
+      "OrganizationType": null,
+      "PrincipalTitle": null,
+      "PrincipalName": null,
+      "LegalStatus": null,
+      "BusinessScope": null,
+      "RegistrationType": null,
+      "MissionStatement": null,
+      "CorporationClass": null,
+      "GrowthStrategyDescription": null,
+      "CongressionalDistrictCode": null,
+      "LineOfBusiness": null,
+      "HomeCountry": null,
+      "DoNotConfuseWith": null,
+      "LocalActivityCode": null,
+      "LocalActivityCodeType": null,
+      "LocalBusinessIdentifier": null,
+      "LocalBusinessIdentifierType": null,
+      "SiebelLocation": null,
+      "Comments": null,
+      "CurrencyCode": "NIO",
+      "CorpCurrencyCode": "NIO",
+      "DataCloudStatus": null,
+      "LastEnrichmentDate": null,
+      "PartyStatus": "A",
+      "PartyType": "ORGANIZATION",
+      "CreatedByModule": "FUSE",
+      "CreatedBy": "sebastian.dominguez@watea.com.ar",
+      "CreationDate": "2022-02-04T11:59:12.027+00:00",
+      "LastUpdateDate": "2022-02-04T12:03:38.763+00:00",
+      "LastUpdateLogin": "D6F782D19811A92DE053C860310AEF3F",
+      "LastUpdatedBy": "sebastian.dominguez@watea.com.ar",
+      "PreferredContactMethod": null,
+      "PhoneContactPointType": null,
+      "PhoneCountryCode": null,
+      "PhoneAreaCode": null,
+      "PhoneNumber": null,
+      "PhoneExtension": null,
+      "FormattedPhoneNumber": null,
+      "RawPhoneNumber": null,
+      "FaxContactPointType": null,
+      "FaxCountryCode": null,
+      "FaxAreaCode": null,
+      "FaxNumber": null,
+      "FaxExtension": null,
+      "FormattedFaxNumber": null,
+      "RawFaxNumber": null,
+      "EmailContactPointType": null,
+      "EmailFormat": null,
+      "EmailAddress": null,
+      "WebContactPointType": null,
+      "URL": null,
+      "PrimaryAddressId": 300000005317797,
+      "PartyNumberKey": "1Yp",
+      "RecordSet": null,
+      "SourceObjectType": "SALES_PARTY",
+      "FavoriteAccountFlag": false,
+      "UpdateFlag": true,
+      "DeleteFlag": true,
+      "OrganizationTypeCode": null,
+      "AddressNumber": "CCN-UAT_1003",
+      "AddressElementAttribute1": null,
+      "AddressElementAttribute2": null,
+      "AddressElementAttribute3": null,
+      "AddressElementAttribute4": null,
+      "AddressElementAttribute5": null,
+      "AddressLine1": "TEST 1",
+      "AddressLine2": null,
+      "AddressLine3": null,
+      "AddressLine4": null,
+      "Building": null,
+      "City": "Managua",
+      "Country": "NI",
+      "County": null,
+      "FloorNumber": null,
+      "PostalCode": null,
+      "PostalPlus4Code": null,
+      "Province": null,
+      "State": null,
+      "Mailstop": null,
+      "AddressLinesPhonetic": null,
+      "AddressType": "SELL_TO",
+      "FormattedAddress": "TEST 1,MANAGUA,NICARAGUA",
+      "AccountScore": null,
+      "AccountScoringTier": null,
+      "Description": null,
+      "Keywords": null,
+      "ConflictId": 0,
+      "DatafoxCompanyId": null,
+      "UltimateParentPartyId": null,
+      "UltimateParentName": null,
+      "UltimateParentPartyNumber": null,
+      "PhoneVerificationStatus": null,
+      "PhoneVerificationDate": null,
+      "FaxVerificationStatus": null,
+      "FaxVerificationDate": null,
+      "EmailVerificationStatus": null,
+      "EmailVerificationDate": null,
+      "PrimaryContactPhoneVerificationDate": null,
+      "PrimaryContactEmailVerificationDate": null,
+      "PrimaryContactEmailDNC": false,
+      "PrimaryContactPhoneDNC": false,
+      "PrimaryContactEmailVerificationStatus": null,
+      "PrimaryContactPhoneVerificationStatus": null,
+      "TotalAccountsInHierarchy": 1,
+      "TotalChildAccounts": 0,
+      "ParentAccountList": null,
+      "PrimaryContactDoEmailFlag": false,
+      "PrimaryContactDoCallFlag": false,
+      "OrganizationDEO___ORACO__AccountType_c": "Paid",
+      "OrganizationDEO___ORACO__OnHoldFlag_c": false,
+      "OrganizationDEO___ORACO__OrderAmount_c": null,
+      "OrganizationDEO___ORACO__Owner_c": "N/A",
+      "OrganizationDEO___ORACO__PriceBook_Id_c": null,
+      "OrganizationDEO___ORACO__PriceBook_c": null,
+      "OrganizationDEO___ORACO__ShoppingCartTemplateType_c": null,
+      "OrganizationDEO___ORACO__ShoppingCartTemplateLastCalcul_c": null,
+      "OrganizationDEO___ORACO__ProductAssortment_Id_c": null,
+      "OrganizationDEO___ORACO__ProductAssortment_c": null,
+      "OrganizationDEO___ORACO__ShoppingCart_Id_c": null,
+      "OrganizationDEO___ORACO__ShoppingCart_c": null,
+      "OrganizationDEO___ORACO__PurchaseOrderRequired_c": false,
+      "OrganizationDEO___ORACO__PriorityPortfolio_Id_c": null,
+      "OrganizationDEO___ORACO__PriorityPortfolio_c": null,
+      "OrganizationDEO___ORACO__AssortmentLastUpdateDate_c": null,
+      "OrganizationDEO___ORACO__PriceBookLastUpdateDate_c": null,
+      "OrganizationDEO___ORACO__AccPromoLastUpdateDate_c": null,
+      "OrganizationDEO___ORACO__MinimumOrderQuantity_c": 0,
+      "OrganizationDEO___ORACO__MinimumOrderAmount_c": 0,
+      "OrganizationDEO___ORACO__ApplyAccountOrderMinimums_c": false,
+      "OrganizationDEO___ORACO__ProofOfPurchasePaymentAuthorized_c": false,
+      "OrganizationDEO___ORACO__CouponPaymentAuthorized_c": false,
+      "OrganizationDEO___ORACO__MobilePrintoutInformation1_c": null,
+      "OrganizationDEO___ORACO__MobilePrintoutInformation2_c": null,
+      "OrganizationDEO___ORACO__MobilePrintoutInformation3_c": null,
+      "OrganizationDEO___ORACO__StoreType_c": null,
+      "OrganizationDEO___ORACO__TaxpayerName_c": null,
+      "OrganizationDEO___ORACO__CustomerID_c": null,
+      "OrganizationDEO___ORACO__IsStoreAccount_c": false,
+      "OrganizationDEO___ORACO__DefaultForecastAttainment_c": 0,
+      "OrganizationDEO___ORACO__OrderPrintTmpl_Id_c": null,
+      "OrganizationDEO___ORACO__OrderPrintTmpl_c": null,
+      "OrganizationDEO___ORACO__InvoicePrintTmpl_Id_c": null,
+      "OrganizationDEO___ORACO__InvoicePrintTmpl_c": null,
+      "OrganizationDEO___ORACO__PaymentPrintTmpl_Id_c": null,
+      "OrganizationDEO___ORACO__PaymentPrintTmpl_c": null,
+      "OrganizationDEO___ORACO__Segment_c": null,
+      "OrganizationDEO___ORACO__Distributor_c": false,
+      "links": [
+        {
+          "rel": "self",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp",
+          "name": "accounts",
+          "kind": "item",
+          "properties": {
+            "changeIndicator": "ACED0005737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A65787000000005770400000005737200116A6176612E6C616E672E496E746567657212E2A0A4F781873802000149000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B0200007870000000027371007E0002000000017371007E0002000000027371007E0002000000017371007E00020000000178"
+          }
+        },
+        {
+          "rel": "canonical",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp",
+          "name": "accounts",
+          "kind": "item"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/FavoriteAccountFlagLookupLOV",
+          "name": "FavoriteAccountFlagLookupLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_FK_LOVVA_For___ORACO__PaymentPrintTmpl_c",
+          "name": "OrganizationDEO_FK_LOVVA_For___ORACO__PaymentPrintTmpl_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/SalesProfileTypeLookupLOV",
+          "name": "SalesProfileTypeLookupLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrgSizeLOV",
+          "name": "OrgSizeLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_LOVVA_For___ORACO__StoreType_c",
+          "name": "OrganizationDEO_LOVVA_For___ORACO__StoreType_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_FK_LOVVA_For___ORACO__PriceBook_c",
+          "name": "OrganizationDEO_FK_LOVVA_For___ORACO__PriceBook_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/CertificationLevelLookupLOV",
+          "name": "CertificationLevelLookupLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/TotalEmployeeEstIndLookupLOV",
+          "name": "TotalEmployeeEstIndLookupLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/FiscalYearendMonthLookupLOV",
+          "name": "FiscalYearendMonthLookupLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/CurrenciesLOV",
+          "name": "CurrenciesLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_LOVVA_For___ORACO__ShoppingCartTemplateType_c",
+          "name": "OrganizationDEO_LOVVA_For___ORACO__ShoppingCartTemplateType_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/HQBranchIndLookupLOV",
+          "name": "HQBranchIndLookupLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_LOVVA_For___ORACO__PaymentPrintTmpl_c",
+          "name": "OrganizationDEO_LOVVA_For___ORACO__PaymentPrintTmpl_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/PhoneVerificationStatusLookupVA",
+          "name": "PhoneVerificationStatusLookupVA",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_LOVVA_For___ORACO__ProofOfPurchasePaymentAuthorized_c",
+          "name": "OrganizationDEO_LOVVA_For___ORACO__ProofOfPurchasePaymentAuthorized_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/TotalEmployeesIndLookupLOV",
+          "name": "TotalEmployeesIndLookupLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_LOVVA_For___ORACO__CouponPaymentAuthorized_c",
+          "name": "OrganizationDEO_LOVVA_For___ORACO__CouponPaymentAuthorized_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/LegalStatusLookupLOV",
+          "name": "LegalStatusLookupLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationTypeVA",
+          "name": "OrganizationTypeVA",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_LOVVA_For___ORACO__Segment_c",
+          "name": "OrganizationDEO_LOVVA_For___ORACO__Segment_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/EmployeeAtPrimaryAdrMinimumIndLookupLOV",
+          "name": "EmployeeAtPrimaryAdrMinimumIndLookupLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/SalesProfileStatusLookupLOV",
+          "name": "SalesProfileStatusLookupLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/EmployeeAtPrimaryAdrEstIndLookupLOV",
+          "name": "EmployeeAtPrimaryAdrEstIndLookupLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/StatusLOV",
+          "name": "StatusLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/RentOwnIndLookupLOV",
+          "name": "RentOwnIndLookupLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_LOVVA_For___ORACO__PriorityPortfolio_c",
+          "name": "OrganizationDEO_LOVVA_For___ORACO__PriorityPortfolio_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_LOVVA_For___ORACO__ApplyAccountOrderMinimums_c",
+          "name": "OrganizationDEO_LOVVA_For___ORACO__ApplyAccountOrderMinimums_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/PhoneCountryCodeLOV",
+          "name": "PhoneCountryCodeLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/IndustryCodeVA",
+          "name": "IndustryCodeVA",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_FK_LOVVA_For___ORACO__OrderPrintTmpl_c",
+          "name": "OrganizationDEO_FK_LOVVA_For___ORACO__OrderPrintTmpl_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_FK_LOVVA_For___ORACO__ShoppingCart_c",
+          "name": "OrganizationDEO_FK_LOVVA_For___ORACO__ShoppingCart_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_LOVVA_For___ORACO__Distributor_c",
+          "name": "OrganizationDEO_LOVVA_For___ORACO__Distributor_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_FK_LOVVA_For___ORACO__InvoicePrintTmpl_c",
+          "name": "OrganizationDEO_FK_LOVVA_For___ORACO__InvoicePrintTmpl_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_LOVVA_For___ORACO__OrderPrintTmpl_c",
+          "name": "OrganizationDEO_LOVVA_For___ORACO__OrderPrintTmpl_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/FaxCountryCodeLOV",
+          "name": "FaxCountryCodeLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/EmailVerificationStatusLookupVA",
+          "name": "EmailVerificationStatusLookupVA",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_LOVVA_For___ORACO__ProductAssortment_c",
+          "name": "OrganizationDEO_LOVVA_For___ORACO__ProductAssortment_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/CountriesLOV",
+          "name": "CountriesLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_LOVVA_For___ORACO__OnHoldFlag_c",
+          "name": "OrganizationDEO_LOVVA_For___ORACO__OnHoldFlag_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/RegistrationTypeLookupLOV",
+          "name": "RegistrationTypeLookupLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_LOVVA_For___ORACO__ShoppingCart_c",
+          "name": "OrganizationDEO_LOVVA_For___ORACO__ShoppingCart_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_LOVVA_For___ORACO__PurchaseOrderRequired_c",
+          "name": "OrganizationDEO_LOVVA_For___ORACO__PurchaseOrderRequired_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/TotalEmployeeMinimumIndLookupLOV",
+          "name": "TotalEmployeeMinimumIndLookupLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/TerritoriesLOV",
+          "name": "TerritoriesLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_FK_LOVVA_For___ORACO__ProductAssortment_c",
+          "name": "OrganizationDEO_FK_LOVVA_For___ORACO__ProductAssortment_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_LOVVA_For___ORACO__InvoicePrintTmpl_c",
+          "name": "OrganizationDEO_LOVVA_For___ORACO__InvoicePrintTmpl_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_FK_LOVVA_For___ORACO__PriorityPortfolio_c",
+          "name": "OrganizationDEO_FK_LOVVA_For___ORACO__PriorityPortfolio_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_LOVVA_For___ORACO__PriceBook_c",
+          "name": "OrganizationDEO_LOVVA_For___ORACO__PriceBook_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/CertificationReasonCodeLookupLOV",
+          "name": "CertificationReasonCodeLookupLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/FaxVerificationStatusLookupVA",
+          "name": "FaxVerificationStatusLookupVA",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/DataCloudStatusLookupLOV",
+          "name": "DataCloudStatusLookupLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/LocalBusIdenTypeLookupLOV",
+          "name": "LocalBusIdenTypeLookupLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/PreferredContactMethodLOV",
+          "name": "PreferredContactMethodLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/RatedCurrenciesLOV",
+          "name": "RatedCurrenciesLOV",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/OrganizationDEO_LOVVA_For___ORACO__IsStoreAccount_c",
+          "name": "OrganizationDEO_LOVVA_For___ORACO__IsStoreAccount_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "lov",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/lov/SearchFilters",
+          "name": "SearchFilters",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/AccountContact",
+          "name": "AccountContact",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/AccountExtensionBase",
+          "name": "AccountExtensionBase",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/AccountRollup",
+          "name": "AccountRollup",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/AdditionalIdentifier",
+          "name": "AdditionalIdentifier",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/AdditionalName",
+          "name": "AdditionalName",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/Address",
+          "name": "Address",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/Attachment",
+          "name": "Attachment",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/ContactPoint",
+          "name": "ContactPoint",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/CustomerClassification",
+          "name": "CustomerClassification",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/Note",
+          "name": "Note",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/OrganizationDEO_Ac_PP___ORACO__Src_OrganizationTo__ORACO__Ac_PP_c_Tgt",
+          "name": "OrganizationDEO_Ac_PP___ORACO__Src_OrganizationTo__ORACO__Ac_PP_c_Tgt",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/OrganizationDEO_AccSCTempHeader___ORACO__Src_OrganizationTo__ORACO__AccSCTempHeader_c_Tgt",
+          "name": "OrganizationDEO_AccSCTempHeader___ORACO__Src_OrganizationTo__ORACO__AccSCTempHeader_c_Tgt",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/OrganizationDEO_Acc_Promo_Pgm___ORACO__Src_OrganizationTo__ORACO__Acc_Promo_Pgm_c_Tgt",
+          "name": "OrganizationDEO_Acc_Promo_Pgm___ORACO__Src_OrganizationTo__ORACO__Acc_Promo_Pgm_c_Tgt",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/OrganizationDEO_AccountAssortment___ORACO__Src_OrganizationTo__ORACO__AccountAssortment_c_Tgt",
+          "name": "OrganizationDEO_AccountAssortment___ORACO__Src_OrganizationTo__ORACO__AccountAssortment_c_Tgt",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/OrganizationDEO_AccountCluster___ORACO__Src_OrganizationTo__ORACO__AccountCluster_c_Tgt",
+          "name": "OrganizationDEO_AccountCluster___ORACO__Src_OrganizationTo__ORACO__AccountCluster_c_Tgt",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/OrganizationDEO_AccountContract___ORACO__Src_OrganizationTo__ORACO__AccountContract_c_Tgt",
+          "name": "OrganizationDEO_AccountContract___ORACO__Src_OrganizationTo__ORACO__AccountContract_c_Tgt",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/OrganizationDEO_AccountDistributor___ORACO__Src_OrganizationTo__ORACO__AccountDistributor_c_Tgt",
+          "name": "OrganizationDEO_AccountDistributor___ORACO__Src_OrganizationTo__ORACO__AccountDistributor_c_Tgt",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/OrganizationDEO_AccountObjTask___ORACO__Src_OrganizationTo__ORACO__AccountObjTask_c_Tgt",
+          "name": "OrganizationDEO_AccountObjTask___ORACO__Src_OrganizationTo__ORACO__AccountObjTask_c_Tgt",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/OrganizationDEO_AccountObjective___ORACO__Src_OrganizationTo__ORACO__AccountObjective_c_Tgt",
+          "name": "OrganizationDEO_AccountObjective___ORACO__Src_OrganizationTo__ORACO__AccountObjective_c_Tgt",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/OrganizationDEO_AccountPromotion___ORACO__Src_OrganizationTo__ORACO__AccountPromotion_c_Tgt",
+          "name": "OrganizationDEO_AccountPromotion___ORACO__Src_OrganizationTo__ORACO__AccountPromotion_c_Tgt",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/OrganizationDEO_ObjectiveAccount___ORACO__Tgt_OrganizationTo__ORACO__ObjectiveAccount_c_Tgt",
+          "name": "OrganizationDEO_ObjectiveAccount___ORACO__Tgt_OrganizationTo__ORACO__ObjectiveAccount_c_Tgt",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/OrganizationDEO_RouteAccount___ORACO__Src_OrganizationTo__ORACO__RouteAccount_c_Tgt",
+          "name": "OrganizationDEO_RouteAccount___ORACO__Src_OrganizationTo__ORACO__RouteAccount_c_Tgt",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/OrganizationDEO___ORACO__AccountSurveysCollection_c",
+          "name": "OrganizationDEO___ORACO__AccountSurveysCollection_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/OrganizationDEO___ORACO__SalesTargetCollection_c",
+          "name": "OrganizationDEO___ORACO__SalesTargetCollection_c",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/PrimaryAddress",
+          "name": "PrimaryAddress",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/Relationship",
+          "name": "Relationship",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/SalesTeamMember",
+          "name": "SalesTeamMember",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/SourceSystemReference",
+          "name": "SourceSystemReference",
+          "kind": "collection"
+        },
+        {
+          "rel": "child",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/child/smartActions",
+          "name": "smartActions",
+          "kind": "collection"
+        },
+        {
+          "rel": "enclosure",
+          "href": "https://fa-euny-test-saasfaprod1.fa.ocs.oraclecloud.com:443/crmRestApi/resources/11.13.18.05/accounts/1Yp/enclosure/BusinessReport",
+          "name": "BusinessReport",
+          "kind": "other"
+        }
+      ]
+    }
+  }
+  

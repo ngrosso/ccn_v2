@@ -1,0 +1,202 @@
+.background-newOrder {
+  background-size: cover;
+  background-image: url('https://www.ccn.com.ni/wp-content/uploads/b2b/whiteBackground.png');
+
+}
+
+    
+
+.card-inputs-form {
+  width: 75%;
+  text-align: center;
+  /* margin-top: 25px; */
+  border-radius: 10px;
+  padding: 7px;
+  background-color: #ddf3e7;
+}
+
+.card-order {
+  width: 75%;
+  border-radius: 10px;
+  background-color: #ddf3e7;
+}
+
+.ancho {
+  width: 80%;
+}
+
+.toolbar-two {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+  justify-content: left;
+  align-items: center;
+  background-color: #006a3a;
+  color: #fff;
+}
+
+
+mat-icon {
+  margin-left: 10px;
+}
+
+.btn-confirmar {
+  background-color: #006a3a;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  transition: 0.3s ease-in-out;
+  border-radius: 12px;
+}
+
+.btn-add {
+  background-color: #006a3a;
+  color: white;
+  width: 10%;
+  height: 40px;
+  border: 0;
+  outline: 0;
+  border-radius: 12px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  /* margin-left: 75%; */
+  margin-top: 50px;
+  margin-bottom: 40px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+}
+
+button:hover {
+  background: #fff;
+  color: #006a3a;
+  border: 1px;
+  border-color: #006a3a;
+}
+
+.button-confirm {
+  margin-bottom: 5%;
+}
+
+::ng-deep .mat-datepicker-toggle {
+  color: var(--primary);
+}
+
+::ng-deep .mat-calendar-body-selected {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.title-info {
+  font-weight: bold;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.title-main {
+  color: #fff;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+
+.title-main-product {
+  color: white;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.card-container-info {
+  width: 75%;
+  border-radius: 10px;
+  background-color: #ddf3e7;
+}
+
+.capacity-box {
+  width: 75%;
+  border-radius: 10px;
+  background-color: #ddf3e7;
+  padding: 35px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.color-icons {
+  color: #006a3a;
+}
+
+.background-table {
+  background: #ddf3e7;
+  box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.2);
+}
+
+.section-header {
+  padding: 50px 0 0 0;
+}
+
+table {
+  width: 100%;
+  /* background: #ddf3e7; */
+}
+
+table th {
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+}
+
+table td {
+  font-family: 'Poppins', sans-serif;
+}
+
+.example-table-container {
+  position: relative;
+  min-height: 200px;
+  max-height: 400px;
+  overflow: auto;
+  border-radius: 5px;
+}
+
+.card-header {
+  background-image: linear-gradient(to right, #006a3a, #00723e, #007a42, #018346, #028b4a);
+  border-radius: 5px;
+  margin-bottom: 2%;
+  color: black;
+  box-shadow: 0 4px 20px 0rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(255, 152, 0, .4);
+
+}
+
+mat-card-subtitle {
+  color: #fff;
+  font-weight: 800;
+}
+
+.mat-badge-content {
+  background: #2eaf6a;
+  color: white;
+}
+
+.responsive-card {
+  min-width: 250px;
+}
+
+.section-data-container {
+  margin-top: 10px;
+}
+
+.custom-warning{
+  background-color: #fdfd96;
+  font-size: 1.2rem;
+}

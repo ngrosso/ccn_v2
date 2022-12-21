@@ -1,0 +1,29 @@
+.btn-confirmar {
+    background-color: #006a3a;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    transition: 0.3s ease-in-out;
+    border-radius: 12px;
+  }
+
+  .btn-cancel {
+    background-color: #fefefefe;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    transition: 0.3s ease-in-out;
+    border-radius: 12px;
+  }
+
+  div{
+    max-width: 70%;
+  }
+  
+
+ .text-confirm{
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    border-radius: 12px;
+ }

@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; margin: 0; font-family: Poppins, "Helvetica Neue", sans-serif; }
+
+.container{
+ margin: 0 auto;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+:root {
+  --primary: #006a3a;
+}
+
+.snackbar-true {
+  font-size: 20px;
+  color: #fff;
+  font-weight:700;
+}
+
+.orden-suspendida{
+  background-color: black;
+}
+
+.card-header-title{
+  background-color: #EBEBEB;
+}
+
+.footer{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  background-color: #006a3a;
+  color: #fff;
+  /* margin-top: 47px; */
+}
+

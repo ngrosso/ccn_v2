@@ -1,0 +1,33 @@
+.toolbar {
+    background: #006a3a;
+    position: relative;   
+    flex-wrap: wrap;
+    display: flex;
+}
+.color-icon-responsive{
+    color: #fff;
+}
+
+.logo {
+    width: 150px;
+}
+
+.icon {
+    color: #ffff;
+}
+
+.toolbar2 {
+    color: #006a3a;
+} 
+
+@media (min-width: 768px){
+    .menu-responsive{
+        display: none;
+    }
+}
+
+@media (max-width: 769px){
+    .icon{
+        display: none;
+    }
+}

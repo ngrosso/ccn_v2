@@ -1,0 +1,78 @@
+.title-main {
+  color: #fff;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+
+.background-tracking {
+  background-size: cover;
+  background-image: url('https://www.ccn.com.ni/wp-content/uploads/b2b/whiteBackground.png');
+}
+
+table {
+  width: 100%;
+  padding: 10px;
+}
+
+table th {
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+}
+
+.background-table {
+  background: #ddf3e7;
+}
+
+.padding-table {
+  padding: 30px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.toolbar-two {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+  justify-content: left;
+  align-items: center;
+  background-color: #006a3a;
+  color: #fff;
+}
+
+.icon {
+  color: #ffff;
+}
+
+
+.icon {
+  width: 25px;
+}
+
+.banner-publi {
+  margin-top: 10%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: auto;
+  padding: 50px;
+  margin-right: auto;
+}
+
+.filter-tracking {
+  width: 90%;
+  margin-left: 90px;
+}
+
+/* En caso de que quieran agregarle scroll a la tabla */
+.scroll-table {
+  position: relative;
+  min-height: 200px;
+  max-height: 400px;
+  overflow: auto;
+}

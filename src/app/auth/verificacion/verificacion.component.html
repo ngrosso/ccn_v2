@@ -1,0 +1,85 @@
+<div class="body">
+    <mat-card class="card">
+        <div class="login">
+            <form [formGroup]="form">
+                <img src="https://www.ccn.com.ni/wp-content/uploads/b2b/logoVerification1232x1635.png" class="logo-principal">
+                <h3 class="text-verification">
+                    Before
+                    entering the website, you must declare if you are
+                    of legal age in accordance with current legislation
+                    of your country, for which, we ask you to enter
+                    your date of birth
+                </h3>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker" [formControl]="ageFormControl">
+                    <mat-datepicker-toggle matSuffix [for]="picker" class="pícker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker #picker startView="multi-year">
+                        <mat-datepicker-actions>
+                            <button mat-button matDatepickerCancel>Cancel</button>
+                            <button class="picker" *ngIf="buttonDisabled" mat-raised-button
+                                matDatepickerApply>Apply</button>
+                        </mat-datepicker-actions>
+                    </mat-datepicker>
+                    <mat-error>Error</mat-error>
+                    <mat-error *ngIf="ageFormControl.hasError('tooJung')">You are too young!</mat-error>
+                </mat-form-field>
+                
+                <button type="submit" class="button-access" mat-raised-button color="primary"
+                    routerLink="/login" [disabled]="buttonDisabled">To access
+                </button>
+            </form>
+            <br>
+        </div>
+    </mat-card>
+</div>
+
+<!-- <mat-grid-list cols="3" rowHeight="100vh" class="background-verification">
+  <mat-grid-tile>
+    <div style="text-align:center; font-size: 20px;">
+        <p style="color:white" class="text-test">Vive los festivales más reales</p>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card class="card">
+      <div class="login">
+        <form [formGroup]="form">
+          <img src="https://www.ccn.com.ni/wp-content/uploads/b2b/logoVerification1232%C3%971635.png"
+            class="logo-principal">
+          <h3 class="text-verification">
+            Before
+            entering the website, you must declare if you are
+            of legal age in accordance with current legislation
+            of your country, for which, we ask you to enter
+            your date of birth
+          </h3>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" [formControl]="ageFormControl">
+            <mat-datepicker-toggle matSuffix [for]="picker" class="pícker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker #picker startView="multi-year">
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button class="picker" *ngIf="buttonDisabled" mat-raised-button matDatepickerApply>Apply</button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+            <mat-error>Error</mat-error>
+            <mat-error *ngIf="ageFormControl.hasError('tooJung')">You are too young!</mat-error>
+          </mat-form-field>
+
+          <button type="submit" class="button-access" mat-raised-button color="primary" routerLink="/login"
+            [disabled]="buttonDisabled">To access
+          </button>
+        </form>
+        <br>
+      </div>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div style="text-align:center;font-size: 20px;">
+        <p style="color:white" class="text-test">Juntos es mejor</p>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list> -->

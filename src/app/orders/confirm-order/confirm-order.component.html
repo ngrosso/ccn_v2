@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Dear Customer</h2>
+<mat-dialog-content *ngIf="!notificationCustom" class="mat-typography">
+  <p class="text-confirm">Your order has been received. Thank you!</p>
+</mat-dialog-content>
+<mat-dialog-content *ngIf="notificationCustom" class="mat-typography">
+  <p class="text-confirm">Your order has been received. Our finance team will be reviewing your request to continue the process. If you have any questions please contact us. Thank you!</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="false" routerLink="/inicio" class="btn-confirmar">OK</button>
+</mat-dialog-actions>
