@@ -16,13 +16,13 @@ export class ApiService {
 
   public account = {} as any;
   private apiSaleUrl = environment.APISALESURL
- 
+
   //private auth = "Basic " + btoa(this.username + ":" + this.password)
   private auth = "";
   // public partyNumber = sessionStorage.getItem('partyNumber')
   public padre = {} as any;
   public bodegas: any[] = [];
-  public bodegaSeleccionada = {} as any;  
+  public bodegaSeleccionada = {} as any;
 
   private contenedor = {
     "EMPID": 4,
@@ -41,6 +41,21 @@ export class ApiService {
 
   constructor(private http: HttpClient) {
     console.log('Servicio http');
+  }
+
+  postOAuthToken(user: string, password: string): any {
+    const body = new URLSearchParams();
+    body.set("grant_type", "password");
+    body.set("username", user);
+    body.set("password", password);
+    body.set("scope", environment.APIIDCSSCOPE);
+    return this.http.post(environment.APIIDCSURL+'/oauth2/v1/token', body.toString(),
+      {
+        headers: {
+          "Authorization": "Basic " + btoa(environment.CLIENTID + ":" + environment.CLIENTSECRET),
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      });
   }
 
   getItems(): any {
@@ -97,13 +112,13 @@ export class ApiService {
     });
   }
 
-  postShoppingCartItem(shoppingCartId: any, productoId: any, cantidad: any,paymentType: any, listPrice: any): any {
+  postShoppingCartItem(shoppingCartId: any, productoId: any, cantidad: any, paymentType: any, listPrice: any): any {
     const body = {
       "__ORACO__Product_Id_c": productoId,
       "__ORACO__Quantity_c": cantidad,
-      "__ORACO__Tax1_c": (paymentType == 'GR' ? 1:4),
+      "__ORACO__Tax1_c": (paymentType == 'GR' ? 1 : 4),
       "__ORACO__Tax2_c": listPrice,
-      "__ORACO__ComboSelQuantity_c" : String(Date.now()).slice(0,10)
+      "__ORACO__ComboSelQuantity_c": String(Date.now()).slice(0, 10)
 
     }
     return this.http.post(this.apiSaleUrl + "__ORACO__ShoppingCartDSD_c/" + (shoppingCartId) + "/child/__ORACO__ShoppingCartItemCollection_c", body, {
@@ -111,13 +126,13 @@ export class ApiService {
     });
   }
 
-   patchIdOrder(idOrder: any, poNumber: any, promiseDate: any, containerType: any,timestampId: any,paymentType: any , territory: any) {
-    console.log('paymentType',paymentType)
+  patchIdOrder(idOrder: any, poNumber: any, promiseDate: any, containerType: any, timestampId: any, paymentType: any, territory: any) {
+    console.log('paymentType', paymentType)
     const body = {
       "__ORACO__AuxiliaryAttribute01_c": territory,
       "__ORACO__AuxiliaryAttribute02_c": containerType,
       "__ORACO__AuxiliaryAttribute03_c": poNumber,
-      "__ORACO__AuxiliaryAttribute04_c": (paymentType == 'GR' ? 1:4),
+      "__ORACO__AuxiliaryAttribute04_c": (paymentType == 'GR' ? 1 : 4),
       "__ORACO__AuxiliaryAttribute14_c": promiseDate,
 
     }
@@ -132,7 +147,7 @@ export class ApiService {
     }
     return this.http.post(this.apiSaleUrl + "__ORACO__ShoppingCartDSD_c/" + (shoppingCartId), body, {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.action+json" },
-    }); 
+    });
   }
 
   getPrice(priceBook: number): any {
@@ -147,8 +162,8 @@ export class ApiService {
     });
   }
 
-  signin(form: FormGroup) {
-    this.auth = "Basic " + btoa(form.value.usuario + ":" + form.value.password);
+  getAccounts(tokenType: string, access_token: string) {
+    this.auth = `${tokenType} ${access_token}`
     return this.http.get(this.apiSaleUrl + "accounts?limit=500", {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" }
     })
@@ -166,8 +181,8 @@ export class ApiService {
     })
   }
 
-  getOrderLinesRollupFilter(accountId : any, timestamp: any) {
-    return this.http.get(`${this.apiSaleUrl}__ORACO__OrderLineRollup_c?q=__ORACO__Account_Id_c=${accountId};__ORACO__ComboSelectionQuantity_c=${timestamp}?limit=500` , {
+  getOrderLinesRollupFilter(accountId: any, timestamp: any) {
+    return this.http.get(`${this.apiSaleUrl}__ORACO__OrderLineRollup_c?q=__ORACO__Account_Id_c=${accountId};__ORACO__ComboSelectionQuantity_c=${timestamp}?limit=500`, {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     })
   }

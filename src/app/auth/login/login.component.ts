@@ -27,29 +27,40 @@ export class LoginComponent implements OnInit {
   }
 
   ingresar() {
-    this.apiService.signin(this.form).subscribe({
+    this.apiService.postOAuthToken(this.form.value.usuario, this.form.value.password).subscribe({
       next: (res: any) => {
-        //TODO: Identificar cual es la cuenta padre y partir de esa
-        res.items.forEach((account: any) => {
-          if (account.ParentAccountPartyNumber != null) {
-            this.apiService.bodegas.push(account)
-          } else {
-            this.apiService.padre = account
+        this.apiService.getAccounts(res.token_type, res.access_token).subscribe({
+          next: (res: any) => {
+            res.items.forEach((account: any) => {
+              if (account.ParentAccountPartyNumber != null) {
+                this.apiService.bodegas.push(account)
+              } else if (account.OrganizationDEO_EMPID_c == "1") {
+                return this.formError("Invalid platform, please use the Mobile App!")
+              } else {
+                this.apiService.padre = account
+              }
+            })
+            this.router.navigate(['inicio'])
+          },
+          error: (err) => {
+            this.formError("");
+            console.log(err)
           }
         })
-        this.router.navigate(['inicio'])
+        this.form.reset()
       },
-      error: (err) => {
-        this.formError();
+      error: (err: any) => {
+        this.formError("");
         console.log(err)
       }
     })
-    this.form.reset()
+
 
   }
 
-  formError() {
-    this._snackBar.open('Incorrect user or password', '', {
+  formError(description: any) {
+    const desc = description || 'Incorrect user or password'
+    this._snackBar.open(desc, '', {
       duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'bottom'
@@ -57,7 +68,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    sessionStorage.setItem("partyNumber", "1Yp")
+    //sessionStorage.setItem("partyNumber", "1Yp")
   }
 
 }
