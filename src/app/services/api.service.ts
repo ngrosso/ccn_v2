@@ -167,7 +167,7 @@ export class ApiService {
   }
 
   getOrderLinesRollupFilter(accountId : any, timestamp: any) {
-    return this.http.get(`${this.apiSaleUrl}__ORACO__OrderLineRollup_c?q=__ORACO__Account_Id_c=${accountId};__ORACO__ComboSelectionQuantity_c=${timestamp}?limit=500` , {
+    return this.http.get(`${this.apiSaleUrl}__ORACO__OrderLineRollup_c?q=__ORACO__Account_Id_c=${accountId};__ORACO__ComboSelectionQuantity_c=${timestamp}` , {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     })
   }
