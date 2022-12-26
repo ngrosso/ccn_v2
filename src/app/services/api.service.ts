@@ -3,7 +3,7 @@ import { Buffer } from 'buffer';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { FormGroup } from '@angular/forms';
-import { environment } from 'src/environments/environment.dev';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class ApiService {
   }
 
   public account = {} as any;
-  private apiSaleUrl = environment.APISALESURL || process.env.APISALESURL
+  private apiSaleUrl = environment.APISALESURL
  
   //private auth = "Basic " + btoa(this.username + ":" + this.password)
   private auth = "";

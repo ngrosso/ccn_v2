@@ -29,11 +29,10 @@
               "src/favicon.ico",
               "src/assets",
               {
-                "glob":"redirects",
+                "glob": "_redirects",
                 "input": "src",
                 "output": "/"
               }
-            
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
@@ -108,7 +107,6 @@
                 "output": "src/assets/svg-country-flags/svg"
               }
             ],
-            
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
@@ -117,7 +115,12 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/ccn",
+            "netlifyToken": "",
+            "siteId": "1a18f9f4-9479-4ab6-872b-dc7c722b43cb"
+          }
         }
       }
     }
