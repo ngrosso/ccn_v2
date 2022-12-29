@@ -67,7 +67,8 @@ const ELEMENT_DATA: trackingDataInfo[] = [];
 export class DetailsComponent implements OnInit {
   dataDetailsTable: MatTableDataSource<any>;
 
-  checkStatus = "✔"
+  checkStatusVar = "";
+  
   hidden = false;
 
   trackingDataList: any = [];
@@ -153,5 +154,35 @@ export class DetailsComponent implements OnInit {
       this.hidden = !this.hidden;
       
     }
+
+    
+  checkStatusReceived(){
+    return (this.checkStatusVar = '✔');
+  }
+
+  checkStatusValidate(){
+    if (this.FECHALIBCRE) {
+      return this.checkStatusVar = "✔"
+    } else{
+      return this.checkStatusVar =""
+    }
+  }
+
+
+  checkStatusProcess(){
+    if (this.PEDFCHLIB) {
+      return this.checkStatusVar = "✔"
+    } else{
+      return this.checkStatusVar =""
+    }
+  }
+
+  checkStatusShipped(){
+    if (this.PEDFCHPRO) {
+      return this.checkStatusVar = "✔"
+    } else{
+      return this.checkStatusVar =""
+    }
+  }
   
 }

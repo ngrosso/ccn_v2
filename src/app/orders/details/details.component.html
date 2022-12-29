@@ -5,10 +5,10 @@
     <h2 lass="mdl-stepper-optional">{{PEDNROPLAC}}</h2>
     <h2 class="mdl-stepper-optional">Status: <span class="statusOrder">{{PEDSTS}}</span></h2>
 
-
+    <!-- Paso 1 -->
     <div class="mdl-stepper-horizontal-alternative" #stepper>
       <div class="mdl-stepper-step active-step step-done ">
-        <div mat-raised-button class="box1" id="order-received" matBadge="{{checkStatus}} " matBadgeSize="large" matBadgeColor="warn"
+        <div mat-raised-button class="box1" id="order-received" [matBadge]="checkStatusReceived()" matBadgeSize="large" matBadgeColor="warn"
           matTooltip="Your order has been entered">
           <img src="http://datocracia.com.ar/ccn/order.png" width="100%">
           <i class="fa-solid fa-list-check"></i>
@@ -21,9 +21,9 @@
       </div>
 
       <span>&ndash;</span>
-      
+      <!-- Paso 2 -->
       <div class="mdl-stepper-step active-step step-done ">
-        <div class="box1" matTooltip="Your order has been validated"  matBadgeSize="large" matBadgeColor="warn" [ngClass]="{'order-received2': FECHALIBCRE}">
+        <div class="box1" matTooltip="Your order has been validated"  matBadgeSize="large"  [matBadge]="checkStatusValidate()" matBadgeColor="warn" [ngClass]="{'order-received2': FECHALIBCRE}">
           <img src="https://datocracia.com.ar/ccn/package.png" width="100%">
         </div>
         <div class="mdl-stepper-title">
@@ -33,9 +33,9 @@
       </div>
 
       <span>&ndash;</span>
-
+      <!-- Paso 3 -->
       <div class="mdl-stepper-step active-step step-done ">
-        <div class="box1" matTooltip="Your order is in process" [ngClass]="{'order-received2': PEDFCHLIB}">
+        <div class="box1" matTooltip="Your order is in process"  [matBadge]="checkStatusProcess()" matBadgeSize="large" [ngClass]="{'order-received2': PEDFCHLIB}">
           <img src="https://datocracia.com.ar/ccn/return-box.png" width="100%">
         </div>
         <div class="mdl-stepper-title">
@@ -46,13 +46,11 @@
         <br>
       </div>
 
-  
-
       <span>&ndash;</span>
 
-
+      <!-- Paso 4 -->
       <div class="mdl-stepper-step active-step step-done div-test-disabled">
-        <div class="box1" style="align-items: center;"  matTooltip="Your order has been shipped" [ngClass]="{'order-received2': PEDFCHPRO}">
+        <div class="box1" style="align-items: center;"  matTooltip="Your order has been shipped" [matBadge]="checkStatusShipped()" matBadgeSize="large" [ngClass]="{'order-received2': PEDFCHPRO}">
           <img src="https://datocracia.com.ar/ccn/truck.png" width="100%">
         </div>
         <div class="mdl-stepper-title ">

@@ -193,7 +193,11 @@ export class ApiService {
     })
   }
 
-
+  getEmpiFilter(){
+    return this.http.get(this.apiSaleUrl + "accounts/?q=OrganizationType=1", {
+      headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
+    })
+  }
 
 }
 
