@@ -2,6 +2,7 @@ import { Component, OnInit, VERSION } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/services/api.service';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { Router } from '@angular/router';
 
 
 export interface Amount {
@@ -30,12 +31,13 @@ export class InicioComponent implements OnInit {
   };
 
 
-  constructor( private apiService: ApiService){}
+  constructor( private apiService: ApiService,private router: Router){}
 
   ngOnInit() {
+    // this.apiService.getAccounts()
+    // this.router.navigate(['verificacion'])
     this.grupoEmpresario = this.apiService.padre
     this.bodegas = this.apiService.bodegas
     console.log(this.bodegas)
   }
-
 }

@@ -29,18 +29,21 @@ export class LoginComponent implements OnInit {
   ingresar() {
     this.apiService.postOAuthToken(this.form.value.usuario, this.form.value.password).subscribe({
       next: (res: any) => {
-        this.apiService.getAccounts(res.token_type, res.access_token).subscribe({
+        this.apiService.getAccounts(res.access_token).subscribe({
           next: (res: any) => {
             res.items.forEach((account: any) => {
               if (account.ParentAccountPartyNumber != null) {
                 this.apiService.bodegas.push(account)
+                console.warn('Acá debería de mostrar un error antes del error1')
               } else if (account.OrganizationDEO_EMPID_c == "1") {
                 return this.formError("Invalid platform, please use the Mobile App!")
               } else {
                 this.apiService.padre = account
+                console.log('Account',this.apiService.padre)
               }
             })
             this.router.navigate(['inicio'])
+
           },
           error: (err) => {
             this.formError("");

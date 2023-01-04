@@ -239,6 +239,7 @@ export class NuevaComponent {
         // lo que estaba causando el error en Maritimo null: + this.formProduct.value.containerType
         this.apiService.patchIdOrder(orderID, this.formHeader.value.poNbr, this.formHeader.value.etd, containerType, this.RESPONSE.__ORACO__ComboSelQuantity_c, this.formHeader.value.paymentType, this.apiService.bodegaSeleccionada.OrganizationDEO_Territorio_c
         ).subscribe(response => console.info(response));
+        console.log("PatchOrders")
       })
       this.openDialog()
     })
