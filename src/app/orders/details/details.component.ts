@@ -131,14 +131,19 @@ export class DetailsComponent implements OnInit {
     // Order Validated
     this.FECHALIBCRE = data.orden.FECHALIBCRE;
     // Order in process
-    this.PEDFCHLIB = data.details[0].PEDFCHLIB;
+    this.PEDFCHLIB = data.orden.PEDFCHLIB;
     // Order shipped
-    this.PEDFCHPRO = data.details[0].PEDFCHPRO;
+    this.PEDFCHPRO = data.orden.PEDFCHPRO;
 
-    if ( data.orden.PEDSTS == 'RET' || data.orden.PEDSTS == 'LIB' || data.orden.PEDSTS == 'PRC' ) {
+    if ( data.orden.PEDSTS == 'RET' || data.orden.PEDSTS == 'LIB') {
       this.PEDSTS = 'IN PROGRESS';
     } else {
       this.PEDSTS = 'SUSPENDED';
+    } 
+    
+    if(data.orden.PEDSTS == 'PRC'){
+      this.PEDSTS = 'SHIPPED';
+
     }
     this.DETAILS = data.details;
 
@@ -152,7 +157,6 @@ export class DetailsComponent implements OnInit {
   toggleBadgeVisibility() {
     console.log('Acá es el botón para el badge')
       this.hidden = !this.hidden;
-      
     }
 
     

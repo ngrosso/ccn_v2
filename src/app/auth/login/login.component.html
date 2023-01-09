@@ -1,21 +1,25 @@
 <div class="body">
-  <mat-card  class="card">
+  <mat-card class="card">
+
     <div class="login">
-      <form [formGroup]="form">
+
+      <form *ngIf="!loading" [formGroup]="form">
         <img src="https://www.ccn.com.ni/wp-content/uploads/b2b/logoVerification1232x1635.png " class="logo-principal">
         <h1 class="title-main">Login</h1>
-        <mat-form-field class="label-form"  >
-          <mat-label>User</mat-label>
+        <mat-form-field class="label-form">
+          <mat-label class="color-label">User</mat-label>
           <input type="text" matInput autocomplete="off" formControlName="usuario">
         </mat-form-field>
 
         <mat-form-field class="label-form">
-          <mat-label>Enter your password</mat-label>
+          <mat-label class="color-label">Enter your password</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
+
 
         <section class="password-infos">
           <div>
@@ -26,14 +30,16 @@
         </section>
 
         <br>
-        <button class="bottom-access" mat-raised-button (click)="ingresar()"
-          routerLink="/login"  [disabled]="form.invalid">Login</button>
+        <button class="bottom-access" mat-raised-button (click)="ingresar()" routerLink="/login"
+          [disabled]="form.invalid">Login</button>
         <footer>
           <br>
         </footer>
       </form>
       <br>
     </div>
-
+    <div class="uploader-status">
+      <mat-spinner *ngIf="loading" class="spinner" diameter="50"></mat-spinner>
+    </div>
   </mat-card>
 </div>
