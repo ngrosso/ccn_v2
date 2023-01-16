@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserValidationService } from 'src/app/services/user-validation.service';
 
 export interface Amount {
   totalAmount: string;
@@ -36,7 +37,8 @@ export class InicioComponent implements OnInit {
     private apiService: ApiService,
     private router: Router,
     private _snackBar: MatSnackBar,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private userValidation: UserValidationService
   ) {
     this.form = this.fb.group({
       usuario: ['', Validators.required],
@@ -45,50 +47,37 @@ export class InicioComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(
-      '%cStarting Component Home Page',
-      'color: #f709bb;  font-family: Poppins, "Helvetica Neue", sans-serif; text-decoration: underline;'
-    );
-
-    const userData = sessionStorage.getItem('userDataToken');
-
-    console.log('userData ' + typeof userData);
-
-    if (userData != null) {
-      const userDataString = JSON.parse(userData);
-      // console.log(userDataString.token);
-      // const { token, expiresIn, dateToken } = userDataString;
-      console.log(userDataString.expiresIn);
+    const tokenInfo = this.userValidation.isLoggedIn();
+    if(tokenInfo!=null && JSON.stringify(this.apiService.padre) === "{}" && this.apiService.bodegas.length == 0){
+      this.apiService.getAccounts(tokenInfo).subscribe({
+        next: (res: any) => {
+          res.items.forEach((account: any) => {
+            if (account.ParentAccountPartyNumber != null) {
+              this.apiService.bodegas.push(account);
+              console.warn(
+                'Acá debería de mostrar un error antes del error1'
+              );
+            } else if (account.OrganizationDEO_EMPID_c == '1') {
+              this.formErrorAccount("Mobile account detected!")
+            } else {
+              this.apiService.padre = account;
+              console.log('Account', this.apiService.padre);
+            }
+          });
+          this.grupoEmpresario = this.apiService.padre;
+          this.bodegas = this.apiService.bodegas;
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+  
     }
-
-    //  this.apiService.getAccounts()
-
-    // this.apiService.getAccounts(this.userDataString.token).subscribe({
-    //   next: (res: any) => {
-    //     res.items.forEach((account: any) => {
-    //       if (account.ParentAccountPartyNumber != null) {
-    //         this.apiService.bodegas.push(account);
-    //       } else if (account.OrganizationDEO_EMPID_c == '1') {
-    //         return this.formErrorAccount(
-    //           'Invalid platform, please use the Mobile App!'
-    //         );
-    //       } else {
-    //         this.apiService.padre = account;
-    //         console.log('Account', this.apiService.padre);
-    //       }
-    //     });
-    //     this.router.navigate(['login']);
-    //   },
-    //   error: (err) => {
-    //      this.formErrorAccount('');
-    //     console.log(err);
-    //   },
-    // });
-
     // this.router.navigate(['verificacion'])
+   
     this.grupoEmpresario = this.apiService.padre;
     this.bodegas = this.apiService.bodegas;
-    console.log(this.bodegas);
+    
   }
 
   formErrorAccount(description: any) {

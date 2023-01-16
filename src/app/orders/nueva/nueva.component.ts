@@ -8,6 +8,8 @@ import { logicFilling } from './logic';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmOrderComponent } from '../confirm-order/confirm-order.component';
 import { MatDialog } from '@angular/material/dialog';
+import { UserValidationService } from 'src/app/services/user-validation.service';
+import { Router } from '@angular/router';
 
 export interface Data {
   sku: string;
@@ -38,10 +40,10 @@ export class NuevaComponent {
     { value: 'GR', name: 'Credit' },
     { value: 'UN', name: 'Debit' },
   ];
-  
-  displayedColumns: string[] = ['sku', 'description','ListPrice' ,'quantity','totalAmount','action'];
+
+  displayedColumns: string[] = ['sku', 'description', 'ListPrice', 'quantity', 'totalAmount', 'action'];
   bodegas: any[] = [];
-  gstValue : string = 'GR'
+  gstValue: string = 'GR'
   selectedProduct = {} as any;
   selectedProductDetails = {} as any;
   selectedWarhouse = {} as any;
@@ -75,14 +77,14 @@ export class NuevaComponent {
   totalAmount: string = '';
   grupoEmpresario: any = {}
   dataSourceShoppingCarts: any[] = ELEMENT_DATA;
-  
+
   validoParaComprar: boolean = false;
   CantidadDeContenedorTotal: number = 1;
   territory: string = ''
   PesoTotalARepartir: number = 0;
 
   pallets: number[] = [];
-  auxPallets:number[] = [];
+  auxPallets: number[] = [];
   cantidadDeProductosPorPallet = 0
   pesoPorPallet: number | undefined;
   timeStampTest = Date.now();
@@ -91,15 +93,15 @@ export class NuevaComponent {
   availableCapacity = 20000;
   RESPONSE: any = []
   disabledPaymentType = false
-  pesoTotal:number = 0;
+  pesoTotal: number = 0;
   totalAmountReached = false;
-  businessGroupReached= false;
+  businessGroupReached = false;
   warehouseAmountAfterPurchase: number = 0;
   businessGroupAfterPurchase: number = 0
   disableSelect = new FormControl(false);
 
 
-  constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private _snackBar: MatSnackBar, private dialog: MatDialog) {
+  constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private _snackBar: MatSnackBar, private dialog: MatDialog, private router: Router, private userValidation: UserValidationService) {
 
     const today = new Date();
     const currentYear = today.getFullYear();
@@ -111,7 +113,7 @@ export class NuevaComponent {
     const date = new Date(2020, 11, 16);
 
     this.formHeader = new FormGroup({
-      
+
       paymentType: new FormControl(),
       territory: new FormControl(),
       etd: new FormControl(Validators.required),
@@ -140,8 +142,9 @@ export class NuevaComponent {
   productoSeleccionado = "";
 
   ngOnInit(): void {
-    // this.getAddress()
-    // this.getAccountShoppingCart()
+    if (this.userValidation.isLoggedIn() != null && JSON.stringify(this.apiService.padre) === "{}" && this.apiService.bodegas.length == 0) {
+      this.router.navigate(['inicio'])
+    }
     this.accountAddressesList = this.apiService.bodegas
     this.addService.getProductos().subscribe(productos => {
       this.productos = productos;
@@ -156,7 +159,7 @@ export class NuevaComponent {
     this.apiService.getAccountInfo(this.apiService.bodegaSeleccionada.PartyNumber).subscribe((account: any) => {
       // this.apiService.account = account
       // TODO: unificar llamada del getAccountInfo
-      console.log( "account",account)
+      console.log("account", account)
       this.getItemShoppingCart(account["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
     })
   }
@@ -165,12 +168,12 @@ export class NuevaComponent {
     this.apiService.getShoppingCartItems(shoppingCartId)
       .subscribe((shoppingCart: any) => {
         this.shoppingCartList = shoppingCart.items
-        console.log('ShoppingCartList',this.shoppingCartList)
+        console.log('ShoppingCartList', this.shoppingCartList)
       });
   }
 
   selectSoldTo(account: any) {
-    console.log("account",account)
+    console.log("account", account)
     this.productsList = [];
     this.apiService.bodegaSeleccionada = account
     this.getItemPrices()
@@ -249,22 +252,22 @@ export class NuevaComponent {
     this.PesoTotalARepartir = this.selectedProductDetails.PesoProducto_c * cantidadDeProducto;
   }
 
-  seRepiteSKU(){
+  seRepiteSKU() {
     let seRepite = false
-    this.shoppingCartList.forEach((product:any)=>{
-      if(product.__ORACO__Product_Id_c == this.selectedProduct.InvItemId){
+    this.shoppingCartList.forEach((product: any) => {
+      if (product.__ORACO__Product_Id_c == this.selectedProduct.InvItemId) {
         seRepite = true
-      } 
+      }
     })
     return seRepite;
   }
 
-  
-  validaPrecio(){
+
+  validaPrecio() {
     let validaPrecio = false
-      if(this.formProduct.value.pallets * this.selectedProduct.ListPrice < this.warehouseAmount){
-        validaPrecio = true
-      } 
+    if (this.formProduct.value.pallets * this.selectedProduct.ListPrice < this.warehouseAmount) {
+      validaPrecio = true
+    }
     return validaPrecio;
   }
 
@@ -315,11 +318,11 @@ export class NuevaComponent {
         this.businessGroupAfterPurchase -= parseFloat(totalAmount.toFixed(2));
         console.log('WarehouseAmountAfterPurchase', this.warehouseAmountAfterPurchase);
         console.log('GrupoEmpresario', this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c)
-        if(this.warehouseAmountAfterPurchase < 0 ) this.totalAmountReached = true;
+        if (this.warehouseAmountAfterPurchase < 0) this.totalAmountReached = true;
         // TODO: Lógica para condición de grupo empresario, revisar
-        if(this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0 ) this.businessGroupReached = true;
-        console.log('DisponibleCredito',this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0);
-        
+        if (this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0) this.businessGroupReached = true;
+        console.log('DisponibleCredito', this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0);
+
         console.log('totalamount', totalAmount);
         this.availableCapacity = maxCapacity;
         console.log('maxCapacity', maxCapacity);
@@ -350,7 +353,7 @@ export class NuevaComponent {
         if ((this.selectedProductDetails.CantidadPorPallet_c * i * this.selectedProductDetails.PesoProducto_c < this.pesoMaximo)) {
           this.pallets.push(this.selectedProductDetails.CantidadPorPallet_c * i)
         }
-     
+
       }
       this.auxPallets = this.pallets
       this.updatePallets()
@@ -364,9 +367,9 @@ export class NuevaComponent {
   }
 
   updatePallets() {
-    if(this.availableCapacity >= 2000){
+    if (this.availableCapacity >= 2000) {
       this.pallets = this.auxPallets
-    } else{
+    } else {
       console.log('availableCapacity', this.availableCapacity);
       console.log('pallets', this.pallets);
       console.log('pallets filtrado', this.pallets.filter(pallet => pallet < this.availableCapacity));
@@ -375,21 +378,21 @@ export class NuevaComponent {
   }
 
   openDialog() {
-    this.dialog.open(ConfirmOrderComponent,{
+    this.dialog.open(ConfirmOrderComponent, {
       width: '30%',
       disableClose: true,
-      data: { totalAmountReached: this.totalAmountReached}
+      data: { totalAmountReached: this.totalAmountReached }
     });
 
 
   }
 
-  filteringProducts(productsList: any[]): any[]{
+  filteringProducts(productsList: any[]): any[] {
     let result: any[] = []
     let uomCode = this.formHeader.value.paymentType
-    return productsList.filter( item => item.PriceUOMCode.includes(uomCode));
+    return productsList.filter(item => item.PriceUOMCode.includes(uomCode));
   }
- 
+
 
 }
 

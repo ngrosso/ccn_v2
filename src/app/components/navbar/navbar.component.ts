@@ -1,4 +1,4 @@
-import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
 
@@ -29,6 +29,7 @@ export class NavbarComponent implements OnInit {
     this.apiService.bodegas = []
     this.apiService.bodegaSeleccionada = {} as any
     this.apiService.account = {} as any
-    this.router.navigate(['/auth/login'])    
+    sessionStorage.clear();
+    this.router.navigate(['/auth/verificacion'])    
   }
 }

@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   ingresar() {
+    this.loading = true;
     sessionStorage.setItem('OrganizationDEO_EMPID_c', '1');
 
     this.apiService
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
           const userDataToken = {
             token: res.access_token,
             expiresIn: res.expires_in,
-            dateToken: new Date(),
+            dateToken: new Date().getTime(),
           };
 
 
@@ -49,34 +50,13 @@ export class LoginComponent implements OnInit {
           );
 
           console.log('Response', res);
-          this.apiService.getAccounts(res.access_token).subscribe({
-            next: (res: any) => {
-              res.items.forEach((account: any) => {
-                if (account.ParentAccountPartyNumber != null) {
-                  this.apiService.bodegas.push(account);
-                  console.warn(
-                    'Acá debería de mostrar un error antes del error1'
-                  );
-                } else if (account.OrganizationDEO_EMPID_c == '1') {
-                  return this.formError(
-                    'Invalid platform, please use the Mobile App!'
-                  );
-                } else {
-                  this.apiService.padre = account;
-                  console.log('Account', this.apiService.padre);
-                }
-              });
-              // this.router.navigate(['inicio']);
-              this.loadingHome();
-            },
-            error: (err) => {
-              this.formError('');
-              console.log(err);
-            },
-          });
+          
           this.form.reset();
+          this.loading = false;
+          this.router.navigate(['inicio']);
         },
         error: (err: any) => {
+          this.loading = false;
           this.formError('');
           console.log(err);
         },

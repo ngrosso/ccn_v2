@@ -9,6 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DetailsComponent } from '../details/details.component';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { isNgTemplate } from '@angular/compiler';
+import { UserValidationService } from '../../services/user-validation.service';
 
 
 export interface trackingDataInfo {
@@ -56,7 +57,7 @@ export class SeguimientoComponent implements OnInit {
   displayedColumns: string[] = ['details', 'order_Number', 'sold_Number', 'sold_to', 'etd_solicitado', 'ETA_solicitada', 'totalAmount','refresh'];
 
 
-  constructor(public dialog: MatDialog, private addService: AddService, public _router: Router, public _location: Location, private apiService: ApiService) {
+  constructor(public dialog: MatDialog, private addService: AddService, public router: Router, public _location: Location, private apiService: ApiService, private userValidation: UserValidationService) {
     this.dataSource = new MatTableDataSource();
     this.getTrackingInfoListHeader()
       .then((response: any) => {
@@ -132,6 +133,9 @@ export class SeguimientoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.userValidation.isLoggedIn() != null && JSON.stringify(this.apiService.padre) === "{}" && this.apiService.bodegas.length == 0) {
+      this.router.navigate(['inicio'])
+    }
   }
 
   ngAfterViewInit() {
@@ -164,9 +168,9 @@ export class SeguimientoComponent implements OnInit {
   }
 
   refresh(): void {
-    this._router.navigateByUrl("/refresh", { skipLocationChange: true }).then(() => {
+    this.router.navigateByUrl("/refresh", { skipLocationChange: true }).then(() => {
       console.log(decodeURI(this._location.path()));
-      this._router.navigate([decodeURI(this._location.path())]);
+      this.router.navigate([decodeURI(this._location.path())]);
     });
   }
 
