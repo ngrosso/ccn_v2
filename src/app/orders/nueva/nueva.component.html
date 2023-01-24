@@ -58,10 +58,10 @@
                 <!-- <p> <span class="title-info">Incortem: </span><span> {{incoterm}}</span></p> -->
                 <p><span class="title-info">Ship to: </span><span> {{shipTo}}</span></p>
                 <p><span class="title-info">Container Type: </span><span>{{shipmentType}}</span></p>
-                <p><span class="title-info">Available Balance:</span><span>
+                <p><span class="title-info">Total Amount Available:</span><span>
                     ${{grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c | number:'1.2-2'}} </span></p>
-                <p><span class="title-info">Outstanding Balance:</span><span> ${{warehouseAmount | number:'1.2-2'}}</span></p>
-                <p> <span class="title-info">Outstanding Balance After Purchase: </span>${{warehouseAmountAfterPurchase | number:'1.2-2' }}</p>
+                <!-- <p><span class="title-info">Outstanding Balance:</span><span> ${{warehouseAmount | number:'1.2-2'}}</span></p>
+                <p> <span class="title-info">Outstanding Balance After Purchase: </span>${{warehouseAmountAfterPurchase | number:'1.2-2' }}</p> -->
               </mat-card-content>
             </mat-card>
           </mat-grid-tile>

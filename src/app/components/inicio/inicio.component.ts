@@ -57,8 +57,6 @@ export class InicioComponent implements OnInit {
               console.warn(
                 'Acá debería de mostrar un error antes del error1'
               );
-            } else if (account.OrganizationDEO_EMPID_c == '1') {
-              this.formErrorAccount("Mobile account detected!")
             } else {
               this.apiService.padre = account;
               console.log('Account', this.apiService.padre);
@@ -66,6 +64,9 @@ export class InicioComponent implements OnInit {
           });
           this.grupoEmpresario = this.apiService.padre;
           this.bodegas = this.apiService.bodegas;
+          this.apiService.empId = this.apiService.bodegas[0].OrganizationDEO_EMPID_c
+          console.log('Acá es el empId',this.apiService.empId)
+          if(this.apiService.empId != 4) this.router.navigate(['mobileUser'])
         },
         error: (err) => {
           console.log(err);
@@ -77,6 +78,9 @@ export class InicioComponent implements OnInit {
    
     this.grupoEmpresario = this.apiService.padre;
     this.bodegas = this.apiService.bodegas;
+    this.apiService.empId = this.apiService.bodegas[0].OrganizationDEO_EMPID_c
+    console.log('Acá es el empId',this.apiService.empId)
+    if(this.apiService.empId != 4) this.router.navigate(['error'])
     
   }
 

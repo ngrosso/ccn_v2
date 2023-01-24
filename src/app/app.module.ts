@@ -21,6 +21,8 @@ import { DetailsComponent } from './orders/details/details.component';
 import { VerificacionComponent } from './auth/verificacion/verificacion.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { ConfirmOrderComponent } from './orders/confirm-order/confirm-order.component';
+import { MobileUserComponent } from './components/mobile-user/mobile-user.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +36,8 @@ import { ConfirmOrderComponent } from './orders/confirm-order/confirm-order.comp
     ForgotPasswordComponent,
     FooterComponent,
     ConfirmOrderComponent,
+    MobileUserComponent,
+
     
   ],
   imports: [

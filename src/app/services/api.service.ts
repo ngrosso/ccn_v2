@@ -20,7 +20,7 @@ export class ApiService {
   public padre = {} as any;
   public bodegas: any[] = [];
   public bodegaSeleccionada = {} as any;
-
+  public empId: number = 0
   private contenedor = {
     "EMPID": 4,
     "TPCON": "T",
