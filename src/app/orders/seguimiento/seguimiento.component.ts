@@ -73,10 +73,10 @@ export class SeguimientoComponent implements OnInit {
       const trackingInfoPromises = this.apiService.bodegas.map(async (bodega) => {
         return await this.callApiServiceGeTrackingInfoHeader(bodega.PartyNumber);
       });
-      const trackingsInfo = await Promise.all(trackingInfoPromises,);
+      const trackingsInfo = await Promise.all(trackingInfoPromises);
       console.log("trackingsinfo 77", trackingsInfo)
       trackingsInfo.forEach((trackingInfo: any) => {
-        this.trackingDataListHeader = [...this.trackingDataListHeader,...trackingInfo];
+        if(trackingInfo != null) this.trackingDataListHeader = [...this.trackingDataListHeader,...trackingInfo];
       });
       resolve(true);
     })
@@ -105,10 +105,10 @@ export class SeguimientoComponent implements OnInit {
       const trackingInfoPromises = this.apiService.bodegas.map(async (bodega) => {
         return await this.callApiServiceGeTrackingInfoDetails(bodega.PartyNumber);
       });
-      const trackingsInfo = await Promise.all(trackingInfoPromises,);
+      const trackingsInfo = await Promise.all(trackingInfoPromises);
       console.log("trackingsinfoDetails 109", trackingsInfo)
       trackingsInfo.forEach((trackingInfo: any) => {
-        this.trackingDataListDetails = [...this.trackingDataListDetails,...trackingInfo ];
+        if(trackingInfo != null) this.trackingDataListDetails = [...this.trackingDataListDetails,...trackingInfo ];
       });
       resolve(true);
     })
