@@ -103,6 +103,7 @@ export class DetailsComponent implements OnInit {
   PEDFCHENTP: any = '';
   PEDSTS: any = '';
   
+  
   onClick(index: number): void {
     this.selectedIndex = index;
   }

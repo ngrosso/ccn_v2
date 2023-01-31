@@ -10,7 +10,25 @@
     <div class='window'>
       <div class='order-info'>
         <div class='order-info-content'>
-          <h2 class="amount-available">Amount available</h2>
+          <h2 class="amount-available"></h2>
+          <table class='order-table'>
+            <tbody>
+              <tr>
+                <td>
+                  <span class='thin-two'>Credit Limit</span>
+                  <br> <br> <br>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class='credit-available'><span>${{grupoEmpresario.OrganizationDEO_CreditLimit_c}}</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class='line'></div>
+
           <table class='order-table'>
             <tbody>
               <tr>
@@ -21,17 +39,55 @@
               </tr>
               <tr>
                 <td>
-                  <div class='credit-available'><span>${{grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c}}</span>
+                  <div class='credit-available'><span>${{grupoEmpresario.OrganizationDEO_AvailableCredit_c}}</span>
                   </div>
                 </td>
               </tr>
             </tbody>
           </table>
           <div class='line'></div>
-  
+
+          <table class='order-table'>
+            <tbody>
+              <tr>
+                <td>
+                  <span class='thin-two'>Balance</span>
+                  <br> <br> <br>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class='credit-available'><span>${{grupoEmpresario.OrganizationDEO_AmountUsed_c}}</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class='line'></div>
+
+          <table class='order-table'>
+            <tbody>
+              <tr>
+                <td>
+                  <span class='thin-two'>Outstanding Balance</span>
+                  <br> <br> <br>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class='credit-available'><span>${{grupoEmpresario.OrganizationDEO_AmountDue_c}}</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class='line'></div>
+
         </div>
       </div>
-  
+
       <div class='credit-info'>
         <div class='credit-info-content'>
           <h2 class="title-main"> Outstanding Balance by Importer/Distributor </h2>
@@ -45,7 +101,7 @@
                       <br><span class='thin'>{{bodega.OrganizationName}} | {{bodega.FormattedAddress}}</span>
                       <br> <br>
                     </td>
-  
+
                   </tr>
                   <!-- <tr>
                     <td>
@@ -54,14 +110,14 @@
                   </tr> -->
                 </tbody>
               </table>
+
               <div class='line'></div>
+
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>  
+  </div>
 </div>
-<app-footer></app-footer>
-
-
+<app-footer></app-footer> 

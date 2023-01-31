@@ -15,7 +15,8 @@
             <mat-card class="card-inputs-form mat-elevation-z5">
               <mat-form-field class="ancho" appearance="outline">
                 <mat-label>Payment Method</mat-label>
-                <mat-select matNativeControl required formControlName="paymentType" [disabled]="disabledPaymentType" [(ngModel)]="gstValue">
+                <mat-select matNativeControl required formControlName="paymentType" [disabled]="disabledPaymentType"
+                  [(ngModel)]="gstValue">
                   <mat-option value="GR">Credit</mat-option>
                   <mat-option value="UN">Debit</mat-option>
                 </mat-select>
@@ -60,8 +61,9 @@
                 <p><span class="title-info">Container Type: </span><span>{{shipmentType}}</span></p>
                 <p><span class="title-info">Total Amount Available:</span><span>
                     ${{grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c | number:'1.2-2'}} </span></p>
-                <!-- <p><span class="title-info">Outstanding Balance:</span><span> ${{warehouseAmount | number:'1.2-2'}}</span></p>
-                <p> <span class="title-info">Outstanding Balance After Purchase: </span>${{warehouseAmountAfterPurchase | number:'1.2-2' }}</p> -->
+
+                <p><span class="title-info">Balance:</span><span> ${{balanceStatus | number:'1.2-2'}}</span></p>
+                <p> <span class="title-info">Outstading Balance: </span>${{outstandingBalance | number:'1.2-2' }}</p>
               </mat-card-content>
             </mat-card>
           </mat-grid-tile>
@@ -70,7 +72,7 @@
             <mat-card class="card-inputs-form mat-elevation-z5">
               <mat-form-field class="ancho" appearance="outline">
                 <mat-label>Estimated Shipping Date</mat-label>
-                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker2" formControlName="etd" required 
+                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker2" formControlName="etd" required
                   autocomplete="off">
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
@@ -94,7 +96,7 @@
 
           <mat-grid-tile [colspan]="1" [rowspan]="1">
             <mat-card class="card-inputs-form mat-elevation-z5">
-              <mat-form-field class="ancho" appearance="outline" >
+              <mat-form-field class="ancho" appearance="outline">
                 <mat-label> Select Product</mat-label>
                 <mat-select matNativeControl name="select" required formControlName="sku" class="my-select-panel-class"
                   (ngModelChange)="getItemInfo($event)" (ngModel)="selectedProduct">
@@ -111,8 +113,7 @@
             <mat-card class="card-inputs-form mat-elevation-z5">
               <mat-form-field class="ancho" appearance="outline">
                 <mat-label>Quantity</mat-label>
-                <mat-select matNativeControl formControlName="quantity" required
-                  (ngModelChange)="calculo($event)">
+                <mat-select matNativeControl formControlName="quantity" required (ngModelChange)="calculo($event)">
                   <mat-option value="{{pallet}}" *ngFor="let pallet of pallets"> {{pallet}}
                   </mat-option>
                 </mat-select>
@@ -129,7 +130,8 @@
             value="Agregar">Add</button>
         </div>
 
-        <mat-card *ngIf="totalAmountReached" class="mat-elevation-z8 background-table section-data-container custom-warning">
+        <mat-card *ngIf="totalAmountReached"
+          class="mat-elevation-z8 background-table section-data-container custom-warning">
           <mat-grid-list cols="1" rowHeight="40px">
             <mat-grid-tile [colspan]="1" [rowspan]="1">
               <p>
@@ -138,7 +140,7 @@
             </mat-grid-tile>
           </mat-grid-list>
         </mat-card>
-        
+
 
       </form>
 
@@ -171,7 +173,8 @@
 
           <ng-container matColumnDef="totalAmount">
             <th mat-header-cell *matHeaderCellDef> Total Amount </th>
-            <td mat-cell *matCellDef="let element"> ${{element.__ORACO__Quantity_c * element.__ORACO__Tax2_c | number:'1.2-2'}} </td>
+            <td mat-cell *matCellDef="let element"> ${{element.__ORACO__Quantity_c * element.__ORACO__Tax2_c |
+              number:'1.2-2'}} </td>
           </ng-container>
 
           <ng-container matColumnDef="action">
@@ -234,16 +237,17 @@
         </mat-grid-tile>
 
         <!-- button confirm -->
-       
+
       </mat-grid-list>
-      
+
     </mat-card>
     <div class="col-lg-12 text-center">
       <button mat-raised-button class="btn-add text-uppercase font-weight-bold" (click)="completarOrden()"
-      [disabled]="!(pesoTotal<=pesoMaximo && pesoTotal>=pesoMinimo && !formHeader.invalid)" value="Confirmar">Confirm</button>
+        [disabled]="!(pesoTotal<=pesoMaximo && pesoTotal>=pesoMinimo && !formHeader.invalid)"
+        value="Confirmar">Confirm</button>
     </div>
     <br>
   </div>
 </div>
 
-<app-footer></app-footer>
+<app-footer></app-footer> 

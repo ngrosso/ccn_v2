@@ -49,11 +49,12 @@
       <span>&ndash;</span>
 
       <!-- Paso 4 -->
+      
       <div class="mdl-stepper-step active-step step-done div-test-disabled">
         <div class="box1" style="align-items: center;"  matTooltip="Your order has been shipped" [matBadge]="checkStatusShipped()" matBadgeSize="large" [ngClass]="{'order-received2': PEDFCHPRO}">
           <img src="https://datocracia.com.ar/ccn/truck.png" width="100%">
         </div>
-        <div class="mdl-stepper-title ">
+        <div class="mdl-stepper-title">
           <h3 class="subtitle-text">Order shipped</h3>
         </div>
         <div class="mdl-stepper-optional">Date: {{PEDFCHPRO | date}}</div>

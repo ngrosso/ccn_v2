@@ -99,7 +99,8 @@ export class NuevaComponent {
   warehouseAmountAfterPurchase: number = 0;
   businessGroupAfterPurchase: number = 0
   disableSelect = new FormControl(false);
-
+  balanceStatus: any;
+  outstandingBalance: any;
 
   constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private _snackBar: MatSnackBar, private dialog: MatDialog, private router: Router, private userValidation: UserValidationService) {
 
@@ -119,6 +120,8 @@ export class NuevaComponent {
       etd: new FormControl(Validators.required),
       poNbr: new FormControl(),
       incortem: new FormControl(),
+      balanceStatus: new FormControl,
+      outstandingBalance: new FormControl,
       soldTo: new FormControl(),
       shipTo: new FormControl(),
       shipmentType: new FormControl(),
@@ -180,6 +183,8 @@ export class NuevaComponent {
     this.getShoppingCartList(this.apiService.bodegaSeleccionada.OrganizationDEO___ORACO__ShoppingCart_Id_c)
     this.getContainers()
     this.incoterm = account.OrganizationDEO_INCOTERM_c
+    this.balanceStatus = account.OrganizationDEO_AmountUsed_c
+    this.outstandingBalance = account.OrganizationDEO_AmountDue_c
     this.shipTo = account.FormattedAddress
     this.warehouseAmount = parseFloat(account.OrganizationDEO_DisponibleDeCredito_c.toFixed(2))
 
