@@ -67,6 +67,15 @@ const ELEMENT_DATA: trackingDataInfo[] = [];
 export class DetailsComponent implements OnInit {
   dataDetailsTable: MatTableDataSource<any>;
 
+
+  tosSign = false;
+  sndUsage = false;
+  
+  klassStyler = {
+    statusSuspended: false,
+  }
+
+
   checkStatusVar = "";
   
   hidden = false;
@@ -188,6 +197,10 @@ export class DetailsComponent implements OnInit {
     } else{
       return this.checkStatusVar =""
     }
+  }
+
+  updateStyle() {
+    this.klassStyler.statusSuspended = this.tosSign && !this.sndUsage;
   }
   
 }

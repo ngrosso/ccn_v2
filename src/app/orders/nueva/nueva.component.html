@@ -60,10 +60,10 @@
                 <p><span class="title-info">Ship to: </span><span> {{shipTo}}</span></p>
                 <p><span class="title-info">Container Type: </span><span>{{shipmentType}}</span></p>
                 <p><span class="title-info">Total Amount Available:</span><span>
-                    ${{grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c | number:'1.2-2'}} </span></p>
+                    ${{grupoEmpresario.OrganizationDEO_AmountUsed_c | number:'1.2-2'}} </span></p>
 
-                <p><span class="title-info">Balance:</span><span> ${{balanceStatus | number:'1.2-2'}}</span></p>
-                <p> <span class="title-info">Outstading Balance: </span>${{outstandingBalance | number:'1.2-2' }}</p>
+                <p><span class="title-info">Balance:</span><span> ${{grupoEmpresario.OrganizationDEO_AmountUsed_c  | number:'1.2-2'}}</span></p>
+                <p> <span class="title-info">Outstading Balance: </span>${{grupoEmpresario.OrganizationDEO_AmountDue_c  }}</p>
               </mat-card-content>
             </mat-card>
           </mat-grid-tile>

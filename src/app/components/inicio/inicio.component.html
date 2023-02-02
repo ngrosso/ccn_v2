@@ -21,7 +21,7 @@
               </tr>
               <tr>
                 <td>
-                  <div class='credit-available'><span>${{grupoEmpresario.OrganizationDEO_CreditLimit_c}}</span>
+                  <div class='credit-available'><span>${{grupoEmpresario.OrganizationDEO_CreditLimit_c | number:'1.2-2'}}</span>
                   </div>
                 </td>
               </tr>
@@ -39,7 +39,7 @@
               </tr>
               <tr>
                 <td>
-                  <div class='credit-available'><span>${{grupoEmpresario.OrganizationDEO_AvailableCredit_c}}</span>
+                  <div class='credit-available'><span>${{grupoEmpresario.OrganizationDEO_AvailableCredit_c | number:'1.2-2'}}</span>
                   </div>
                 </td>
               </tr>
@@ -57,7 +57,7 @@
               </tr>
               <tr>
                 <td>
-                  <div class='credit-available'><span>${{grupoEmpresario.OrganizationDEO_AmountUsed_c}}</span>
+                  <div class='credit-available'><span>${{grupoEmpresario.OrganizationDEO_AmountUsed_c | number:'1.2-2'}}</span>
                   </div>
                 </td>
               </tr>
@@ -76,7 +76,7 @@
               </tr>
               <tr>
                 <td>
-                  <div class='credit-available'><span>${{grupoEmpresario.OrganizationDEO_AmountDue_c}}</span>
+                  <div class='credit-available'><span>${{grupoEmpresario.OrganizationDEO_AmountDue_c | number:'1.2-2'}}</span>
                   </div>
                 </td>
               </tr>
@@ -103,11 +103,11 @@
                     </td>
 
                   </tr>
-                  <!-- <tr>
+                  <tr>
                     <td>
-                      <div class='credit-available-warehouse'>${{bodega.OrganizationDEO_DisponibleDeCredito_c}}</div>
+                      <div class='credit-available-warehouse'>${{bodega.OrganizationDEO_AmountUsed_c | number:'1.2-2'}}</div>
                     </td>
-                  </tr> -->
+                  </tr>
                 </tbody>
               </table>
 
