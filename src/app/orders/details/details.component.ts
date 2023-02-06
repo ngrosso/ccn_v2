@@ -127,7 +127,7 @@ export class DetailsComponent implements OnInit {
 
     this.PEDLINCNTV = data.orden.PEDLINCN;
     this.PEDLINMON = data.orden.PEDLINMON;
-    
+    this.PEDNRO = data.orden.PEDNRO;
     // Order number
     this.PEDNROPLAC = data.orden.PEDNROPLAC;
     // Order Received
