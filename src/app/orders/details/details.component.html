@@ -51,7 +51,7 @@
       <!-- Paso 4 -->
       <!-- [matBadge]="checkStatusShipped()" [ngClass]="{'order-received2': PEDFCHPRO}" -->
       <div class="mdl-stepper-step active-step step-done div-test-disabled">
-        <div class="box1" style="align-items: center;"  matTooltip="Your order has been shipped"   matBadgeSize="large">
+        <div class="box1" style="align-items: center;"  matTooltip="Your order has been shipped" [matBadge]="checkStatusShipped()" [ngClass]="{'order-received2': PEDFCHPRO && PEDSTS != 'SUSPENDED'}" matBadgeSize="large">
           <img src="https://datocracia.com.ar/ccn/truck.png" width="100%">
         </div>
         <div class="mdl-stepper-title">

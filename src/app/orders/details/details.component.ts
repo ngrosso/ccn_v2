@@ -52,6 +52,7 @@ const ELEMENT_DATA: trackingDataInfo[] = [];
 
 @Component({
   selector: 'app-details',
+  
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css'],
   providers: [
@@ -68,13 +69,8 @@ export class DetailsComponent implements OnInit {
   dataDetailsTable: MatTableDataSource<any>;
 
 
-  tosSign = false;
-  sndUsage = false;
-  
-  klassStyler = {
-    statusSuspended: false,
-  }
-
+  // colorShippedStatus = 'background-color: red';
+  // navStyle = 'background-color:red';
 
   checkStatusVar = "";
   
@@ -111,7 +107,7 @@ export class DetailsComponent implements OnInit {
   fechaReal: any = '';
   PEDFCHENTP: any = '';
   PEDSTS: any = '';
-  
+   
   
   onClick(index: number): void {
     this.selectedIndex = index;
@@ -156,7 +152,6 @@ export class DetailsComponent implements OnInit {
 
     }
     this.DETAILS = data.details;
-
   }
   
   ngOnInit(): void {
@@ -192,15 +187,11 @@ export class DetailsComponent implements OnInit {
   }
 
   checkStatusShipped(){
-    if (this.PEDFCHPRO) {
-      return this.checkStatusVar = "✔"
+    if (this.PEDFCHPRO && this.PEDSTS != 'SUSPENDED') {
+      return (this.checkStatusVar = '✔');
     } else{
       return this.checkStatusVar =""
     }
   }
 
-  updateStyle() {
-    this.klassStyler.statusSuspended = this.tosSign && !this.sndUsage;
-  }
-  
 }

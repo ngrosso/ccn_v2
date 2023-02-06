@@ -54,7 +54,7 @@ export class SeguimientoComponent implements OnInit {
 
   trackingDataListHeader: any = []
   trackingDataListDetails: any = []
-  displayedColumns: string[] = ['details', 'order_Number', 'sold_Number', 'sold_to', 'etd_solicitado', 'ETA_solicitada', 'totalAmount','refresh'];
+  displayedColumns: string[] = ['details', 'status','order_Number', 'sold_Number', 'sold_to', 'etd_solicitado', 'ETA_solicitada', 'totalAmount','refresh'];
 
 
   constructor(public dialog: MatDialog, private addService: AddService, public router: Router, public _location: Location, private apiService: ApiService, private userValidation: UserValidationService) {
