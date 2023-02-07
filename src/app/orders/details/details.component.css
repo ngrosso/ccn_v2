@@ -150,6 +150,13 @@
   border-radius: 1rem;
   /* top: 10px; */
   flex-direction: column;
+  box-shadow:
+  0px 0px 10.1px rgba(0, 0, 0, 0.07),
+  0px 0px 25.6px rgba(0, 0, 0, 0.048),
+  0px 0px 52.3px rgba(0, 0, 0, 0.039),
+  0px 0px 107.7px rgba(0, 0, 0, 0.031),
+  0px 0px 295px rgba(0, 0, 0, 0.022)
+;
 
 }
 
@@ -161,7 +168,21 @@
 
 .order-received2 {
   background-color: #006a3a;
+}
 
+.status-shipped{
+  color: #006a3a;
+  font-weight: bold;
+}
+
+.status-in-progress{
+  color: orange;
+  font-weight: bold;
+}
+
+.status-suspended{
+  color: red;
+  font-weight: bold;
 }
 
 .mat-badge-content {
@@ -270,3 +291,6 @@ table td {
   background-image: url('../../../assets/logo.png');
 }
 
+.mat-toolbar-details{
+  background-color: transparent;
+} 

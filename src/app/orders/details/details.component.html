@@ -1,17 +1,25 @@
-<div class="mdl-card mdl-shadow-2dp">
-  <div class="mdl-stepper-optional" style="text-align:left;"> CCN PO Number: {{PEDNRO}} </div>
-  <h2 class="mdl-stepper-optional" style="text-align:right;">Status: <span class="statusOrder">{{PEDSTS}}</span></h2>
+<mat-toolbar class="mat-toolbar-details">
+  <div class="mdl-stepper-optional" style="text-align:left;"> <span>CCN PO Number: {{PEDNRO}}</span> </div>
 
+  <span class="example-spacer"></span>
+
+  <h2 class="mdl-stepper-optional" style="text-align:right;">Status: <span
+      [ngClass]="{'status-shipped': PEDSTS == 'SHIPPED','status-in-progress' : PEDSTS == 'IN PROGRESS', 'status-suspended' : PEDSTS == 'SUSPENDED'}">{{PEDSTS}}</span>
+  </h2>
+
+</mat-toolbar>
+
+<div class="mdl-card mdl-shadow-2dp">
   <div class="mdl-card-supporting-text" style="text-align: center;">
     <span class="title_text mat-dialog-title">Number of Order</span>
-    <h2 class="mdl-stepper-optional">{{PEDNROPLAC}}</h2>
+    <h2 class="mdl-stepper-optional"> Customer PO Number: {{PEDNROPLAC}}</h2>
     <!-- <h2 class="mdl-stepper-optional">Status: <span class="statusOrder">{{PEDSTS}}</span></h2> -->
 
     <!-- Paso 1 -->
     <div class="mdl-stepper-horizontal-alternative" #stepper>
       <div class="mdl-stepper-step active-step step-done ">
-        <div mat-raised-button class="box1" id="order-received" [matBadge]="checkStatusReceived()" matBadgeSize="large" matBadgeColor="warn"
-          matTooltip="Your order has been entered">
+        <div mat-raised-button class="box1" id="order-received" [matBadge]="checkStatusReceived()" matBadgeSize="large"
+          matBadgeColor="warn" matTooltip="Your order has been entered">
           <img src="http://datocracia.com.ar/ccn/order.png" width="100%">
           <i class="fa-solid fa-list-check"></i>
         </div>
@@ -25,7 +33,8 @@
       <span>&ndash;</span>
       <!-- Paso 2 -->
       <div class="mdl-stepper-step active-step step-done ">
-        <div class="box1" matTooltip="Your order has been validated"  matBadgeSize="large"  [matBadge]="checkStatusValidate()" matBadgeColor="warn" [ngClass]="{'order-received2': FECHALIBCRE}">
+        <div class="box1" matTooltip="Your order has been validated" matBadgeSize="large"
+          [matBadge]="checkStatusValidate()" matBadgeColor="warn" [ngClass]="{'order-received2': FECHALIBCRE}">
           <img src="https://datocracia.com.ar/ccn/package.png" width="100%">
         </div>
         <div class="mdl-stepper-title">
@@ -37,7 +46,8 @@
       <span>&ndash;</span>
       <!-- Paso 3 -->
       <div class="mdl-stepper-step active-step step-done ">
-        <div class="box1" matTooltip="Your order is in process"  [matBadge]="checkStatusProcess()" matBadgeSize="large" [ngClass]="{'order-received2': PEDFCHLIB}">
+        <div class="box1" matTooltip="Your order is in process" [matBadge]="checkStatusProcess()" matBadgeSize="large"
+          [ngClass]="{'order-received2': PEDFCHLIB}">
           <img src="https://datocracia.com.ar/ccn/return-box.png" width="100%">
         </div>
         <div class="mdl-stepper-title">
@@ -53,7 +63,9 @@
       <!-- Paso 4 -->
       <!-- [matBadge]="checkStatusShipped()" [ngClass]="{'order-received2': PEDFCHPRO}" -->
       <div class="mdl-stepper-step active-step step-done div-test-disabled">
-        <div class="box1" style="align-items: center;"  matTooltip="Your order has been shipped" [matBadge]="checkStatusShipped()" [ngClass]="{'order-received2': PEDFCHPRO && PEDSTS != 'SUSPENDED'}" matBadgeSize="large">
+        <div class="box1" style="align-items: center;" matTooltip="Your order has been shipped"
+          [matBadge]="checkStatusShipped()" [ngClass]="{'order-received2': PEDFCHPRO && PEDSTS != 'SUSPENDED'}"
+          matBadgeSize="large">
           <img src="https://datocracia.com.ar/ccn/truck.png" width="100%">
         </div>
         <div class="mdl-stepper-title">
@@ -72,20 +84,20 @@
     </div>
     <div class="center">
 
-        <mat-divider></mat-divider>
-        
-       <section class="elements-table">
+      <mat-divider></mat-divider>
+
+      <section class="elements-table">
         <table mat-table [dataSource]="dataDetailsTable" class="mat-elevation-z8 background-table">
 
           <!--- Note that these columns can be defined in any order.
                 The actual rendered columns are set as a property on the row definition" -->
-        
+
           <!-- Position Column -->
           <ng-container matColumnDef="product">
             <th mat-header-cell *matHeaderCellDef> Product </th>
             <td mat-cell *matCellDef="let element"> {{element.PRDID}} </td>
           </ng-container>
-        
+
           <!-- Name Column -->
 
           <ng-container matColumnDef="productName">
@@ -97,21 +109,21 @@
             <th mat-header-cell *matHeaderCellDef> Quantity </th>
             <td mat-cell *matCellDef="let element"> {{element.PEDLINCNTV}} </td>
           </ng-container>
-        
+
           <!-- Weight Column -->
           <ng-container matColumnDef="totalAmount">
             <th mat-header-cell *matHeaderCellDef> Line total </th>
             <td mat-cell *matCellDef="let element"> ${{element.PEDLINMON | number:'1.2-2'}} </td>
           </ng-container>
-        
+
           <!-- Symbol Column -->
-    
-        
+
+
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-       </section>
-        
-        
+      </section>
+
+
     </div>
   </div>

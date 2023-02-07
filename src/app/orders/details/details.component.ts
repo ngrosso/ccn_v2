@@ -68,7 +68,6 @@ const ELEMENT_DATA: trackingDataInfo[] = [];
 export class DetailsComponent implements OnInit {
   dataDetailsTable: MatTableDataSource<any>;
 
-
   // colorShippedStatus = 'background-color: red';
   // navStyle = 'background-color:red';
 
@@ -143,13 +142,13 @@ export class DetailsComponent implements OnInit {
 
     if ( data.orden.PEDSTS == 'RET' || data.orden.PEDSTS == 'LIB') {
       this.PEDSTS = 'IN PROGRESS';
+      
     } else {
       this.PEDSTS = 'SUSPENDED';
     } 
     
     if(data.orden.PEDSTS == 'PRC'){
       this.PEDSTS = 'SHIPPED';
-
     }
     this.DETAILS = data.details;
   }
