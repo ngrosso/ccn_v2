@@ -63,7 +63,7 @@
                     ${{grupoEmpresario.OrganizationDEO_AvailableCredit_c | number:'1.2-2'}} </span></p>
 
                 <p><span class="title-info">Balance:</span><span> ${{grupoEmpresario.OrganizationDEO_AmountUsed_c  | number:'1.2-2'}}</span></p>
-                <p> <span class="title-info">Outstading Balance: </span>${{grupoEmpresario.OrganizationDEO_AmountDue_c  }}</p>
+                <p> <span class="title-info">Outstading Balance: </span>${{grupoEmpresario.OrganizationDEO_AmountDue_c | number:'1.2-2' }}</p>
               </mat-card-content>
             </mat-card>
           </mat-grid-tile>
@@ -222,17 +222,17 @@
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <p>
-            <span class="title-info">Ocuppied weight: {{pesoTotal}} - </span>
+            <span class="title-info">Ocuppied weight: {{pesoTotalFloat}} - </span>
           </p>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <p>
-            <span class="title-info">Selected Product Weight: {{PesoTotalARepartir}} = </span>
+            <span class="title-info">Selected Product Weight: {{selectedProductoWeight}} = </span>
           </p>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           <p>
-            <span class="title-info">Available Weight to use: {{pesoMaximo-pesoTotal-PesoTotalARepartir}} </span>
+            <span class="title-info">Available Weight to use: {{availableWidthUse}} </span>
           </p>
         </mat-grid-tile>
 

@@ -94,6 +94,10 @@ export class NuevaComponent {
   RESPONSE: any = []
   disabledPaymentType = false
   pesoTotal: number = 0;
+  pesoTotalFloat: string = '';
+  availableWidthUse: string = '';
+  selectedProductoWeight: string = '';
+
   totalAmountReached = false;
   businessGroupReached = false;
   warehouseAmountAfterPurchase: number = 0;
@@ -255,6 +259,8 @@ export class NuevaComponent {
 
   calculo(cantidadDeProducto: number) {
     this.PesoTotalARepartir = this.selectedProductDetails.PesoProducto_c * cantidadDeProducto;
+    this.selectedProductoWeight = (this.PesoTotalARepartir).toFixed(2)
+
   }
 
   seRepiteSKU() {
@@ -323,7 +329,9 @@ export class NuevaComponent {
         this.businessGroupAfterPurchase -= parseFloat(totalAmount.toFixed(2));
         console.log('WarehouseAmountAfterPurchase', this.warehouseAmountAfterPurchase);
         console.log('GrupoEmpresario', this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c)
-        if (this.warehouseAmountAfterPurchase < 0) this.totalAmountReached = true;
+
+        if (this.warehouseAmountAfterPurchase < 0 ) this.totalAmountReached = true; 
+        if ( totalAmount < 0 || this.grupoEmpresario.OrganizationDEO_AmountDue_c > 0) this.totalAmountReached = true; 
         // TODO: Lógica para condición de grupo empresario, revisar
         if (this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0) this.businessGroupReached = true;
         console.log('DisponibleCredito', this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0);
@@ -335,17 +343,20 @@ export class NuevaComponent {
         // console.log("shoppingCart", this.shoppingCartList)
         this.updatePallets();
         this.pesoTotal = 0;
+        console.log('PesoFloat', this.pesoTotalFloat)
         this.shoppingCartList.map((product: any) => {
           this.apiService
-            .getItemById(product.__ORACO__Product_Id_c)
-            .subscribe((item: any) => {
-              console.log('item:', item);
-              this.pesoTotal +=
-                product.__ORACO__Quantity_c * item.PesoProducto_c;
-            });
+          .getItemById(product.__ORACO__Product_Id_c)
+          .subscribe((item: any) => {
+            console.log('item:', item);
+            this.pesoTotal +=
+            product.__ORACO__Quantity_c * item.PesoProducto_c;
+          });
         });
         //TODO: cierra el modal de add item
       });
+      this.pesoTotalFloat = (this.pesoTotal).toFixed(2);
+      this.availableWidthUse = (this.pesoMaximo-this.pesoTotal-this.PesoTotalARepartir).toFixed(2)
   }
 
   getItemInfo(producto: any) {
