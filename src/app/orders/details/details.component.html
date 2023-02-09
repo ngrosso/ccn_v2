@@ -69,7 +69,8 @@
           <img src="https://datocracia.com.ar/ccn/truck.png" width="100%">
         </div>
         <div class="mdl-stepper-title">
-          <h3 class="subtitle-text">Order shipped</h3>
+          <h3 class="subtitle-text" *ngIf="PEDSTS == 'IN PROGRESS'">Order shipped</h3>
+          <h3 class="subtitle-text" *ngIf="PEDSTS == 'SUSPENDED'">Order Suspended</h3>
         </div>
         <div class="mdl-stepper-optional">Date: {{PEDFCHPRO | date}}</div>
       </div>
