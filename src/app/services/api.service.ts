@@ -37,7 +37,6 @@ export class ApiService {
   }
 
   constructor(private http: HttpClient) {
-    console.log('Servicio http');
   }
 
   postOAuthToken(user: string, password: string): any {
@@ -124,7 +123,6 @@ export class ApiService {
   }
 
   patchIdOrder(idOrder: any, poNumber: any, promiseDate: any, containerType: any, timestampId: any, paymentType: any, territory: any) {
-    console.log('paymentType', paymentType)
     const body = {
       "__ORACO__AuxiliaryAttribute01_c": territory,
       "__ORACO__AuxiliaryAttribute02_c": containerType,

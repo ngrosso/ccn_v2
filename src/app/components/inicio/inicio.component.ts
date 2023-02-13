@@ -22,14 +22,6 @@ export interface Amount {
 export class InicioComponent implements OnInit {
   bodegas: any[] = [];
   grupoEmpresario: any = {};
-
-  amount: Amount = {
-    totalAmount: '100.000$',
-    wareHouse1: '50.000$',
-    wareHouse2: '20.000$',
-    wareHouse3: '30.000$',
-  };
-
   form: FormGroup;
   userDataString: any;
 
@@ -48,40 +40,35 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
     const tokenInfo = this.userValidation.isLoggedIn();
-    if(tokenInfo!=null && JSON.stringify(this.apiService.padre) === "{}" && this.apiService.bodegas.length == 0){
+    if (
+      tokenInfo != null &&
+      JSON.stringify(this.apiService.padre) === '{}' &&
+      this.apiService.bodegas.length == 0
+    ) {
       this.apiService.getAccounts(tokenInfo).subscribe({
         next: (res: any) => {
           res.items.forEach((account: any) => {
             if (account.ParentAccountPartyNumber != null) {
               this.apiService.bodegas.push(account);
-              console.warn(
-                'Acá debería de mostrar un error antes del error1'
-              );
             } else {
               this.apiService.padre = account;
-              console.log('Account', this.apiService.padre);
             }
           });
           this.grupoEmpresario = this.apiService.padre;
           this.bodegas = this.apiService.bodegas;
-          this.apiService.empId = this.apiService.bodegas[0].OrganizationDEO_EMPID_c
-          console.log('Acá es el empId',this.apiService.empId)
-          if(this.apiService.empId != 4) this.router.navigate(['mobileUser'])
+          this.apiService.empId =
+            this.apiService.bodegas[0].OrganizationDEO_EMPID_c;
+          if (this.apiService.empId != 4) this.router.navigate(['mobileUser']);
         },
         error: (err) => {
           console.log(err);
         },
       });
-  
     }
-    // this.router.navigate(['verificacion'])
-   
     this.grupoEmpresario = this.apiService.padre;
     this.bodegas = this.apiService.bodegas;
-    this.apiService.empId = this.apiService.bodegas[0].OrganizationDEO_EMPID_c
-    console.log('Acá es el empId',this.apiService.empId)
-    if(this.apiService.empId != 4) this.router.navigate(['error'])
-    
+    this.apiService.empId = this.apiService.bodegas[0].OrganizationDEO_EMPID_c;
+    if (this.apiService.empId != 4) this.router.navigate(['error']);
   }
 
   formErrorAccount(description: any) {

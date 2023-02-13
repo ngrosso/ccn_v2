@@ -42,15 +42,11 @@ export class LoginComponent implements OnInit {
             dateToken: new Date().getTime(),
           };
 
-
-          console.log('Aca esta el user data',userDataToken);
           sessionStorage.setItem(
             'userDataToken',
             JSON.stringify(userDataToken)
           );
 
-          console.log('Response', res);
-          
           this.form.reset();
           this.loading = false;
           this.router.navigate(['inicio']);

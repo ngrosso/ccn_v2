@@ -63,7 +63,7 @@ export class SeguimientoComponent implements OnInit {
       .then((response: any) => {
         this.dataSource = new MatTableDataSource(this.trackingDataListHeader);
         this.dataSource.paginator = this.paginator;
-        console.log("TrackingDataList Constructor 66", this.trackingDataListHeader);
+        // console.log("TrackingDataList Constructor 66", this.trackingDataListHeader);
       })
     this.getTrackingInfoListDetails()
   }
@@ -74,7 +74,7 @@ export class SeguimientoComponent implements OnInit {
         return await this.callApiServiceGeTrackingInfoHeader(bodega.PartyNumber);
       });
       const trackingsInfo = await Promise.all(trackingInfoPromises);
-      console.log("trackingsinfo 77", trackingsInfo)
+      // console.log("trackingsinfo 77", trackingsInfo)
       trackingsInfo.forEach((trackingInfo: any) => {
         if(trackingInfo != null) this.trackingDataListHeader = [...this.trackingDataListHeader,...trackingInfo];
       });
@@ -87,11 +87,11 @@ export class SeguimientoComponent implements OnInit {
       this.apiService.getTrackingInfoHeaders(partyNumber)
         .subscribe({
           next: (trackingList: any) => {
-            console.log(`trackingList 90 ${partyNumber}`, trackingList)
+            // console.log(`trackingList 90 ${partyNumber}`, trackingList)
             resolve(trackingList);
           },
            error: (error: any) => {
-            console.log(`trackingListError 94 ${partyNumber}`, error)
+            // console.log(`trackingListError 94 ${partyNumber}`, error)
               resolve([]);
           }
           }
@@ -106,7 +106,7 @@ export class SeguimientoComponent implements OnInit {
         return await this.callApiServiceGeTrackingInfoDetails(bodega.PartyNumber);
       });
       const trackingsInfo = await Promise.all(trackingInfoPromises);
-      console.log("trackingsinfoDetails 109", trackingsInfo)
+      // console.log("trackingsinfoDetails 109", trackingsInfo)
       trackingsInfo.forEach((trackingInfo: any) => {
         if(trackingInfo != null) this.trackingDataListDetails = [...this.trackingDataListDetails,...trackingInfo ];
       });
@@ -119,12 +119,11 @@ export class SeguimientoComponent implements OnInit {
       this.apiService.getTrackingInfoDetails(partyNumber)
         .subscribe({
           next: (trackingList: any) => {
-            console.log(`trackingListDetails 122 ${partyNumber}`, trackingList)
-
+            // console.log(`trackingListDetails 122 ${partyNumber}`, trackingList)
             resolve(trackingList);
           },
            error: (error: any) => {
-            console.log(`trackingListDetailsError 127 ${partyNumber}`, error)
+            // console.log(`trackingListDetailsError 127 ${partyNumber}`, error)
               resolve([]);
           }
           }
@@ -151,9 +150,8 @@ export class SeguimientoComponent implements OnInit {
 
 
   openDialog(element: any): void {
-    console.log(element)
     const DETAILS = this.trackingDataListDetails.filter((item : any) => item.PEDNRO == element.PEDNRO )
-    console.info(DETAILS, 'Details 152')
+    // console.info(DETAILS, 'Details 152')
     let dialogRef = this.dialog.open(DetailsComponent, {
       width: '60%',
       height: '70%',

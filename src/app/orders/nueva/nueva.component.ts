@@ -51,12 +51,10 @@ export class NuevaComponent {
   shipTo: string = "";
   shipmentTypeList: any[] = [];
   containerTypeList: any[] = [];
-
   logic: logicFilling = {
     pallets: 0,
     quantity: 0,
   };
-
   hidden = false;
   cantidad: any;
   cantidadMul: any = 20;
@@ -77,12 +75,10 @@ export class NuevaComponent {
   totalAmount: string = '';
   grupoEmpresario: any = {}
   dataSourceShoppingCarts: any[] = ELEMENT_DATA;
-
   validoParaComprar: boolean = false;
   CantidadDeContenedorTotal: number = 1;
   territory: string = ''
   PesoTotalARepartir: number = 0;
-
   pallets: number[] = [];
   auxPallets: number[] = [];
   cantidadDeProductosPorPallet = 0
@@ -97,7 +93,6 @@ export class NuevaComponent {
   pesoTotalFloat: string = '';
   availableWidthUse: string = '';
   selectedProductoWeight: string = '';
-
   totalAmountReached = false;
   businessGroupReached = false;
   warehouseAmountAfterPurchase: number = 0;
@@ -164,7 +159,6 @@ export class NuevaComponent {
 
   getAccountShoppingCart() {
     this.apiService.getAccountInfo(this.apiService.bodegaSeleccionada.PartyNumber).subscribe((account: any) => {
-      // this.apiService.account = account
       // TODO: unificar llamada del getAccountInfo
       console.log("account", account)
       this.getItemShoppingCart(account["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
@@ -180,7 +174,6 @@ export class NuevaComponent {
   }
 
   selectSoldTo(account: any) {
-    console.log("account", account)
     this.productsList = [];
     this.apiService.bodegaSeleccionada = account
     this.getItemPrices()
@@ -202,17 +195,12 @@ export class NuevaComponent {
     // Boton de agregado
     //TODO: abrir el modal  de add item NO PUEDE CERRAR HASTA QUE TERMINE EN getShoppingCartList
     this.disabledPaymentType = true
-    console.log(this.timeStampTest, "Time Stamp");
-    console.log(this.apiService.bodegaSeleccionada);
+
     this.pesoMaximo -= this.formProduct.value.pallets * this.selectedProductDetails.PesoProducto_c
-    console.log("Llamé agregar producto");
     this.addService.agregarProducto(this.apiService.bodegaSeleccionada.OrganizationDEO___ORACO__ShoppingCart_Id_c, new Product(this.selectedProduct.InvItemId, this.formProduct.value.sku.ItemNumber, this.formProduct.value.sku.ItemDescription, this.formProduct.value.quantity, this.formProduct.value.typeContainer, this.formProduct.value.quantityContainer, this.formProduct.value.minimumOrder, this.formProduct.value.pallets), this.formHeader.value.etd, this.formHeader.value.paymentType, this.selectedProduct.ListPrice).then(res => {
       this.getShoppingCartList(this.apiService.bodegaSeleccionada.OrganizationDEO___ORACO__ShoppingCart_Id_c);
       this.RESPONSE = res;
-      console.log("Termino el agregado de producto");
-      console.log("RESPONSE", this.RESPONSE)
     });
-    // this.formProduct.reset();
     this.PesoTotalARepartir = 0;
   }
 
@@ -224,14 +212,11 @@ export class NuevaComponent {
 
   getItemPrices() {
     this.apiService.getAccountInfo(this.apiService.bodegaSeleccionada.PartyNumber).subscribe((account: any) => {
-      console.log(account)
       this.apiService.account = account
       this.apiService.getPriceList(account.OrganizationDEO___ORACO__PriceBook_Id_c).subscribe((priceBookInfo: any) => {
         this.getShoppingCartList(this.apiService.bodegaSeleccionada.OrganizationDEO___ORACO__ShoppingCart_Id_c)
-        console.log(priceBookInfo)
         if (priceBookInfo.StatusCode == 'ACTIVE') {
           this.apiService.getPrice(account.OrganizationDEO___ORACO__PriceBook_Id_c).subscribe((priceItems: any) => {
-            console.log(priceItems)
             this.productsList = priceItems.items
           })
         }
@@ -241,17 +226,15 @@ export class NuevaComponent {
 
   async completarOrden() {
     // ConfimarOrden - Boton de confirmación
-    console.log(new Order(this.formHeader.value.poNbr, this.formHeader.value.shipTo, this.formHeader.value.incortem, this.formHeader.value.soldTo, this.formHeader.value.etd, this.formProduct.value.shipmentType, this.addService.productos))
-    console.log(this.formHeader.value)
+    // console.log(new Order(this.formHeader.value.poNbr, this.formHeader.value.shipTo, this.formHeader.value.incortem, this.formHeader.value.soldTo, this.formHeader.value.etd, this.formProduct.value.shipmentType, this.addService.productos))
+    // console.log(this.formHeader.value)
     this.apiService.confirmationShoppingCart(this.apiService.bodegaSeleccionada.OrganizationDEO___ORACO__ShoppingCart_Id_c).subscribe((response: any) => {
-      console.log(this.RESPONSE);
       this.apiService.getOrderLinesRollupFilter(this.apiService.bodegaSeleccionada.PartyId, this.RESPONSE.__ORACO__ComboSelQuantity_c).subscribe((lines: any) => {
         const orderID = lines.items[0].__ORACO__Order_Id_c;
         const containerType = this.shipmentType
-        // lo que estaba causando el error en Maritimo null: + this.formProduct.value.containerType
         this.apiService.patchIdOrder(orderID, this.formHeader.value.poNbr, this.formHeader.value.etd, containerType, this.RESPONSE.__ORACO__ComboSelQuantity_c, this.formHeader.value.paymentType, this.apiService.bodegaSeleccionada.OrganizationDEO_Territorio_c
         ).subscribe(response => console.info(response));
-        console.log("PatchOrders")
+        // console.log("PatchOrders")
       })
       this.openDialog()
     })
@@ -306,7 +289,6 @@ export class NuevaComponent {
       .subscribe((shoppingCart: any) => {
         this.shoppingCartList = shoppingCart.items;
         this.dataSourceShoppingCarts = this.shoppingCartList;
-        console.log('shoppingCart', this.shoppingCartList);
         let maxCapacity = this.pesoMaximo;
         this.totalAmountReached = false;
         this.shoppingCartList.forEach((item: any) => {
@@ -316,7 +298,7 @@ export class NuevaComponent {
           this.gstValue =
             this.shoppingCartList[0].__ORACO__Tax1_c == 1 ? 'GR' : 'UN';
           this.disabledPaymentType = true;
-          console.log('SCPrinceUOM', this.shoppingCartList[0]);
+          // console.log('SCPrinceUOM', this.shoppingCartList[0]);
         } else {
           this.disabledPaymentType = false;
         }
@@ -327,28 +309,21 @@ export class NuevaComponent {
         });
         this.warehouseAmountAfterPurchase -= parseFloat(totalAmount.toFixed(2));
         this.businessGroupAfterPurchase -= parseFloat(totalAmount.toFixed(2));
-        console.log('WarehouseAmountAfterPurchase', this.warehouseAmountAfterPurchase);
-        console.log('GrupoEmpresario', this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c)
+      
 
         if (this.warehouseAmountAfterPurchase < 0 ) this.totalAmountReached = true; 
         if ( totalAmount < 0 || this.grupoEmpresario.OrganizationDEO_AmountDue_c > 0) this.totalAmountReached = true; 
         // TODO: Lógica para condición de grupo empresario, revisar
         if (this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0) this.businessGroupReached = true;
-        console.log('DisponibleCredito', this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0);
-
-        console.log('totalamount', totalAmount);
+        // console.log('DisponibleCredito', this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0);
         this.availableCapacity = maxCapacity;
-        console.log('maxCapacity', maxCapacity);
-        // console.log("dataSource", this.dataSource)
-        // console.log("shoppingCart", this.shoppingCartList)
         this.updatePallets();
         this.pesoTotal = 0;
-        console.log('PesoFloat', this.pesoTotalFloat)
         this.shoppingCartList.map((product: any) => {
           this.apiService
           .getItemById(product.__ORACO__Product_Id_c)
           .subscribe((item: any) => {
-            console.log('item:', item);
+            // console.log('item:', item);
             this.pesoTotal +=
             product.__ORACO__Quantity_c * item.PesoProducto_c;
           });
@@ -362,7 +337,6 @@ export class NuevaComponent {
   getItemInfo(producto: any) {
     this.pallets = []
     this.selectedProduct = producto
-    console.log(producto);
     this.apiService.getItemById(producto.InvItemId).subscribe((item: any) => {
       this.selectedProductDetails = item
       for (let i = 1; i <= 20; i++) {
@@ -386,9 +360,7 @@ export class NuevaComponent {
     if (this.availableCapacity >= 2000) {
       this.pallets = this.auxPallets
     } else {
-      console.log('availableCapacity', this.availableCapacity);
-      console.log('pallets', this.pallets);
-      console.log('pallets filtrado', this.pallets.filter(pallet => pallet < this.availableCapacity));
+      // console.log('pallets filtrado', this.pallets.filter(pallet => pallet < this.availableCapacity));
       this.pallets = this.pallets.filter(pallet => pallet < this.availableCapacity)
     }
   }

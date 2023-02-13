@@ -154,7 +154,6 @@ export class DetailsComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    console.log('Detalles', this.DETAILS);
     this.dataDetailsTable = new MatTableDataSource(this.DETAILS);
   }
   

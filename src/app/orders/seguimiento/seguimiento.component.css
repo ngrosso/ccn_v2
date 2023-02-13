@@ -6,6 +6,7 @@
 
 .background-tracking {
   background-size: cover;
+  width: 100%;
   background-image: url('https://www.ccn.com.ni/wp-content/uploads/b2b/whiteBackground.png');
 }
 
