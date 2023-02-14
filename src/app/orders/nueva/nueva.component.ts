@@ -35,7 +35,6 @@ const ELEMENT_DATA: Data[] = [
 
 export class NuevaComponent {
 
-
   pays: pay[] = [
     { value: 'GR', name: 'Credit' },
     { value: 'UN', name: 'Debit' },
@@ -67,7 +66,7 @@ export class NuevaComponent {
   productsList: any = []
   accountAddressesList: any = []
   shoppingCartList: any = []
-  minDate: Date;
+  // minDate: Date;
   maxDate: Date;
   productos: Product[] = [];
   warehouseAmount: number = 0;
@@ -100,16 +99,16 @@ export class NuevaComponent {
   disableSelect = new FormControl(false);
   balanceStatus: any;
   outstandingBalance: any;
-
+  days = 30
   constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private _snackBar: MatSnackBar, private dialog: MatDialog, private router: Router, private userValidation: UserValidationService) {
-
+     
     const today = new Date();
     const currentYear = today.getFullYear();
     const currentMonth = today.getMonth();
     const currentDay = today.getDate();
-    this.minDate = new Date(currentYear, currentMonth, 45);
-    this.maxDate = new Date(currentYear, currentMonth + 1, 136);
-
+    // this.minDate = new Date(currentYear, currentMonth, 45);
+    this.maxDate = new Date;
+    this.maxDate.setDate(this.maxDate.getDate() + this.days)
     const date = new Date(2020, 11, 16);
 
     this.formHeader = new FormGroup({
