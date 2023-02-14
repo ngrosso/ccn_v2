@@ -311,14 +311,14 @@ export class NuevaComponent {
       
 
         if (this.warehouseAmountAfterPurchase < 0 && this.formHeader.value.paymentType == "GR" ) this.totalAmountReached = true; 
-        if ( totalAmount < 0 || this.grupoEmpresario.OrganizationDEO_AmountDue_c > 0) this.totalAmountReached = true; 
+        if ( totalAmount < 0 || this.grupoEmpresario.OrganizationDEO_AmountDue_c > 0 && this.formHeader.value.paymentType == "GR") this.totalAmountReached = true; 
         // TODO: Lógica para condición de grupo empresario, revisar
         if (this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0) this.businessGroupReached = true;
         // console.log('DisponibleCredito', this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0);
         this.availableCapacity = maxCapacity;
         this.updatePallets();
         this.pesoTotal = 0;
-        this.shoppingCartList.map((product: any) => {
+        this.shoppingCartList.forEach((product: any) => {
           this.apiService
           .getItemById(product.__ORACO__Product_Id_c)
           .subscribe((item: any) => {
