@@ -368,7 +368,7 @@ export class NuevaComponent {
     this.dialog.open(ConfirmOrderComponent, {
       width: '30%',
       disableClose: true,
-      data: { totalAmountReached: this.totalAmountReached }
+      data: { totalAmountReached: this.totalAmountReached, paymentType: this.formHeader.value.paymentType }
     });
 
 
