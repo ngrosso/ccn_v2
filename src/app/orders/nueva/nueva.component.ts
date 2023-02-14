@@ -310,7 +310,7 @@ export class NuevaComponent {
         this.businessGroupAfterPurchase -= parseFloat(totalAmount.toFixed(2));
       
 
-        if (this.warehouseAmountAfterPurchase < 0 ) this.totalAmountReached = true; 
+        if (this.warehouseAmountAfterPurchase < 0 && this.formHeader.value.paymentType == "GR" ) this.totalAmountReached = true; 
         if ( totalAmount < 0 || this.grupoEmpresario.OrganizationDEO_AmountDue_c > 0) this.totalAmountReached = true; 
         // TODO: Lógica para condición de grupo empresario, revisar
         if (this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0) this.businessGroupReached = true;
@@ -368,7 +368,7 @@ export class NuevaComponent {
     this.dialog.open(ConfirmOrderComponent, {
       width: '30%',
       disableClose: true,
-      data: { totalAmountReached: this.totalAmountReached, paymentType: this.formHeader.value.paymentType }
+      data: { totalAmountReached: this.totalAmountReached}
     });
 
 
