@@ -66,7 +66,7 @@ export class NuevaComponent {
   productsList: any = []
   accountAddressesList: any = []
   shoppingCartList: any = []
-  // minDate: Date;
+  minDate: Date;
   maxDate: Date;
   productos: Product[] = [];
   warehouseAmount: number = 0;
@@ -100,13 +100,28 @@ export class NuevaComponent {
   balanceStatus: any;
   outstandingBalance: any;
   days = 30
+  
   constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private _snackBar: MatSnackBar, private dialog: MatDialog, private router: Router, private userValidation: UserValidationService) {
      
     const today = new Date();
     const currentYear = today.getFullYear();
     const currentMonth = today.getMonth();
     const currentDay = today.getDate();
-    // this.minDate = new Date(currentYear, currentMonth, 45);
+    // this.minDate = new Date(currentYear, currentMonth, 54);
+
+    this.minDate = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() + 30
+    );
+  
+     this.maxDate = new Date(
+       today.getFullYear(),
+       today.getMonth() + 2,
+       today.getDate()
+     );
+  
+    
     this.maxDate = new Date;
     this.maxDate.setDate(this.maxDate.getDate() + this.days)
     const date = new Date(2020, 11, 16);
@@ -329,7 +344,7 @@ export class NuevaComponent {
         });
         //TODO: cierra el modal de add item
       });
-      this.pesoTotalFloat = (this.pesoTotal).toFixed(2);
+      // this.pesoTotalFloat = (this.image.png).toFixed(2);
       this.availableWidthUse = (this.pesoMaximo-this.pesoTotal-this.PesoTotalARepartir).toFixed(2)
   }
 

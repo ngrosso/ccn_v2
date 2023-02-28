@@ -72,7 +72,7 @@
             <mat-card class="card-inputs-form mat-elevation-z5">
               <mat-form-field class="ancho" appearance="outline">
                 <mat-label>Estimated Shipping Date</mat-label>
-                <input matInput [matDatepicker]="picker2" formControlName="etd" required
+                <input matInput [min]="minDate" [matDatepicker]="picker2" formControlName="etd" required
                   autocomplete="off">
                 <mat-datepicker-toggle matSuffix [for]="picker2" ></mat-datepicker-toggle>
                 <mat-datepicker #picker2 [startAt]="maxDate" ></mat-datepicker>
