@@ -45,7 +45,7 @@ export class ApiService {
     body.set("username", user);
     body.set("password", password);
     body.set("scope", environment.APIIDCSSCOPE);
-    return this.http.post(environment.APIIDCSURL+'/oauth2/v1/token', body.toString(),
+    return this.http.post(environment.APIIDCSURL + '/oauth2/v1/token', body.toString(),
       {
         headers: {
           "Authorization": "Basic " + btoa(environment.CLIENTID + ":" + environment.CLIENTSECRET),
@@ -60,7 +60,7 @@ export class ApiService {
     });
   }
 
-  getItemById(idProducto: number): any {
+  getItemById(idProducto: number):any {
     return this.http.get(this.apiSaleUrl + "products/" + idProducto, {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     });
@@ -188,7 +188,7 @@ export class ApiService {
     })
   }
 
-  getEmpiFilter(){
+  getEmpiFilter() {
     return this.http.get(this.apiSaleUrl + "accounts/?q=OrganizationType=1", {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     })
