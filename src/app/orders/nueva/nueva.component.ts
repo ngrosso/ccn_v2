@@ -100,9 +100,9 @@ export class NuevaComponent {
   balanceStatus: any;
   outstandingBalance: any;
   days = 30
-  
+
   constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private _snackBar: MatSnackBar, private dialog: MatDialog, private router: Router, private userValidation: UserValidationService) {
-     
+
     const today = new Date();
     const currentYear = today.getFullYear();
     const currentMonth = today.getMonth();
@@ -114,14 +114,14 @@ export class NuevaComponent {
       today.getMonth(),
       today.getDate() + 30
     );
-  
-     this.maxDate = new Date(
-       today.getFullYear(),
-       today.getMonth() + 2,
-       today.getDate()
-     );
-  
-    
+
+    this.maxDate = new Date(
+      today.getFullYear(),
+      today.getMonth() + 2,
+      today.getDate()
+    );
+
+
     this.maxDate = new Date;
     this.maxDate.setDate(this.maxDate.getDate() + this.days)
     const date = new Date(2020, 11, 16);
@@ -175,7 +175,7 @@ export class NuevaComponent {
     this.apiService.getAccountInfo(this.apiService.bodegaSeleccionada.PartyNumber).subscribe((account: any) => {
       // TODO: unificar llamada del getAccountInfo
       console.log("account", account)
-      this.getItemShoppingCart(account["OrganizationDEO___ORACO__ShoppingCart_Id_c"])
+      this.getItemShoppingCart(account.OrganizationDEO___ORACO__ShoppingCart_Id_c);
     })
   }
 
@@ -216,6 +216,7 @@ export class NuevaComponent {
       this.RESPONSE = res;
     });
     this.PesoTotalARepartir = 0;
+    this.selectedProductoWeight = "";
   }
 
   getItems() {
@@ -257,7 +258,7 @@ export class NuevaComponent {
   calculo(cantidadDeProducto: number) {
     this.PesoTotalARepartir = this.selectedProductDetails.PesoProducto_c * cantidadDeProducto;
     this.selectedProductoWeight = (this.PesoTotalARepartir).toFixed(2)
-
+    this.availableWidthUse = (this.pesoMaximo - this.pesoTotal - this.PesoTotalARepartir).toFixed(2)
   }
 
   seRepiteSKU() {
@@ -306,7 +307,7 @@ export class NuevaComponent {
         let maxCapacity = this.pesoMaximo;
         this.totalAmountReached = false;
         this.shoppingCartList.forEach((item: any) => {
-          maxCapacity -= item['__ORACO__Quantity_c'];
+          maxCapacity -= item.__ORACO__Quantity_c;
         });
         if (this.shoppingCartList.length > 0) {
           this.gstValue =
@@ -323,29 +324,29 @@ export class NuevaComponent {
         });
         this.warehouseAmountAfterPurchase -= parseFloat(totalAmount.toFixed(2));
         this.businessGroupAfterPurchase -= parseFloat(totalAmount.toFixed(2));
-      
 
-        if (this.warehouseAmountAfterPurchase < 0 && this.formHeader.value.paymentType == "GR" ) this.totalAmountReached = true; 
-        if ( totalAmount < 0 || this.grupoEmpresario.OrganizationDEO_AmountDue_c > 0 && this.formHeader.value.paymentType == "GR") this.totalAmountReached = true; 
+
+        if (this.warehouseAmountAfterPurchase < 0 && this.formHeader.value.paymentType == "GR") this.totalAmountReached = true;
+        if (totalAmount < 0 || this.grupoEmpresario.OrganizationDEO_AmountDue_c > 0 && this.formHeader.value.paymentType == "GR") this.totalAmountReached = true;
         // TODO: Lógica para condición de grupo empresario, revisar
         if (this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0) this.businessGroupReached = true;
         // console.log('DisponibleCredito', this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0);
         this.availableCapacity = maxCapacity;
         this.updatePallets();
         this.pesoTotal = 0;
+        this.pesoTotalFloat = (this.pesoTotal).toFixed(2);
         this.shoppingCartList.forEach((product: any) => {
           this.apiService
-          .getItemById(product.__ORACO__Product_Id_c)
-          .subscribe((item: any) => {
-            // console.log('item:', item);
-            this.pesoTotal +=
-            product.__ORACO__Quantity_c * item.PesoProducto_c;
-          });
+            .getItemById(product.__ORACO__Product_Id_c)
+            .subscribe((item: any) => {
+              this.pesoTotal += product.__ORACO__Quantity_c * item.PesoProducto_c;
+              this.pesoTotalFloat = (this.pesoTotal).toFixed(2);
+              this.availableWidthUse = (this.pesoMaximo - this.pesoTotal - this.PesoTotalARepartir).toFixed(2)
+            });
         });
         //TODO: cierra el modal de add item
       });
-      // this.pesoTotalFloat = (this.image.png).toFixed(2);
-      this.availableWidthUse = (this.pesoMaximo-this.pesoTotal-this.PesoTotalARepartir).toFixed(2)
+     
   }
 
   getItemInfo(producto: any) {
@@ -383,7 +384,7 @@ export class NuevaComponent {
     this.dialog.open(ConfirmOrderComponent, {
       width: '30%',
       disableClose: true,
-      data: { totalAmountReached: this.totalAmountReached}
+      data: { totalAmountReached: this.totalAmountReached }
     });
 
 
