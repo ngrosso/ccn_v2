@@ -188,8 +188,7 @@ export class NuevaComponent {
       });
   }
 
-  selectSoldTo(account: any) {
-    this.formProduct.controls['quantity'].reset();
+  async selectSoldTo(account: any) {
     this.selectedProductoWeight = "0.00";
     this.PesoTotalARepartir = 0;
     this.pallets = [];
@@ -197,7 +196,7 @@ export class NuevaComponent {
     this.productsList = [];
     this.apiService.bodegaSeleccionada = account
     this.getItemPrices()
-    this.getShoppingCartList(this.apiService.bodegaSeleccionada.OrganizationDEO___ORACO__ShoppingCart_Id_c)
+    await this.getShoppingCartList(this.apiService.bodegaSeleccionada.OrganizationDEO___ORACO__ShoppingCart_Id_c)
     this.getContainers()
     this.incoterm = account.OrganizationDEO_INCOTERM_c
     this.balanceStatus = account.OrganizationDEO_AmountUsed_c
@@ -307,7 +306,7 @@ export class NuevaComponent {
     })
   }
 
-  getShoppingCartList(shoppingCartId: number) {
+  async getShoppingCartList(shoppingCartId: number) {
     this.apiService.getShoppingCartItems(shoppingCartId)
       .subscribe((shoppingCart: any) => {
         this.shoppingCartList = shoppingCart.items;
@@ -332,7 +331,6 @@ export class NuevaComponent {
         });
         this.warehouseAmountAfterPurchase -= parseFloat(totalAmount.toFixed(2));
         this.businessGroupAfterPurchase -= parseFloat(totalAmount.toFixed(2));
-
 
         if (this.warehouseAmountAfterPurchase < 0 && this.formHeader.value.paymentType == "GR") this.totalAmountReached = true;
         if (totalAmount < 0 || this.grupoEmpresario.OrganizationDEO_AmountDue_c > 0 && this.formHeader.value.paymentType == "GR") this.totalAmountReached = true;

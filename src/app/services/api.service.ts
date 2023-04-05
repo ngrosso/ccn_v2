@@ -13,6 +13,9 @@ export class ApiService {
 
   public account = {} as any;
   private apiSaleUrl = environment.APISALESURL
+  private apiIdcsUrl = environment.APIIDCSURL;
+  private idcsClientId = environment.CLIENTID;
+  private idcsClientSecret = environment.CLIENTSECRET;
 
   //private auth = "Basic " + btoa(this.username + ":" + this.password)
   private auth = "";
@@ -60,7 +63,7 @@ export class ApiService {
     });
   }
 
-  getItemById(idProducto: number):any {
+  getItemById(idProducto: number): any {
     return this.http.get(this.apiSaleUrl + "products/" + idProducto, {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     });
@@ -192,6 +195,39 @@ export class ApiService {
     return this.http.get(this.apiSaleUrl + "accounts/?q=OrganizationType=1", {
       headers: { 'Authorization': this.auth, 'Content-Type': "application/vnd.oracle.adf.resourcecollection+json" },
     })
+  }
+
+  getIDCSAccessToken() {
+    const neededScopes = [
+      "urn:opc:idm:t.security.client",
+      "urn:opc:idm:t.user.signin",
+      "urn:opc:idm:t.user.mecreate",
+      "urn:opc:idm:t.user.forgotpassword",
+      "urn:opc:idm:t.user.resetpassword",
+      "urn:opc:idm:t.user.verifyemai"
+    ];
+
+    return this.http.post(this.apiIdcsUrl + "/oauth2/v1/token",
+      "grant_type=client_credentials&scope=" + encodeURIComponent(neededScopes.join(' ')),
+      {
+        headers: {
+          'Content-type': 'application/x-www-form-urlencoded',
+          'Authorization': 'Basic ' + btoa(this.idcsClientId+ ":" + this.idcsClientSecret),
+          'Accept': 'application/json'
+        }
+      })
+  }
+
+
+  forgotPassword(accessToken: any, username: any) {
+    const body = {
+      'userName': username,
+      'notificationType': 'email',
+      'notificationEmailAddress' : username,
+      'schemas': ['urn:ietf:params:scim:schemas:oracle:idcs:MePasswordResetRequestor']
+    }
+    return this.http.post(this.apiIdcsUrl+"/admin/v1/MePasswordResetRequestor", body,
+      { headers: { 'Authorization': `Bearer ${accessToken}`,'Content-Type': 'application/json' } })
   }
 
 }
