@@ -26,7 +26,15 @@ export class ForgotPasswordComponent implements OnInit {
         const userDataToken = {
           token: res.access_token,
           expiresIn: res.expires_in,
-          dateToken: new Date().getTime(),
+          dateToken: new Date().getTime()
+        };
+      },
+      error: (err: any) => {
+        this.loading = false;
+        console.log(err);
+      }
+    });
+  }
 
   ngOnInit(): void {
   }
