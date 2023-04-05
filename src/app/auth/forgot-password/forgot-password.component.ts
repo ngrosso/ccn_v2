@@ -8,7 +8,7 @@ import { ApiService } from 'src/app/services/api.service';
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.css']
 })
-export class ForgotPasswordComponent implements OnInit {
+export class ForgotPasswordComponent {
 
   loading = false;
   forgotPasswordForm: FormGroup;
@@ -27,7 +27,15 @@ export class ForgotPasswordComponent implements OnInit {
           token: res.access_token,
           expiresIn: res.expires_in,
           dateToken: new Date().getTime(),
-
+        }
+      },
+      error: (err: any) => {
+        this.loading = false;
+        console.log(err);
+      }
+    });
+    
+  }
   ngOnInit(): void {
   }
 
