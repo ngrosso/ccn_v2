@@ -89,7 +89,7 @@ a:hover {
   }
 
   .spinner{
-    margin: 170 auto;    
+    margin: 50 auto;    
 }
 
 .uploader-status ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
