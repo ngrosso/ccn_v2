@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MaterialModule } from 'src/app/material/material.module';
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,9 @@ export class LoginComponent implements OnInit {
   hide = true;
   form: FormGroup;
   loading = false;
+  private apiIdcsUrl = environment.APIIDCSURL;
+  private apiIdcsClientId = environment.APIIDCSCLIENTID;
+  public forgotPassswordURL= `https://${this.apiIdcsUrl}/oauth2/v1/authorize?client_id=${this.apiIdcsClientId}d&response_type=code&redirect_uri=%2Fui%2Fv1%2Fmyconsole&scope=openid&state=1234`
 
   constructor(
     private fb: FormBuilder,
@@ -22,6 +26,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private apiService: ApiService
   ) {
+    
     this.form = this.fb.group({
       usuario: ['', Validators.required],
       password: ['', Validators.required],

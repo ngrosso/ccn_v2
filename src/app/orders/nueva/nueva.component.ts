@@ -205,7 +205,9 @@ export class NuevaComponent {
     this.warehouseAmount = parseFloat(account.OrganizationDEO_DisponibleDeCredito_c.toFixed(2))
 
     this.grupoEmpresario = this.apiService.padre
-    this.territory = account.OrganizationDEO_Territorio_c
+    this.territory = account.OrganizationDEO_Territorio_c;
+    this.totalAmountReached = false;
+    if ((this.grupoEmpresario.OrganizationDEO_AmountDue_c < 0 || this.grupoEmpresario.OrganizationDEO_AvailableCredit_c < 0 || this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0) && this.formHeader.value.paymentType == "GR") this.totalAmountReached = true;
 
   }
 
@@ -312,7 +314,6 @@ export class NuevaComponent {
         this.shoppingCartList = shoppingCart.items;
         this.dataSourceShoppingCarts = this.shoppingCartList;
         let maxCapacity = this.pesoMaximo;
-        this.totalAmountReached = false;
         this.shoppingCartList.forEach((item: any) => {
           maxCapacity -= item.__ORACO__Quantity_c;
         });
@@ -332,10 +333,8 @@ export class NuevaComponent {
         this.warehouseAmountAfterPurchase -= parseFloat(totalAmount.toFixed(2));
         this.businessGroupAfterPurchase -= parseFloat(totalAmount.toFixed(2));
 
-        if (this.warehouseAmountAfterPurchase < 0 && this.formHeader.value.paymentType == "GR") this.totalAmountReached = true;
-        if (totalAmount < 0 || this.grupoEmpresario.OrganizationDEO_AmountDue_c > 0 && this.formHeader.value.paymentType == "GR") this.totalAmountReached = true;
         // TODO: Lógica para condición de grupo empresario, revisar
-        if (this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0) this.businessGroupReached = true;
+        //if (this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0) this.businessGroupReached = true;
         // console.log('DisponibleCredito', this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0);
         this.availableCapacity = maxCapacity;
         this.updatePallets();
