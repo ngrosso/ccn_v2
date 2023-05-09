@@ -200,14 +200,14 @@ export class NuevaComponent {
     this.getContainers()
     this.incoterm = account.OrganizationDEO_INCOTERM_c
     this.balanceStatus = account.OrganizationDEO_AmountUsed_c
-    this.outstandingBalance = account.OrganizationDEO_AmountDue_c
+    this.outstandingBalance = account.OrganizationDEO_AmountDue_c 
     this.shipTo = account.FormattedAddress
     this.warehouseAmount = parseFloat(account.OrganizationDEO_DisponibleDeCredito_c.toFixed(2))
 
     this.grupoEmpresario = this.apiService.padre
     this.territory = account.OrganizationDEO_Territorio_c;
     this.totalAmountReached = false;
-    if ((this.grupoEmpresario.OrganizationDEO_AmountDue_c < 0 || this.grupoEmpresario.OrganizationDEO_AvailableCredit_c < 0 || this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0) && this.formHeader.value.paymentType == "GR") this.totalAmountReached = true;
+    if ((this.grupoEmpresario.OrganizationDEO_AmountDue_c > 0 || this.grupoEmpresario.OrganizationDEO_AvailableCredit_c < 0 || this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0) && this.formHeader.value.paymentType == "GR") this.totalAmountReached = true;
 
   }
 
