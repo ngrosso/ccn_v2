@@ -51,6 +51,7 @@ export class SeguimientoComponent implements OnInit {
 
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  isSpinnerData: boolean = true;
 
   trackingDataListHeader: any = []
   trackingDataListDetails: any = []

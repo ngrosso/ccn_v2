@@ -24,6 +24,8 @@ export class InicioComponent implements OnInit {
   grupoEmpresario: any = {};
   form: FormGroup;
   userDataString: any;
+  isSpinnerData: boolean = true;
+
 
   constructor(
     private apiService: ApiService,
@@ -56,6 +58,7 @@ export class InicioComponent implements OnInit {
           });
           this.grupoEmpresario = this.apiService.padre;
           this.bodegas = this.apiService.bodegas;
+          this.isSpinnerData = true;
           this.apiService.empId =
             this.apiService.bodegas[0].OrganizationDEO_EMPID_c;
           if (this.apiService.empId != 4) this.router.navigate(['mobileUser']);
@@ -65,6 +68,9 @@ export class InicioComponent implements OnInit {
         },
       });
     }
+    this.isSpinnerData = false;
+ 
+
     this.grupoEmpresario = this.apiService.padre;
     this.bodegas = this.apiService.bodegas;
     this.apiService.empId = this.apiService.bodegas[0].OrganizationDEO_EMPID_c;

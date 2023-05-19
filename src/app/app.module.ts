@@ -11,7 +11,7 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MaterialModule } from './material/material.module';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiService } from './services/api.service';
 import { FooterComponent } from './components/navbar/footer/footer.component';
 import { NuevaComponent } from './orders/nueva/nueva.component';
@@ -22,6 +22,8 @@ import { VerificacionComponent } from './auth/verificacion/verificacion.componen
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { ConfirmOrderComponent } from './orders/confirm-order/confirm-order.component';
 import { MobileUserComponent } from './components/mobile-user/mobile-user.component';
+import { SpinerComponent } from './components/spiner/spiner.component';
+import { LoadingInterceptor } from './loading';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { MobileUserComponent } from './components/mobile-user/mobile-user.compon
     FooterComponent,
     ConfirmOrderComponent,
     MobileUserComponent,
+    SpinerComponent,
 
     
   ],
@@ -52,6 +55,7 @@ import { MobileUserComponent } from './components/mobile-user/mobile-user.compon
   providers: [
   ApiService,
   NuevaComponent,
+  {provide: HTTP_INTERCEPTORS, useClass:LoadingInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

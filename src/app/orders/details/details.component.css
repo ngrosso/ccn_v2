@@ -294,3 +294,8 @@ table td {
 .mat-toolbar-details{
   background-color: transparent;
 } 
+
+
+.spinner{
+  margin: 50 auto;    
+}

@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   private apiIdcsUrl = environment.APIIDCSURL;
   private apiIdcsClientId = environment.APIIDCSCLIENTID;
-  public forgotPassswordURL= `${this.apiIdcsUrl}/oauth2/v1/authorize?client_id=${this.apiIdcsClientId}d&response_type=code&redirect_uri=%2Fui%2Fv1%2Fmyconsole&scope=openid&state=1234`
+  public forgotPassswordURL= `${this.apiIdcsUrl}/oauth2/v1/authorize?client_id=${this.apiIdcsClientId}&response_type=code&redirect_uri=%2Fui%2Fv1%2Fmyconsole&scope=openid&state=1234`
 
   constructor(
     private fb: FormBuilder,
@@ -77,10 +77,10 @@ export class LoginComponent implements OnInit {
     //sessionStorage.setItem("partyNumber", "1Yp")
   }
 
-  loadingHome() {
-    this.loading = true;
-    setTimeout(() => {
-      this.router.navigate(['inicio']);
-    }, 500);
-  }
+  // loadingHome() {
+  //   this.loading = true;
+  //   setTimeout(() => {
+  //     this.router.navigate(['inicio']);
+  //   }, 500);
+  // }
 }

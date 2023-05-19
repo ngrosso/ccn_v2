@@ -4,6 +4,7 @@
   <h1 class="title-main">Tracking</h1>
 </mat-toolbar>
 
+<app-spiner></app-spiner>
 
 <div class="background-tracking">
   <div class="container">
@@ -13,6 +14,7 @@
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" search placeholder="Ex. Sold To" #input>
       </mat-form-field>
+
 
       <div class="mat-elevation-z1 contenedor-bodegas ">
         <table mat-table [dataSource]="dataSource" class="background-table "  >
