@@ -101,6 +101,7 @@ export class NuevaComponent {
   outstandingBalance: any;
   days = 30
   addEnabled = true;
+  repeatOrder = false;
 
   constructor(private fb: FormBuilder, private addService: AddService, private apiService: ApiService, private _snackBar: MatSnackBar, private dialog: MatDialog, private router: Router, private userValidation: UserValidationService) {
 
@@ -208,6 +209,7 @@ export class NuevaComponent {
     this.territory = account.OrganizationDEO_Territorio_c;
     this.totalAmountReached = false;
     if ((this.grupoEmpresario.OrganizationDEO_AmountDue_c > 0 || this.grupoEmpresario.OrganizationDEO_AvailableCredit_c < 0 || this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0) && this.formHeader.value.paymentType == "GR") this.totalAmountReached = true;
+    this.repeatOrder = false;
 
   }
 
@@ -261,6 +263,7 @@ export class NuevaComponent {
         // console.log("PatchOrders")
       })
       this.openDialog()
+      this.repeatOrder = true;
     })
   }
 

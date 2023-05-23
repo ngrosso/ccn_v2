@@ -48,12 +48,13 @@ mat-icon {
   color: white;
   transition: 0.3s ease-in-out;
   border-radius: 12px;
+  min-width: 10%;
 }
 
 .btn-add {
   background-color: #006a3a;
   color: white;
-  width: 10%;
+  min-width: 10%;
   height: 40px;
   border: 0;
   outline: 0;
