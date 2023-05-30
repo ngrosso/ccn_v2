@@ -201,7 +201,7 @@ export class NuevaComponent {
     this.getContainers()
     this.incoterm = account.OrganizationDEO_INCOTERM_c
     this.balanceStatus = account.OrganizationDEO_AmountUsed_c
-    this.outstandingBalance = account.OrganizationDEO_AmountDue_c 
+    this.outstandingBalance = account.OrganizationDEO_AmountDue_c
     this.shipTo = account.FormattedAddress
     this.warehouseAmount = parseFloat(account.OrganizationDEO_DisponibleDeCredito_c.toFixed(2))
 
@@ -254,16 +254,26 @@ export class NuevaComponent {
     // ConfimarOrden - Boton de confirmación
     // console.log(new Order(this.formHeader.value.poNbr, this.formHeader.value.shipTo, this.formHeader.value.incortem, this.formHeader.value.soldTo, this.formHeader.value.etd, this.formProduct.value.shipmentType, this.addService.productos))
     // console.log(this.formHeader.value)
-    this.apiService.confirmationShoppingCart(this.apiService.bodegaSeleccionada.OrganizationDEO___ORACO__ShoppingCart_Id_c).subscribe((response: any) => {
+    await this.apiService.confirmationShoppingCart(this.apiService.bodegaSeleccionada.OrganizationDEO___ORACO__ShoppingCart_Id_c).subscribe((response: any) => {
       this.apiService.getOrderLinesRollupFilter(this.apiService.bodegaSeleccionada.PartyId, this.RESPONSE.__ORACO__ComboSelQuantity_c).subscribe((lines: any) => {
         const orderID = lines.items[0].__ORACO__Order_Id_c;
         const containerType = this.shipmentType
         this.apiService.patchIdOrder(orderID, this.formHeader.value.poNbr, this.formHeader.value.etd, containerType, this.RESPONSE.__ORACO__ComboSelQuantity_c, this.formHeader.value.paymentType, this.apiService.bodegaSeleccionada.OrganizationDEO_Territorio_c
         ).subscribe(response => console.info(response));
         // console.log("PatchOrders")
+        this.openDialog()
+        this.repeatOrder = true;
+        this.shoppingCartList.map(async (product: any) => {
+          console.log("product", product);
+          await this.apiService.postShoppingCartItem(this.apiService.bodegaSeleccionada.OrganizationDEO___ORACO__ShoppingCart_Id_c,
+            product.__ORACO__Product_Id_c,
+            product.__ORACO__Quantity_c,
+            product.__ORACO__Tax1_c,
+            product.__ORACO__Tax2_c).subscribe((response: any) => {
+              console.log("respuesta", response)
+            })
+        })
       })
-      this.openDialog()
-      this.repeatOrder = true;
     })
   }
 
@@ -343,7 +353,7 @@ export class NuevaComponent {
         this.updatePallets();
         this.pesoTotal = 0;
         this.pesoTotalFloat = (this.pesoTotal).toFixed(2);
-        if(this.shoppingCartList.length > 0){
+        if (this.shoppingCartList.length > 0) {
           this.shoppingCartList.forEach((product: any) => {
             this.apiService
               .getItemById(product.__ORACO__Product_Id_c)
@@ -353,12 +363,11 @@ export class NuevaComponent {
                 this.availableWidthUse = (this.pesoMaximo - this.pesoTotal - this.PesoTotalARepartir).toFixed(2)
               });
           });
-        }else{
+        } else {
           this.availableWidthUse = (this.pesoMaximo - this.pesoTotal - this.PesoTotalARepartir).toFixed(2)
         }
         //TODO: cierra el modal de add item
       });
-     
   }
 
   getItemInfo(producto: any) {
