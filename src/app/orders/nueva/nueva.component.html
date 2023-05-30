@@ -91,7 +91,7 @@
       <h1 class="title-main-product">Product <mat-icon>inventory_2</mat-icon>
       </h1>
     </mat-card>
-
+    <app-spiner></app-spiner>
     <section>
       <form [formGroup]="formProduct" (ngSubmit)="onSubmitProducto()">
         <mat-grid-list cols="2" rowHeight="120px">
@@ -111,6 +111,7 @@
             </mat-card>
           </mat-grid-tile>
 
+          <app-spiner></app-spiner>
           <mat-grid-tile [colspan]="1" [rowspan]="1">
             <mat-card class="card-inputs-form mat-elevation-z5">
               <mat-form-field class="ancho" appearance="outline">
