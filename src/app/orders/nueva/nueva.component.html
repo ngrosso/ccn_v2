@@ -296,9 +296,26 @@
       <button *ngIf="!repeatOrder" mat-raised-button class="btn-add text-uppercase font-weight-bold" (click)="completarOrden()"
         [disabled]="!(pesoTotal<=pesoMaximo && pesoTotal>=pesoMinimo && !formHeader.invalid)"
         value="Confirmar">Confirm</button>
-        <button *ngIf="repeatOrder" mat-raised-button class="btn-add text-uppercase font-weight-bold" (click)="completarOrden()"
-        [disabled]="!(pesoTotal<=pesoMaximo && pesoTotal>=pesoMinimo && !formHeader.invalid)"
-        value="Confirmar">Repeat Order</button>
+       <div>
+         <mat-card *ngIf="repeatOrder"
+         class="mat-elevation-z8 background-table section-data-container custom-repeat">
+         <mat-grid-list cols="1" rowHeight="40px">
+           <mat-grid-tile [colspan]="1" [rowspan]="1">
+             <p>
+               <span class="title-info">You can edit Customer Order Number, before push REPEAT ORDER BUTTON</span>
+             </p>
+           </mat-grid-tile>
+         </mat-grid-list>
+       </mat-card>
+         <button *ngIf="repeatOrder" mat-raised-button class="btn-add text-uppercase font-weight-bold" (click)="completarOrden()"
+         [disabled]="!(pesoTotal<=pesoMaximo && pesoTotal>=pesoMinimo && !formHeader.invalid)"
+         value="Confirmar">Repeat Order</button>
+         <!-- <mat-hint *ngIf="repeatOrder">you can edit Customer Order Number, before push REPEAT ORDER BUTTON</mat-hint>  -->
+         <button style="left: 10px; " *ngIf="repeatOrder" mat-raised-button class="btn-add text-uppercase font-weight-bold"
+         [disabled]="!(pesoTotal<=pesoMaximo && pesoTotal>=pesoMinimo && !formHeader.invalid)"
+         value="CleanOrder">New Order</button>
+       </div>
+
     </div>
     <br>
   </div>

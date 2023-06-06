@@ -559,8 +559,6 @@ export class NuevaComponent {
     let uomCode = this.formHeader.value.paymentType;
     return productsList.filter((item) => item.PriceUOMCode.includes(uomCode));
   }
-
-
 }
 
 function compareStrings(a: string, b: string) {
