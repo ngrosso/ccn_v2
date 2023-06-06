@@ -176,7 +176,7 @@ export class NuevaComponent {
       this.router.navigate(['inicio']);
     }
     this.accountAddressesList = this.apiService.bodegas;
-    this.accountAddressesList.sort(function(a:any, b:any) {
+    this.accountAddressesList.sort(function (a: any, b: any) {
       return compareStrings(a.OrganizationName, b.OrganizationName);
     })
     this.addService.getProductos().subscribe((productos) => {
@@ -306,7 +306,7 @@ export class NuevaComponent {
                 .getPrice(account.OrganizationDEO___ORACO__PriceBook_Id_c)
                 .subscribe((priceItems: any) => {
                   this.productsList = priceItems.items;
-                  this.productsList.sort(function (a:any, b:any) {
+                  this.productsList.sort(function (a: any, b: any) {
                     return compareStrings(a.ItemDescription, b.ItemDescription);
                   });
                 });
@@ -359,7 +359,11 @@ export class NuevaComponent {
                   product.__ORACO__Tax2_c
                 )
                 .subscribe((response: any) => {
-                  console.log('respuesta', response);
+                  this.getShoppingCartList(
+                    this.apiService.bodegaSeleccionada
+                      .OrganizationDEO___ORACO__ShoppingCart_Id_c
+                  );
+                  this.RESPONSE = response;
                 });
             });
           });
@@ -506,8 +510,8 @@ export class NuevaComponent {
       for (let i = 1; i <= 20; i++) {
         if (
           this.selectedProductDetails.CantidadPorPallet_c *
-            i *
-            this.selectedProductDetails.PesoProducto_c <
+          i *
+          this.selectedProductDetails.PesoProducto_c <
           this.pesoMaximo
         ) {
           this.pallets.push(
@@ -556,7 +560,7 @@ export class NuevaComponent {
     return productsList.filter((item) => item.PriceUOMCode.includes(uomCode));
   }
 
-  
+
 }
 
 function compareStrings(a: string, b: string) {
