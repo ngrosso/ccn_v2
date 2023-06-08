@@ -359,7 +359,11 @@ export class NuevaComponent {
                   product.__ORACO__Tax2_c
                 )
                 .subscribe((response: any) => {
-                  console.log('respuesta', response);
+                  this.getShoppingCartList(
+                    this.apiService.bodegaSeleccionada
+                      .OrganizationDEO___ORACO__ShoppingCart_Id_c
+                  );
+                  this.RESPONSE = response;
                 });
             });
           });
@@ -506,8 +510,8 @@ export class NuevaComponent {
       for (let i = 1; i <= 20; i++) {
         if (
           this.selectedProductDetails.CantidadPorPallet_c *
-            i *
-            this.selectedProductDetails.PesoProducto_c <
+          i *
+          this.selectedProductDetails.PesoProducto_c <
           this.pesoMaximo
         ) {
           this.pallets.push(
