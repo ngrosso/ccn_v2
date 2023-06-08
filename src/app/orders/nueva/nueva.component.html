@@ -313,7 +313,7 @@
          <!-- <mat-hint *ngIf="repeatOrder">you can edit Customer Order Number, before push REPEAT ORDER BUTTON</mat-hint>  -->
          <button style="left: 10px; " *ngIf="repeatOrder" mat-raised-button class="btn-add text-uppercase font-weight-bold"
          [disabled]="!(pesoTotal<=pesoMaximo && pesoTotal>=pesoMinimo && !formHeader.invalid)"
-         value="CleanOrder">New Order</button>
+         value="CleanOrder" (click)="redirectTo()">New Order</button>
        </div>
 
     </div>

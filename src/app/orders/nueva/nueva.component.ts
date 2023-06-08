@@ -176,9 +176,9 @@ export class NuevaComponent {
       this.router.navigate(['inicio']);
     }
     this.accountAddressesList = this.apiService.bodegas;
-    this.accountAddressesList.sort(function(a:any, b:any) {
+    this.accountAddressesList.sort(function (a: any, b: any) {
       return compareStrings(a.OrganizationName, b.OrganizationName);
-    })
+    });
     this.addService.getProductos().subscribe((productos) => {
       this.productos = productos;
     });
@@ -306,7 +306,7 @@ export class NuevaComponent {
                 .getPrice(account.OrganizationDEO___ORACO__PriceBook_Id_c)
                 .subscribe((priceItems: any) => {
                   this.productsList = priceItems.items;
-                  this.productsList.sort(function (a:any, b:any) {
+                  this.productsList.sort(function (a: any, b: any) {
                     return compareStrings(a.ItemDescription, b.ItemDescription);
                   });
                 });
@@ -556,8 +556,15 @@ export class NuevaComponent {
     return productsList.filter((item) => item.PriceUOMCode.includes(uomCode));
   }
 
+  redirectTo() {
+    this.router
+      .navigateByUrl('inicio', { skipLocationChange: true })
+      .then(() => this.router.navigate(['inicio/nueva']));
+  }
 
-
+  refreshPage(): void {
+    window.location.reload();
+  }
 }
 
 function compareStrings(a: string, b: string) {
