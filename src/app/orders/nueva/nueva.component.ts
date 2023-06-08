@@ -559,7 +559,7 @@ export class NuevaComponent {
     let uomCode = this.formHeader.value.paymentType;
     return productsList.filter((item) => item.PriceUOMCode.includes(uomCode));
   }
-
+  // Funcion para redirect new order
   redirectTo() {
     this.router
       .navigateByUrl('inicio', { skipLocationChange: true })
