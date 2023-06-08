@@ -9,6 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DetailsComponent } from '../details/details.component';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { isNgTemplate } from '@angular/compiler';
+import { UserValidationService } from '../../services/user-validation.service';
 
 
 export interface trackingDataInfo {
@@ -50,19 +51,20 @@ export class SeguimientoComponent implements OnInit {
 
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  isSpinnerData: boolean = true;
 
   trackingDataListHeader: any = []
   trackingDataListDetails: any = []
-  displayedColumns: string[] = ['details', 'order_Number', 'sold_Number', 'sold_to', 'etd_solicitado', 'ETA_solicitada', 'totalAmount','refresh'];
+  displayedColumns: string[] = ['details', 'status','order_Number', 'sold_Number', 'sold_to', 'etd_solicitado', 'ETA_solicitada', 'totalAmount','refresh'];
 
 
-  constructor(public dialog: MatDialog, private addService: AddService, public _router: Router, public _location: Location, private apiService: ApiService) {
+  constructor(public dialog: MatDialog, private addService: AddService, public router: Router, public _location: Location, private apiService: ApiService, private userValidation: UserValidationService) {
     this.dataSource = new MatTableDataSource();
     this.getTrackingInfoListHeader()
       .then((response: any) => {
         this.dataSource = new MatTableDataSource(this.trackingDataListHeader);
         this.dataSource.paginator = this.paginator;
-        console.log("TrackingDataList Constructor", this.trackingDataListHeader);
+        // console.log("TrackingDataList Constructor 66", this.trackingDataListHeader);
       })
     this.getTrackingInfoListDetails()
   }
@@ -72,10 +74,10 @@ export class SeguimientoComponent implements OnInit {
       const trackingInfoPromises = this.apiService.bodegas.map(async (bodega) => {
         return await this.callApiServiceGeTrackingInfoHeader(bodega.PartyNumber);
       });
-      const trackingsInfo = await Promise.all(trackingInfoPromises,);
-      console.log("trackingsinfo", trackingsInfo)
+      const trackingsInfo = await Promise.all(trackingInfoPromises);
+      // console.log("trackingsinfo 77", trackingsInfo)
       trackingsInfo.forEach((trackingInfo: any) => {
-        this.trackingDataListHeader = [...this.trackingDataListHeader,...trackingInfo];
+        if(trackingInfo != null) this.trackingDataListHeader = [...this.trackingDataListHeader,...trackingInfo];
       });
       resolve(true);
     })
@@ -86,11 +88,11 @@ export class SeguimientoComponent implements OnInit {
       this.apiService.getTrackingInfoHeaders(partyNumber)
         .subscribe({
           next: (trackingList: any) => {
-            console.log(`trackingList ${partyNumber}`, trackingList)
+            // console.log(`trackingList 90 ${partyNumber}`, trackingList)
             resolve(trackingList);
           },
            error: (error: any) => {
-            console.log(`trackingListError ${partyNumber}`, error)
+            // console.log(`trackingListError 94 ${partyNumber}`, error)
               resolve([]);
           }
           }
@@ -104,10 +106,10 @@ export class SeguimientoComponent implements OnInit {
       const trackingInfoPromises = this.apiService.bodegas.map(async (bodega) => {
         return await this.callApiServiceGeTrackingInfoDetails(bodega.PartyNumber);
       });
-      const trackingsInfo = await Promise.all(trackingInfoPromises,);
-      console.log("trackingsinfoDetails", trackingsInfo)
+      const trackingsInfo = await Promise.all(trackingInfoPromises);
+      // console.log("trackingsinfoDetails 109", trackingsInfo)
       trackingsInfo.forEach((trackingInfo: any) => {
-        this.trackingDataListDetails = [...this.trackingDataListDetails,...trackingInfo ];
+        if(trackingInfo != null) this.trackingDataListDetails = [...this.trackingDataListDetails,...trackingInfo ];
       });
       resolve(true);
     })
@@ -118,12 +120,11 @@ export class SeguimientoComponent implements OnInit {
       this.apiService.getTrackingInfoDetails(partyNumber)
         .subscribe({
           next: (trackingList: any) => {
-            console.log(`trackingListDetails ${partyNumber}`, trackingList)
-
+            // console.log(`trackingListDetails 122 ${partyNumber}`, trackingList)
             resolve(trackingList);
           },
            error: (error: any) => {
-            console.log(`trackingListDetailsError ${partyNumber}`, error)
+            // console.log(`trackingListDetailsError 127 ${partyNumber}`, error)
               resolve([]);
           }
           }
@@ -132,6 +133,9 @@ export class SeguimientoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.userValidation.isLoggedIn() != null && JSON.stringify(this.apiService.padre) === "{}" && this.apiService.bodegas.length == 0) {
+      this.router.navigate(['inicio'])
+    }
   }
 
   ngAfterViewInit() {
@@ -147,9 +151,8 @@ export class SeguimientoComponent implements OnInit {
 
 
   openDialog(element: any): void {
-    console.log(element)
     const DETAILS = this.trackingDataListDetails.filter((item : any) => item.PEDNRO == element.PEDNRO )
-    console.info(DETAILS, 'Details 152')
+    // console.info(DETAILS, 'Details 152')
     let dialogRef = this.dialog.open(DetailsComponent, {
       width: '60%',
       height: '70%',
@@ -164,9 +167,9 @@ export class SeguimientoComponent implements OnInit {
   }
 
   refresh(): void {
-    this._router.navigateByUrl("/refresh", { skipLocationChange: true }).then(() => {
+    this.router.navigateByUrl("/refresh", { skipLocationChange: true }).then(() => {
       console.log(decodeURI(this._location.path()));
-      this._router.navigate([decodeURI(this._location.path())]);
+      this.router.navigate([decodeURI(this._location.path())]);
     });
   }
 

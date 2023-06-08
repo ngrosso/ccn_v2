@@ -6,11 +6,29 @@
 </mat-toolbar>
 
 <div class="background">
-  <div class='container'>
+  <div class='container '>
     <div class='window'>
       <div class='order-info'>
         <div class='order-info-content'>
-          <h2 class="amount-available">Amount available</h2>
+          <h2 class="amount-available"></h2>
+          <table class='order-table'>
+            <tbody>
+              <tr>
+                <td>
+                  <span class='thin-two'>Credit Limit</span>
+                  <br> <br> <br>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class='credit-available'><span>${{grupoEmpresario.OrganizationDEO_CreditLimit_c | number:'1.2-2'}}</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class='line'></div>
+
           <table class='order-table'>
             <tbody>
               <tr>
@@ -21,22 +39,64 @@
               </tr>
               <tr>
                 <td>
-                  <div class='credit-available'><span>${{grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c}}</span>
+                  <div class='credit-available'><span>${{grupoEmpresario.OrganizationDEO_AvailableCredit_c | number:'1.2-2'}}</span>
                   </div>
                 </td>
               </tr>
             </tbody>
           </table>
           <div class='line'></div>
-  
+
+          <table class='order-table'>
+            <tbody>
+              <tr>
+                <td>
+                  <span class='thin-two'>Balance</span>
+                  <br> <br> <br>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class='credit-available'><span>${{grupoEmpresario.OrganizationDEO_AmountUsed_c | number:'1.2-2'}}</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class='line'></div>
+
+          <table class='order-table'>
+            <tbody>
+              <tr>
+                <td>
+                  <span class='thin-two'>Outstanding Balance</span>
+                  <br> <br> <br>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class='credit-available'><span>${{grupoEmpresario.OrganizationDEO_AmountDue_c | number:'1.2-2'}}</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class='line'></div>
+
         </div>
       </div>
-  
+
       <div class='credit-info'>
         <div class='credit-info-content'>
-          <h2 class="title-main"> Outstanding Balance by Location</h2>
+          <h2 class="title-main"> Outstanding Balance by Importer/Distributor</h2>
           <div class='line'></div>
           <div class="contenedor-bodegas">
+            <!-- <div class="uploader-status">
+              <mat-spinner class="spinner" diameter="50" *ngIf="isSpinnerData"></mat-spinner>
+            </div> -->
+            <app-spiner></app-spiner>
             <div *ngFor="let bodega of bodegas">
               <table class='order-table'>
                 <tbody>
@@ -45,23 +105,23 @@
                       <br><span class='thin'>{{bodega.OrganizationName}} | {{bodega.FormattedAddress}}</span>
                       <br> <br>
                     </td>
-  
+
                   </tr>
                   <tr>
                     <td>
-                      <div class='credit-available-warehouse'>${{bodega.OrganizationDEO_DisponibleDeCredito_c}}</div>
+                      <div class='credit-available-warehouse'>${{bodega.OrganizationDEO_AmountUsed_c | number:'1.2-2'}}</div>
                     </td>
                   </tr>
                 </tbody>
               </table>
+
               <div class='line'></div>
+
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>  
+  </div>
 </div>
-<app-footer></app-footer>
-
-
+<app-footer></app-footer> 

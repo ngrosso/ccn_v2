@@ -15,7 +15,8 @@
             <mat-card class="card-inputs-form mat-elevation-z5">
               <mat-form-field class="ancho" appearance="outline">
                 <mat-label>Payment Method</mat-label>
-                <mat-select matNativeControl required formControlName="paymentType" [disabled]="disabledPaymentType" [(ngModel)]="gstValue">
+                <mat-select matNativeControl required formControlName="paymentType" [disabled]="disabledPaymentType"
+                  [(ngModel)]="gstValue">
                   <mat-option value="GR">Credit</mat-option>
                   <mat-option value="UN">Debit</mat-option>
                 </mat-select>
@@ -58,10 +59,13 @@
                 <!-- <p> <span class="title-info">Incortem: </span><span> {{incoterm}}</span></p> -->
                 <p><span class="title-info">Ship to: </span><span> {{shipTo}}</span></p>
                 <p><span class="title-info">Container Type: </span><span>{{shipmentType}}</span></p>
-                <p><span class="title-info">Available Balance:</span><span>
-                    ${{grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c | number:'1.2-2'}} </span></p>
-                <p><span class="title-info">Outstanding Balance:</span><span> ${{warehouseAmount | number:'1.2-2'}}</span></p>
-                <p> <span class="title-info">Outstanding Balance After Purchase: </span>${{warehouseAmountAfterPurchase | number:'1.2-2' }}</p>
+                <p><span class="title-info">Total Amount Available:</span><span>
+                    ${{grupoEmpresario.OrganizationDEO_AvailableCredit_c | number:'1.2-2'}} </span></p>
+
+                <p><span class="title-info">Balance:</span><span> ${{grupoEmpresario.OrganizationDEO_AmountUsed_c |
+                    number:'1.2-2'}}</span></p>
+                <p> <span class="title-info">Outstading Balance: </span>${{grupoEmpresario.OrganizationDEO_AmountDue_c |
+                  number:'1.2-2' }}</p>
               </mat-card-content>
             </mat-card>
           </mat-grid-tile>
@@ -70,10 +74,10 @@
             <mat-card class="card-inputs-form mat-elevation-z5">
               <mat-form-field class="ancho" appearance="outline">
                 <mat-label>Estimated Shipping Date</mat-label>
-                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker2" formControlName="etd" required 
-                  autocomplete="off">
+                <input matInput [min]="minDate" [matDatepicker]="picker2" formControlName="etd" required
+                  autocomplete="off" [disabled]="repeatOrder">
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                <mat-datepicker #picker2></mat-datepicker>
+                <mat-datepicker #picker2 [startAt]="maxDate"></mat-datepicker>
               </mat-form-field>
             </mat-card>
           </mat-grid-tile>
@@ -87,17 +91,17 @@
       <h1 class="title-main-product">Product <mat-icon>inventory_2</mat-icon>
       </h1>
     </mat-card>
-
+    <app-spiner></app-spiner>
     <section>
       <form [formGroup]="formProduct" (ngSubmit)="onSubmitProducto()">
         <mat-grid-list cols="2" rowHeight="120px">
 
           <mat-grid-tile [colspan]="1" [rowspan]="1">
             <mat-card class="card-inputs-form mat-elevation-z5">
-              <mat-form-field class="ancho" appearance="outline" >
+              <mat-form-field class="ancho" appearance="outline">
                 <mat-label> Select Product</mat-label>
-                <mat-select matNativeControl name="select" required formControlName="sku" class="my-select-panel-class"
-                  (ngModelChange)="getItemInfo($event)" (ngModel)="selectedProduct">
+                <mat-select matNativeControl name="select" formControlName="sku" class="my-select-panel-class"
+                  (ngModelChange)="getItemInfo($event)" (ngModel)="selectedProduct" [disabled]="repeatOrder">
                   <mat-option *ngFor="let product of filteringProducts(productsList)" [value]="product">
                     {{product.ItemDescription}}
                     <!-- - ${{product.ListPrice}} -->
@@ -107,12 +111,12 @@
             </mat-card>
           </mat-grid-tile>
 
+          <app-spiner></app-spiner>
           <mat-grid-tile [colspan]="1" [rowspan]="1">
             <mat-card class="card-inputs-form mat-elevation-z5">
               <mat-form-field class="ancho" appearance="outline">
                 <mat-label>Quantity</mat-label>
-                <mat-select matNativeControl formControlName="quantity" required
-                  (ngModelChange)="calculo($event)">
+                <mat-select matNativeControl formControlName="quantity" (ngModelChange)="calculo($event)" [disabled]="repeatOrder">
                   <mat-option value="{{pallet}}" *ngFor="let pallet of pallets"> {{pallet}}
                   </mat-option>
                 </mat-select>
@@ -125,11 +129,12 @@
         <!-- button add -->
         <div class="col-lg-12 text-center">
           <button mat-raised-button class="btn-add text-uppercase font-weight-bold"
-            [disabled]="!(pesoTotal+PesoTotalARepartir<=pesoMaximo && formProduct.valid && !seRepiteSKU() && shoppingCartList.length < 2)"
+            [disabled]="!(addEnabled && pesoTotal+PesoTotalARepartir<=pesoMaximo && formProduct.valid && !seRepiteSKU() && shoppingCartList.length < 2 && formProduct.value.quantity > 0)"
             value="Agregar">Add</button>
         </div>
 
-        <mat-card *ngIf="totalAmountReached" class="mat-elevation-z8 background-table section-data-container custom-warning">
+        <mat-card *ngIf="totalAmountReached"
+          class="mat-elevation-z8 background-table section-data-container custom-warning">
           <mat-grid-list cols="1" rowHeight="40px">
             <mat-grid-tile [colspan]="1" [rowspan]="1">
               <p>
@@ -138,7 +143,7 @@
             </mat-grid-tile>
           </mat-grid-list>
         </mat-card>
-        
+
 
       </form>
 
@@ -171,13 +176,14 @@
 
           <ng-container matColumnDef="totalAmount">
             <th mat-header-cell *matHeaderCellDef> Total Amount </th>
-            <td mat-cell *matCellDef="let element"> ${{element.__ORACO__Quantity_c * element.__ORACO__Tax2_c | number:'1.2-2'}} </td>
+            <td mat-cell *matCellDef="let element"> ${{element.__ORACO__Quantity_c * element.__ORACO__Tax2_c |
+              number:'1.2-2'}} </td>
           </ng-container>
 
           <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
-              <a class="pointer color-icons"
+              <a *ngIf="!repeatOrder" class="pointer color-icons"
                 (click)="deleteShoppingCartItem(element.__ORACO__ShoppingCartDSD_Id_c,element.Id)" matTooltip="Delete">
                 <mat-icon>delete</mat-icon>
               </a>
@@ -203,7 +209,7 @@
     </div>
 
     <mat-card class="mat-elevation-z8 background-table section-data-container">
-      <mat-grid-list cols="4" rowHeight="40px">
+      <mat-grid-list cols="12" rowHeight="40px">
         <!-- <mat-grid-tile [colspan]="1" [rowspan]="1">
           <button class="btn-confirmar text-uppercase font-weight-bold" mat-raised-button (click)="completarOrden()"
             [disabled]="!(pesoTotal<=pesoMaximo && pesoTotal>=pesoMinimo && !formHeader.invalid)" value="Confirmar">Confirm
@@ -212,35 +218,104 @@
             <span class="title-info">Container Min Weight: {{pesoMinimo}} </span>
           </p>
         </mat-grid-tile> -->
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
           <p>
-            <span class="title-info">Container Max Weight: {{pesoMaximo}} - </span>
+            <span class="title-info">Container Max Weight: </span>
           </p>
         </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
           <p>
-            <span class="title-info">Ocuppied weight: {{pesoTotal}} - </span>
+            <span class="title-info">Ocuppied weight: </span>
           </p>
         </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
           <p>
-            <span class="title-info">Selected Product Weight: {{PesoTotalARepartir}} = </span>
+            <span class="title-info">Selected Product Weight: </span>
           </p>
         </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
           <p>
-            <span class="title-info">Available Weight to use: {{pesoMaximo-pesoTotal-PesoTotalARepartir}} </span>
+            <span class="title-info">Available Weight to use: </span>
           </p>
         </mat-grid-tile>
 
         <!-- button confirm -->
-       
+
       </mat-grid-list>
-      
+      <mat-grid-list cols="12" rowHeight="40px">
+        <!-- <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <button class="btn-confirmar text-uppercase font-weight-bold" mat-raised-button (click)="completarOrden()"
+            [disabled]="!(pesoTotal<=pesoMaximo && pesoTotal>=pesoMinimo && !formHeader.invalid)" value="Confirmar">Confirm
+          </button>
+          <p>
+            <span class="title-info">Container Min Weight: {{pesoMinimo}} </span>
+          </p>
+        </mat-grid-tile> -->
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <p>
+            <span class="title-info" fxFlex fxLayoutAlign="start center">{{pesoMaximo}} </span>
+          </p>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <p>
+            <span class="title-info"> - </span>
+          </p>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <p>
+            <span class="title-info" fxFlex fxLayoutAlign="start center">{{pesoTotalFloat}} </span>
+          </p>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <p>
+            <span class="title-info"> - </span>
+          </p>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <p>
+            <span class="title-info" fxFlex fxLayoutAlign="start center">{{selectedProductoWeight}} </span>
+          </p>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <p>
+            <span class="title-info"> = </span>
+          </p>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <p>
+            <span class="title-info" fxFlex fxLayoutAlign="start center">{{availableWidthUse}} </span>
+          </p>
+        </mat-grid-tile>
+
+        <!-- button confirm -->
+
+      </mat-grid-list>
+
     </mat-card>
     <div class="col-lg-12 text-center">
-      <button mat-raised-button class="btn-add text-uppercase font-weight-bold" (click)="completarOrden()"
-      [disabled]="!(pesoTotal<=pesoMaximo && pesoTotal>=pesoMinimo && !formHeader.invalid)" value="Confirmar">Confirm</button>
+      <button *ngIf="!repeatOrder" mat-raised-button class="btn-add text-uppercase font-weight-bold" (click)="completarOrden()"
+        [disabled]="!(pesoTotal<=pesoMaximo && pesoTotal>=pesoMinimo && !formHeader.invalid)"
+        value="Confirmar">Confirm</button>
+       <div>
+         <mat-card *ngIf="repeatOrder"
+         class="mat-elevation-z8 background-table section-data-container custom-repeat">
+         <mat-grid-list cols="1" rowHeight="40px">
+           <mat-grid-tile [colspan]="1" [rowspan]="1">
+             <p>
+               <span class="title-info">You can edit Customer Order Number, before push REPEAT ORDER BUTTON</span>
+             </p>
+           </mat-grid-tile>
+         </mat-grid-list>
+       </mat-card>
+         <button *ngIf="repeatOrder" mat-raised-button class="btn-add text-uppercase font-weight-bold" (click)="completarOrden()"
+         [disabled]="!(pesoTotal<=pesoMaximo && pesoTotal>=pesoMinimo && !formHeader.invalid)"
+         value="Confirmar">Repeat Order</button>
+         <!-- <mat-hint *ngIf="repeatOrder">you can edit Customer Order Number, before push REPEAT ORDER BUTTON</mat-hint>  -->
+         <button style="left: 10px; " *ngIf="repeatOrder" mat-raised-button class="btn-add text-uppercase font-weight-bold"
+         [disabled]="!(pesoTotal<=pesoMaximo && pesoTotal>=pesoMinimo && !formHeader.invalid)"
+         value="CleanOrder" (click)="redirectTo()">New Order</button>
+       </div>
+
     </div>
     <br>
   </div>

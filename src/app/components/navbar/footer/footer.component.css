@@ -1,4 +1,8 @@
 .footer-class-test{
     background-color: #006a3a;
     bottom: 0;
-}
+    flex-wrap: wrap;
+    display: flex;
+    position: relative;   
+    height: 6vh;
+}   

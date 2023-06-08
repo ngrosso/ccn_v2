@@ -26,6 +26,7 @@
     height: 500px;
     background-color: #f5f5f5;
     border-radius: 10px;
+    margin: 10px;
 }
 
 .button-login-color:hover {
@@ -70,4 +71,32 @@ a:hover {
 
 .title-main{
   font-weight: 700;
+}
+
+ .mat-form-field-label {
+    /*change color of label*/
+    color: green !important;
+   }
+  
+   ::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: green !important;
+  } 
+  
+  ::ng-deep.mat-form-field-ripple {
+   /*change color of underline when focused*/
+   background-color: green !important;
+  }
+
+  .spinner{
+    margin: 50 auto;    
+}
+
+.uploader-status ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #006a3a;
+}
+
+
+.color-label{
+    color: #006a3a;
 }

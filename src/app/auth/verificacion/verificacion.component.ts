@@ -6,6 +6,7 @@ import { DOCUMENT } from '@angular/common';
 import { Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import {NgxAgeValidator} from "ngx-age-validator";
+import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 
 
 @Component({
@@ -23,15 +24,27 @@ export class VerificacionComponent implements OnInit {
   loading: boolean | undefined;
   login = "/login"
   formBuilder: any;
+  validAge: boolean = false;
+
   constructor(private fb: FormBuilder, private snackBar: MatSnackBar, private router: Router, @Inject(DOCUMENT) private document: Document) {
 
     this.form = new FormGroup({
-      Date: new FormControl(),
+      ageFormControl: new FormControl(),
       
     })
 
   }
 
+  addEvent(event: MatDatepickerInputEvent<Date>) {
+    console.log(event)
+    if (event.value != null && this.validAge){
+      this.buttonDisabled = false
+    }
+  }
+
+  onChange(event : any){
+    console.log(event)
+  }
 
   openSnackBar(mensaje: string) {
     this.snackBar.open(mensaje, '', {
@@ -49,19 +62,21 @@ export class VerificacionComponent implements OnInit {
     this.ageFormControl = new FormControl(null, [NgxAgeValidator(18, 90)])
  
     this.ageFormControl.valueChanges.subscribe(() => {
- 
+    console.log(this.ageFormControl)
       const controlErrors: ValidationErrors | null = this.ageFormControl.errors;
       if (controlErrors != null) {
-        this.buttonDisabled = true
+        this.validAge = false
         Object.keys(controlErrors).forEach(keyError => {
           console.log(' keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
         });
       } else {
-        this.buttonDisabled = false
+        this.validAge = true
       }
  
     })
   }
+
+  
 
 }
 

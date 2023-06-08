@@ -31,6 +31,7 @@ import {MatSortModule} from '@angular/material/sort';
 import { NuevaComponent } from '../orders/nueva/nueva.component';
 import { VerificacionComponent } from '../auth/verificacion/verificacion.component';
 import { InicioComponent } from '../components/inicio/inicio.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],
@@ -63,7 +64,8 @@ import { InicioComponent } from '../components/inicio/inicio.component';
     MatTabsModule,
     MatDividerModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressSpinnerModule
   ],
 
   exports: [
@@ -94,7 +96,8 @@ import { InicioComponent } from '../components/inicio/inicio.component';
     MatTabsModule,
     MatDividerModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule { }

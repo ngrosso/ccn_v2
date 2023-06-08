@@ -52,6 +52,7 @@ const ELEMENT_DATA: trackingDataInfo[] = [];
 
 @Component({
   selector: 'app-details',
+  
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css'],
   providers: [
@@ -67,7 +68,11 @@ const ELEMENT_DATA: trackingDataInfo[] = [];
 export class DetailsComponent implements OnInit {
   dataDetailsTable: MatTableDataSource<any>;
 
-  checkStatus = "✔"
+  // colorShippedStatus = 'background-color: red';
+  // navStyle = 'background-color:red';
+
+  checkStatusVar = "";
+  
   hidden = false;
 
   trackingDataList: any = [];
@@ -101,6 +106,7 @@ export class DetailsComponent implements OnInit {
   fechaReal: any = '';
   PEDFCHENTP: any = '';
   PEDSTS: any = '';
+   
   
   onClick(index: number): void {
     this.selectedIndex = index;
@@ -120,7 +126,7 @@ export class DetailsComponent implements OnInit {
 
     this.PEDLINCNTV = data.orden.PEDLINCN;
     this.PEDLINMON = data.orden.PEDLINMON;
-    
+    this.PEDNRO = data.orden.PEDNRO;
     // Order number
     this.PEDNROPLAC = data.orden.PEDNROPLAC;
     // Order Received
@@ -130,28 +136,60 @@ export class DetailsComponent implements OnInit {
     // Order Validated
     this.FECHALIBCRE = data.orden.FECHALIBCRE;
     // Order in process
-    this.PEDFCHLIB = data.details[0].PEDFCHLIB;
+    this.PEDFCHLIB = data.orden.PEDFCHLIB;
     // Order shipped
-    this.PEDFCHPRO = data.details[0].PEDFCHPRO;
+    this.PEDFCHPRO = data.orden.PEDFCHPRO;
 
-    if ( data.orden.PEDSTS == 'RET' || data.orden.PEDSTS == 'LIB' || data.orden.PEDSTS == 'PRC' ) {
+    if ( data.orden.PEDSTS == 'RET' || data.orden.PEDSTS == 'LIB') {
       this.PEDSTS = 'IN PROGRESS';
+      
     } else {
       this.PEDSTS = 'SUSPENDED';
+    } 
+    
+    if(data.orden.PEDSTS == 'PRC'){
+      this.PEDSTS = 'SHIPPED';
     }
     this.DETAILS = data.details;
-
   }
   
   ngOnInit(): void {
-    console.log('Detalles', this.DETAILS);
     this.dataDetailsTable = new MatTableDataSource(this.DETAILS);
   }
   
   toggleBadgeVisibility() {
     console.log('Acá es el botón para el badge')
       this.hidden = !this.hidden;
-      
     }
-  
+
+    
+  checkStatusReceived(){
+    return (this.checkStatusVar = '✔');
+  }
+
+  checkStatusValidate(){
+    if (this.FECHALIBCRE) {
+      return this.checkStatusVar = "✔"
+    } else{
+      return this.checkStatusVar =""
+    }
+  }
+
+
+  checkStatusProcess(){
+    if (this.PEDFCHLIB) {
+      return this.checkStatusVar = "✔"
+    } else{
+      return this.checkStatusVar =""
+    }
+  }
+
+  checkStatusShipped(){
+    if (this.PEDFCHPRO && this.PEDSTS != 'SUSPENDED') {
+      return (this.checkStatusVar = '✔');
+    } else{
+      return this.checkStatusVar =""
+    }
+  }
+
 }

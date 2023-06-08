@@ -5,7 +5,7 @@
   font-weight: 200;
   font-size: 19px;
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: 600;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -22,6 +22,18 @@
   display: -webkit-box;
   display: -webkit-flex;
 
+}
+
+.uploader-status ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #006a3a;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+}
+
+.spinner{
+  margin: 50 auto;    
 }
 
 /* Grid */
@@ -71,6 +83,7 @@
   right: 0px;
   color: black;
   margin-right: 5%;
+  
 }
 
 .credit-available {
@@ -78,7 +91,8 @@
   position: absolute;
   right: 0px;
   color: white;
-  font-size: 30;
+  font-size: 20;
+  font-weight: 700;
 }
 
 .order-table td:first-of-type {
@@ -92,8 +106,8 @@
 .line {
   height: 1px;
   width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 15px;
   background: #ddd;
 }
 
@@ -164,17 +178,18 @@
     padding-bottom: 100px;
     border-radius: 0px;
   }
-
 }
 
 .thin {
-  font-weight: 400;
+  font-weight: 500;
   color: black;
 }
 
 .thin-two {
-  font-weight: 400;
+  font-weight: 500;
   color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px
 }
 
 .contenedor-bodegas {

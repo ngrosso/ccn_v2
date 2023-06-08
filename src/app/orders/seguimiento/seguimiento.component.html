@@ -4,6 +4,7 @@
   <h1 class="title-main">Tracking</h1>
 </mat-toolbar>
 
+<app-spiner></app-spiner>
 
 <div class="background-tracking">
   <div class="container">
@@ -14,14 +15,20 @@
         <input matInput (keyup)="applyFilter($event)" search placeholder="Ex. Sold To" #input>
       </mat-form-field>
 
+
       <div class="mat-elevation-z1 contenedor-bodegas ">
-        <table mat-table [dataSource]="dataSource" class="background-table"  >
+        <table mat-table [dataSource]="dataSource" class="background-table "  >
 
           <ng-container matColumnDef="details">
             <th mat-header-cell *matHeaderCellDef> Details </th>
             <td mat-cell *matCellDef="let row">
               <mat-icon mat-raised-button (click)="openDialog(row)">visibility</mat-icon>
             </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let row"> {{(row.PEDSTS == "RET" || row.PEDSTS == "LIB") ? "IN PROGRESS" : (row.PEDSTS == "PRC") ? "SHIPPED" : "SUSPENDED"}} </td>
           </ng-container>
 
           <ng-container matColumnDef="order_Number">
@@ -32,6 +39,8 @@
             <th mat-header-cell *matHeaderCellDef> Customer PO Number </th>
             <td mat-cell *matCellDef="let row"> {{row.PEDNROPLAC}} </td>
           </ng-container>
+
+        
 
           <ng-container matColumnDef="sold_to">
             <th mat-header-cell *matHeaderCellDef> Sold To </th>
@@ -76,9 +85,10 @@
     </section>
   </div>
 
-  <section>
+  <div class="section-publi-tracking">
     <img class="banner-publi" src="https://www.ccn.com.ni/wp-content/uploads/b2b/bannerTracking.jpg" alt="">
-  </section>
+  </div>
 </div>
+
 
 <app-footer></app-footer>

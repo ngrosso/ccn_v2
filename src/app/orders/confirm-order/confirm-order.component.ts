@@ -11,13 +11,12 @@ export class ConfirmOrderComponent implements OnInit {
 
   public notificationCustom: boolean = false;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {totalAmountReached: boolean}) { 
-    
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { totalAmountReached: boolean}) {
     this.notificationCustom = data.totalAmountReached;
   }
   ngOnInit(): void {
   }
 
- 
+
 
 }

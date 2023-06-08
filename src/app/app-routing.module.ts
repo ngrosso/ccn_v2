@@ -4,6 +4,7 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import { LoginComponent } from './auth/login/login.component';
 import { VerificacionComponent } from './auth/verificacion/verificacion.component';
 import { InicioComponent } from './components/inicio/inicio.component';
+import { MobileUserComponent } from './components/mobile-user/mobile-user.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path:'verificacion', component: VerificacionComponent},
   {path:'login', component: LoginComponent },
   {path:'forgotPassword', component: ForgotPasswordComponent },
+  {path:'mobileUser', component: MobileUserComponent },
   {path: "inicio", loadChildren:()=>import('./admin/admin.module')
   .then(mod=>mod.AdminModule)},
   { path:'**', redirectTo: 'login', pathMatch: 'full'}

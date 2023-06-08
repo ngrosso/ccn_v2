@@ -14,11 +14,9 @@ export class AppComponent implements OnInit {
   countryList: any = [];
   
   constructor(private userService: ApiService){
-    console.log('El componente se ha creado');
   }
 
   ngOnInit(): void {
-      console.log('El componente se ha inicializado');
   }
 
 }
