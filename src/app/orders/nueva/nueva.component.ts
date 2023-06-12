@@ -106,6 +106,8 @@ export class NuevaComponent {
   days = 30;
   addEnabled = true;
   repeatOrder = false;
+  auxShoppingCartList: any = [];  
+  
 
   constructor(
     private fb: FormBuilder,
@@ -316,6 +318,7 @@ export class NuevaComponent {
   }
 
   async completarOrden() {
+
     // ConfimarOrden - Boton de confirmación
     // console.log(new Order(this.formHeader.value.poNbr, this.formHeader.value.shipTo, this.formHeader.value.incortem, this.formHeader.value.soldTo, this.formHeader.value.etd, this.formProduct.value.shipmentType, this.addService.productos))
     // console.log(this.formHeader.value)
@@ -358,8 +361,8 @@ export class NuevaComponent {
                   product.__ORACO__Tax1_c,
                   product.__ORACO__Tax2_c
                 )
-                .subscribe((response: any) => {
-                  this.getShoppingCartList(
+                .subscribe(async (response: any) => {
+                 this.shoppingCartList = await this.getShoppingCartList(
                     this.apiService.bodegaSeleccionada
                       .OrganizationDEO___ORACO__ShoppingCart_Id_c
                   );
@@ -561,6 +564,13 @@ export class NuevaComponent {
   }
   // Funcion para redirect new order
   redirectTo() {
+    this.shoppingCartList.map(async (product:any) => {
+      await this.deleteShoppingCartItem(
+        this.apiService.bodegaSeleccionada
+          .OrganizationDEO___ORACO__ShoppingCart_Id_c,
+        product.Id
+      );
+    })
     this.router
       .navigateByUrl('inicio', { skipLocationChange: true })
       .then(() => this.router.navigate(['inicio/nueva']));
