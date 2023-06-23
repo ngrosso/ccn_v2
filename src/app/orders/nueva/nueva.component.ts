@@ -333,7 +333,7 @@ export class NuevaComponent {
             this.apiService.bodegaSeleccionada.PartyId,
             this.RESPONSE.__ORACO__ComboSelQuantity_c
           )
-          .subscribe((lines: any) => {
+          .subscribe(async (lines: any) => {
             const orderID = lines.items[0].__ORACO__Order_Id_c;
             const containerType = this.shipmentType;
             this.apiService
@@ -350,7 +350,7 @@ export class NuevaComponent {
             // console.log("PatchOrders")
             this.openDialog();
             this.repeatOrder = true;
-            this.shoppingCartList.map(async (product: any) => {
+           await this.shoppingCartList.map(async (product: any) => {
               console.log('product', product);
               await this.apiService
                 .postShoppingCartItem(
@@ -362,14 +362,14 @@ export class NuevaComponent {
                   product.__ORACO__Tax2_c
                 )
                 .subscribe(async (response: any) => {
-                 this.shoppingCartList = await this.getShoppingCartList(
-                    this.apiService.bodegaSeleccionada
-                      .OrganizationDEO___ORACO__ShoppingCart_Id_c
-                  );
-                  this.RESPONSE = response;
+                  this.shoppingCartList = this.getShoppingCartList(
+                     this.apiService.bodegaSeleccionada
+                       .OrganizationDEO___ORACO__ShoppingCart_Id_c
+                   );
+                   this.RESPONSE = response;
                 });
+              });
             });
-          });
       });
   }
 
@@ -477,6 +477,7 @@ export class NuevaComponent {
               .subscribe((item: any) => {
                 this.pesoTotal +=
                   product.__ORACO__Quantity_c * item.PesoProducto_c;
+                  console.log("pesoTotal", this.pesoTotal)
                 this.pesoTotalFloat = this.pesoTotal.toFixed(2);
                 this.availableWidthUse = (
                   this.pesoMaximo -
