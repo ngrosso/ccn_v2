@@ -106,8 +106,8 @@ export class NuevaComponent {
   days = 30;
   addEnabled = true;
   repeatOrder = false;
-  auxShoppingCartList: any = [];  
-  
+  auxShoppingCartList: any = [];
+
 
   constructor(
     private fb: FormBuilder,
@@ -336,7 +336,7 @@ export class NuevaComponent {
           .subscribe(async (lines: any) => {
             const orderID = lines.items[0].__ORACO__Order_Id_c;
             const containerType = this.shipmentType;
-            this.apiService
+            await this.apiService
               .patchIdOrder(
                 orderID,
                 this.formHeader.value.poNbr,
@@ -350,7 +350,7 @@ export class NuevaComponent {
             // console.log("PatchOrders")
             this.openDialog();
             this.repeatOrder = true;
-           await this.shoppingCartList.map(async (product: any) => {
+            await this.shoppingCartList.MePasswordResetRequestor(async (product: any) => {
               console.log('product', product);
               await this.apiService
                 .postShoppingCartItem(
@@ -361,15 +361,16 @@ export class NuevaComponent {
                   product.__ORACO__Tax1_c,
                   product.__ORACO__Tax2_c
                 )
-                .subscribe(async (response: any) => {
-                  this.shoppingCartList = this.getShoppingCartList(
-                     this.apiService.bodegaSeleccionada
-                       .OrganizationDEO___ORACO__ShoppingCart_Id_c
-                   );
-                   this.RESPONSE = response;
+                .subscribe((response: any) => {
+                  this.RESPONSE = response;
                 });
               });
             });
+            this.shoppingCartList = await this.getShoppingCartList(
+              this.apiService.bodegaSeleccionada
+                .OrganizationDEO___ORACO__ShoppingCart_Id_c
+            );
+          });
       });
   }
 
@@ -386,11 +387,15 @@ export class NuevaComponent {
 
   seRepiteSKU() {
     let seRepite = false;
-    this.shoppingCartList.forEach((product: any) => {
-      if (product.__ORACO__Product_Id_c == this.selectedProduct.InvItemId) {
-        seRepite = true;
-      }
-    });
+    try {
+      this.shoppingCartList.forEach((product: any) => {
+        if (product.__ORACO__Product_Id_c == this.selectedProduct.InvItemId) {
+          seRepite = true;
+        }
+        return seRepite;
+      });
+    } catch (e) {
+    }
     return seRepite;
   }
 
@@ -440,6 +445,7 @@ export class NuevaComponent {
       .getShoppingCartItems(shoppingCartId)
       .subscribe((shoppingCart: any) => {
         this.shoppingCartList = shoppingCart.items;
+        if (shoppingCart.count > 0) this.RESPONSE = shoppingCart.items[0];
         this.dataSourceShoppingCarts = this.shoppingCartList;
         let maxCapacity = this.pesoMaximo;
         this.shoppingCartList.forEach((item: any) => {
@@ -486,6 +492,7 @@ export class NuevaComponent {
                 ).toFixed(2);
               });
           });
+          console.log("peso total getShoppingCartList", this.pesoTotal)
         } else {
           this.availableWidthUse = (
             this.pesoMaximo -
@@ -565,7 +572,7 @@ export class NuevaComponent {
   }
   // Funcion para redirect new order
   redirectTo() {
-    this.shoppingCartList.map(async (product:any) => {
+    this.shoppingCartList.map(async (product: any) => {
       await this.deleteShoppingCartItem(
         this.apiService.bodegaSeleccionada
           .OrganizationDEO___ORACO__ShoppingCart_Id_c,
