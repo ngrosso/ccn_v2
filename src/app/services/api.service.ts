@@ -114,10 +114,10 @@ export class ApiService {
   postShoppingCartItem(shoppingCartId: any, productoId: any, cantidad: any, paymentType: any, listPrice: any): any {
     const body = {
       "__ORACO__Product_Id_c": productoId,
-      "__ORACO__Quantity_c": cantidad,
+      "__ORACO__Quantity_c": Number.parseInt(cantidad),
       "__ORACO__Tax1_c": (paymentType == 'GR' ? 1 : 4),
       "__ORACO__Tax2_c": listPrice,
-      "__ORACO__ComboSelQuantity_c": String(Date.now()).slice(0, 10)
+      "__ORACO__ComboSelQuantity_c": Number(String(Date.now()).slice(5))
 
     }
     return this.http.post(this.apiSaleUrl + "__ORACO__ShoppingCartDSD_c/" + (shoppingCartId) + "/child/__ORACO__ShoppingCartItemCollection_c", body, {

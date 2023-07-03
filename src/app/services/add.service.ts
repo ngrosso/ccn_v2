@@ -56,7 +56,7 @@ export class AddService {
   }
 
   messageAdd() {
-    this._snackBar.open('Your order has been added to the shopping cart 🛒', '', {
+    this._snackBar.open('The product has been added to the shopping cart 🛒', '', {
       duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
