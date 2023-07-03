@@ -10,6 +10,7 @@ import { ConfirmOrderComponent } from '../confirm-order/confirm-order.component'
 import { MatDialog } from '@angular/material/dialog';
 import { UserValidationService } from 'src/app/services/user-validation.service';
 import { Router } from '@angular/router';
+import { retry } from 'rxjs/operators';
 
 export interface Data {
   sku: string;
@@ -327,7 +328,7 @@ export class NuevaComponent {
         this.apiService.bodegaSeleccionada
           .OrganizationDEO___ORACO__ShoppingCart_Id_c
       )
-      .subscribe((response: any) => {
+      .subscribe(async (response: any) => {
         this.apiService
           .getOrderLinesRollupFilter(
             this.apiService.bodegaSeleccionada.PartyId,
@@ -350,7 +351,7 @@ export class NuevaComponent {
             // console.log("PatchOrders")
             this.openDialog();
             this.repeatOrder = true;
-            await this.shoppingCartList.MePasswordResetRequestor(async (product: any) => {
+            await this.shoppingCartList.forEach(async (product: any) => {
               console.log('product', product);
               await this.apiService
                 .postShoppingCartItem(
@@ -360,17 +361,16 @@ export class NuevaComponent {
                   product.__ORACO__Quantity_c,
                   product.__ORACO__Tax1_c,
                   product.__ORACO__Tax2_c
-                )
-                .subscribe((response: any) => {
+                ).pipe(retry(3)).subscribe((response: any) => {
                   this.RESPONSE = response;
                 });
             });
-            this.shoppingCartList = await this.getShoppingCartList(
-              this.apiService.bodegaSeleccionada
-                .OrganizationDEO___ORACO__ShoppingCart_Id_c
-            );
           });
-      });
+        });
+        this.shoppingCartList = await this.getShoppingCartList(
+          this.apiService.bodegaSeleccionada
+            .OrganizationDEO___ORACO__ShoppingCart_Id_c
+        );
   }
 
   calculo(cantidadDeProducto: number) {
