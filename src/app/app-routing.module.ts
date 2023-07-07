@@ -8,14 +8,16 @@ import { MobileUserComponent } from './components/mobile-user/mobile-user.compon
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'verificacion', pathMatch: 'full'},
-  {path:'verificacion', component: VerificacionComponent},
-  {path:'login', component: LoginComponent },
-  {path:'forgotPassword', component: ForgotPasswordComponent },
-  {path:'mobileUser', component: MobileUserComponent },
-  {path: "inicio", loadChildren:()=>import('./admin/admin.module')
-  .then(mod=>mod.AdminModule)},
-  { path:'**', redirectTo: 'login', pathMatch: 'full'}
+  { path: '', redirectTo: 'verificacion', pathMatch: 'full' },
+  { path: 'verificacion', component: VerificacionComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'forgotPassword', component: ForgotPasswordComponent },
+  { path: 'mobileUser', component: MobileUserComponent },
+  {
+    path: "inicio", loadChildren: () => import('./admin/admin.module')
+      .then(mod => mod.AdminModule)
+  },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 

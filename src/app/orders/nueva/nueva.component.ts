@@ -50,20 +50,20 @@ export class NuevaComponent {
   gstValue: string = 'GR';
   selectedProduct = {} as any;
   selectedProductDetails = {} as any;
-  selectedWarhouse = {} as any;
+  selectedWarhouse = {} as any; //TODO: Revisar si sirve y si no, sacar
   incoterm: string = '';
   shipTo: string = '';
   shipmentTypeList: any[] = [];
-  containerTypeList: any[] = [];
+  containerTypeList: any[] = []; //TODO: Revisar si sirve y si no, sacar
   logic: logicFilling = {
     pallets: 0,
     quantity: 0,
-  };
+  }; //TODO: Revisar si sirve y si no, sacar
   hidden = false;
   cantidad: any;
-  cantidadMul: any = 20;
-  confirmaCantidad: boolean = false;
-  selected = 'Truck';
+  cantidadMul: any = 20; //TODO: Revisar si sirve y si no, sacar
+  confirmaCantidad: boolean = false; //TODO: Revisar si sirve y si no, sacar
+  selected = 'Truck'; //TODO: Revisar si sirve y si no, sacar
   shipmentType: string = '';
   buttonDisabled: boolean = true;
   formHeader: FormGroup;
@@ -79,15 +79,15 @@ export class NuevaComponent {
   totalAmount: string = '';
   grupoEmpresario: any = {};
   dataSourceShoppingCarts: any[] = ELEMENT_DATA;
-  validoParaComprar: boolean = false;
-  CantidadDeContenedorTotal: number = 1;
+  validoParaComprar: boolean = false; //TODO: Revisar si sirve y si no, sacar
+  CantidadDeContenedorTotal: number = 1; //TODO: Revisar si sirve y si no, sacar
   territory: string = '';
   PesoTotalARepartir: number = 0;
   pallets: number[] = [];
   auxPallets: number[] = [];
-  cantidadDeProductosPorPallet = 0;
-  pesoPorPallet: number | undefined;
-  timeStampTest = Date.now();
+  cantidadDeProductosPorPallet = 0; //TODO: Revisar si sirve y si no, sacar
+  pesoPorPallet: number | undefined; //TODO: Revisar si sirve y si no, sacar
+  timeStampTest = Date.now(); //TODO: Revisar si sirve y si no, sacar
   pesoMaximo = 0;
   pesoMinimo = 10000;
   availableCapacity = 20000;
@@ -98,16 +98,16 @@ export class NuevaComponent {
   availableWidthUse: string = '0.00';
   selectedProductoWeight: string = '0.00';
   totalAmountReached = false;
-  businessGroupReached = false;
-  warehouseAmountAfterPurchase: number = 0;
-  businessGroupAfterPurchase: number = 0;
-  disableSelect = new FormControl(false);
+  businessGroupReached = false; //TODO: Revisar si sirve y si no, sacar
+  warehouseAmountAfterPurchase: number = 0; //TODO: Revisar si sirve y si no, sacar
+  businessGroupAfterPurchase: number = 0; //TODO: Revisar si sirve y si no, sacar
+  disableSelect = new FormControl(false); //TODO: Revisar si sirve y si no, sacar
   balanceStatus: any;
   outstandingBalance: any;
   days = 30;
   addEnabled = true;
   repeatOrder = false;
-  auxShoppingCartList: any = [];
+  auxShoppingCartList: any = [];  //TODO: Revisar si sirve y si no, sacar
 
 
   constructor(
@@ -366,11 +366,11 @@ export class NuevaComponent {
                 });
             });
           });
-        });
-        this.shoppingCartList = await this.getShoppingCartList(
-          this.apiService.bodegaSeleccionada
-            .OrganizationDEO___ORACO__ShoppingCart_Id_c
-        );
+      });
+    this.shoppingCartList = await this.getShoppingCartList(
+      this.apiService.bodegaSeleccionada
+        .OrganizationDEO___ORACO__ShoppingCart_Id_c
+    );
   }
 
   calculo(cantidadDeProducto: number) {
@@ -451,8 +451,7 @@ export class NuevaComponent {
           maxCapacity -= item.__ORACO__Quantity_c;
         });
         if (this.shoppingCartList.length > 0) {
-          this.gstValue =
-            this.shoppingCartList[0].__ORACO__Tax1_c == 1 ? 'GR' : 'UN';
+          this.gstValue = this.shoppingCartList[0].__ORACO__Tax1_c == 1 ? 'UN' : 'GR';
           this.disabledPaymentType = true;
           // console.log('SCPrinceUOM', this.shoppingCartList[0]);
         } else {
@@ -570,7 +569,7 @@ export class NuevaComponent {
   }
   // Funcion para redirect new order
   redirectTo() {
-    this.shoppingCartList.map(async (product: any) => {
+    this.dataSourceShoppingCarts.map(async (product: any) => {
       await this.deleteShoppingCartItem(
         this.apiService.bodegaSeleccionada
           .OrganizationDEO___ORACO__ShoppingCart_Id_c,
