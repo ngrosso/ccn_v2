@@ -182,7 +182,7 @@ export class ApiService {
     const body = {
       "__ORACO__Product_Id_c": productoId,
       "__ORACO__Quantity_c": Number.parseInt(cantidad),
-      "__ORACO__Tax1_c": (paymentType == 'GR' || paymentType == 4 ? 4 : 1),
+      "__ORACO__Tax1_c": (paymentType == 'GR' || paymentType == 1 ? 1 : 4),
       "__ORACO__Tax2_c": listPrice,
       "__ORACO__ComboSelQuantity_c": Number(String(Date.now()).slice(5))
 
@@ -205,7 +205,7 @@ export class ApiService {
       "__ORACO__AuxiliaryAttribute01_c": territory,
       "__ORACO__AuxiliaryAttribute02_c": containerType,
       "__ORACO__AuxiliaryAttribute03_c": poNumber,
-      "__ORACO__AuxiliaryAttribute04_c": (paymentType == 'GR' ? 4 : 1),
+      "__ORACO__AuxiliaryAttribute04_c": (paymentType == 'GR' ? 1 : 4),
       "__ORACO__AuxiliaryAttribute14_c": promiseDate,
 
     }

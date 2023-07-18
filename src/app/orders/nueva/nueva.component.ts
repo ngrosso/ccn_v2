@@ -451,7 +451,7 @@ export class NuevaComponent {
           maxCapacity -= item.__ORACO__Quantity_c;
         });
         if (this.shoppingCartList.length > 0) {
-          this.gstValue = this.shoppingCartList[0].__ORACO__Tax1_c == 1 ? 'UN' : 'GR';
+          this.gstValue = this.shoppingCartList[0].__ORACO__Tax1_c == 1 ? 'GR' : 'UN';
           this.disabledPaymentType = true;
           // console.log('SCPrinceUOM', this.shoppingCartList[0]);
         } else {

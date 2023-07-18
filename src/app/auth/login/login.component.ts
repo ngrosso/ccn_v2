@@ -34,6 +34,11 @@ export class LoginComponent implements OnInit {
   }
 
   ingresar() {
+    this.apiService.padre = {} as any
+    this.apiService.bodegas = []
+    this.apiService.bodegaSeleccionada = {} as any
+    this.apiService.account = {} as any
+    sessionStorage.clear();
     this.loading = true;
     sessionStorage.setItem('OrganizationDEO_EMPID_c', '1');
 
@@ -46,7 +51,6 @@ export class LoginComponent implements OnInit {
             expiresIn: res.expires_in,
             dateToken: new Date().getTime(),
           };
-
           sessionStorage.setItem(
             'userDataToken',
             JSON.stringify(userDataToken)
