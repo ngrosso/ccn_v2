@@ -30,7 +30,6 @@ export class VerificacionComponent implements OnInit {
 
     this.form = new FormGroup({
       ageFormControl: new FormControl(),
-      
     })
 
   }

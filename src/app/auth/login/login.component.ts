@@ -74,13 +74,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //sessionStorage.setItem("partyNumber", "1Yp")
   }
 
-  // loadingHome() {
-  //   this.loading = true;
-  //   setTimeout(() => {
-  //     this.router.navigate(['inicio']);
-  //   }, 500);
-  // }
 }
