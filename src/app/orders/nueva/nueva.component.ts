@@ -364,6 +364,7 @@ export class NuevaComponent {
                 .subscribe((response: any) => {
                   this.RESPONSE = response;
                 });
+              });
             });
           });
       });
@@ -480,6 +481,7 @@ export class NuevaComponent {
               .subscribe((item: any) => {
                 this.pesoTotal +=
                   product.__ORACO__Quantity_c * item.PesoProducto_c;
+                  console.log("pesoTotal", this.pesoTotal)
                 this.pesoTotalFloat = this.pesoTotal.toFixed(2);
                 this.availableWidthUse = (
                   this.pesoMaximo -
