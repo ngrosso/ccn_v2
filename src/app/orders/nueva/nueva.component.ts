@@ -1,6 +1,18 @@
-import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { FormBuilder, FormControl, FormGroup, Validators, FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+  FormsModule,
+} from '@angular/forms';
 import { AddService, Orden } from 'src/app/services/add.service';
 import { Product } from './Product';
 import { Order } from './Order';
@@ -20,11 +32,10 @@ export interface Data {
 
 interface pay {
   value: string;
-  name: string
+  name: string;
 }
 
-const ELEMENT_DATA: Data[] = [
-];
+const ELEMENT_DATA: Data[] = [];
 
 @Component({
   selector: 'app-nueva',
@@ -33,11 +44,14 @@ const ELEMENT_DATA: Data[] = [
   providers: [AddService],
 })
 export class NuevaComponent {
+
+  // Metodos de pago
   pays: pay[] = [
     { value: 'GR', name: 'Credit' },
     { value: 'UN', name: 'Debit' },
   ];
 
+  // Orden de columnas para tabla
   displayedColumns: string[] = [
     'sku',
     'description',
@@ -46,6 +60,7 @@ export class NuevaComponent {
     'totalAmount',
     'action',
   ];
+
   bodegas: any[] = [];
   gstValue: string = 'GR';
   selectedProduct = {} as any;
@@ -53,17 +68,9 @@ export class NuevaComponent {
   selectedWarhouse = {} as any; //TODO: Revisar si sirve y si no, sacar
   incoterm: string = '';
   shipTo: string = '';
-  shipmentTypeList: any[] = [];
-  containerTypeList: any[] = []; //TODO: Revisar si sirve y si no, sacar
-  logic: logicFilling = {
-    pallets: 0,
-    quantity: 0,
-  }; //TODO: Revisar si sirve y si no, sacar
   hidden = false;
   cantidad: any;
-  cantidadMul: any = 20; //TODO: Revisar si sirve y si no, sacar
-  confirmaCantidad: boolean = false; //TODO: Revisar si sirve y si no, sacar
-  selected = 'Truck'; //TODO: Revisar si sirve y si no, sacar
+  selected = 'Truck';
   shipmentType: string = '';
   buttonDisabled: boolean = true;
   formHeader: FormGroup;
@@ -75,12 +82,10 @@ export class NuevaComponent {
   maxDate: Date;
   productos: Product[] = [];
   warehouseAmount: number = 0;
-  warehouseAmountAux: number = 0;
   totalAmount: string = '';
   grupoEmpresario: any = {};
   dataSourceShoppingCarts: any[] = ELEMENT_DATA;
-  validoParaComprar: boolean = false; //TODO: Revisar si sirve y si no, sacar
-  CantidadDeContenedorTotal: number = 1; //TODO: Revisar si sirve y si no, sacar
+  CantidadDeContenedorTotal: number = 1;
   territory: string = '';
   PesoTotalARepartir: number = 0;
   pallets: number[] = [];
@@ -107,8 +112,6 @@ export class NuevaComponent {
   days = 30;
   addEnabled = true;
   repeatOrder = false;
-  auxShoppingCartList: any = [];  //TODO: Revisar si sirve y si no, sacar
-
 
   constructor(
     private fb: FormBuilder,
@@ -166,9 +169,6 @@ export class NuevaComponent {
       shipmentType: new FormControl(),
     });
   }
-
-  listaProductos: any = [];
-  productoSeleccionado = '';
 
   ngOnInit(): void {
     if (
@@ -319,10 +319,8 @@ export class NuevaComponent {
   }
 
   async completarOrden() {
-
     // ConfimarOrden - Boton de confirmación
-    // console.log(new Order(this.formHeader.value.poNbr, this.formHeader.value.shipTo, this.formHeader.value.incortem, this.formHeader.value.soldTo, this.formHeader.value.etd, this.formProduct.value.shipmentType, this.addService.productos))
-    // console.log(this.formHeader.value)
+
     await this.apiService
       .confirmationShoppingCart(
         this.apiService.bodegaSeleccionada
@@ -361,7 +359,9 @@ export class NuevaComponent {
                   product.__ORACO__Quantity_c,
                   product.__ORACO__Tax1_c,
                   product.__ORACO__Tax2_c
-                ).pipe(retry(3)).subscribe((response: any) => {
+                )
+                .pipe(retry(3))
+                .subscribe((response: any) => {
                   this.RESPONSE = response;
                 });
             });
@@ -393,8 +393,7 @@ export class NuevaComponent {
         }
         return seRepite;
       });
-    } catch (e) {
-    }
+    } catch (e) {}
     return seRepite;
   }
 
@@ -453,7 +452,6 @@ export class NuevaComponent {
         if (this.shoppingCartList.length > 0) {
           this.gstValue = this.shoppingCartList[0].__ORACO__Tax1_c == 1 ? 'GR' : 'UN';
           this.disabledPaymentType = true;
-          // console.log('SCPrinceUOM', this.shoppingCartList[0]);
         } else {
           this.disabledPaymentType = false;
         }
@@ -489,7 +487,7 @@ export class NuevaComponent {
                 ).toFixed(2);
               });
           });
-          console.log("peso total getShoppingCartList", this.pesoTotal)
+          console.log('peso total getShoppingCartList', this.pesoTotal);
         } else {
           this.availableWidthUse = (
             this.pesoMaximo -
@@ -518,8 +516,8 @@ export class NuevaComponent {
       for (let i = 1; i <= 20; i++) {
         if (
           this.selectedProductDetails.CantidadPorPallet_c *
-          i *
-          this.selectedProductDetails.PesoProducto_c <
+            i *
+            this.selectedProductDetails.PesoProducto_c <
           this.pesoMaximo
         ) {
           this.pallets.push(
@@ -547,13 +545,13 @@ export class NuevaComponent {
     if (this.availableCapacity >= 2000) {
       this.pallets = this.auxPallets;
     } else {
-      // console.log('pallets filtrado', this.pallets.filter(pallet => pallet < this.availableCapacity));
       this.pallets = this.pallets.filter(
         (pallet) => pallet < this.availableCapacity
       );
     }
   }
 
+  // Abre dialog para confirm pedido
   openDialog() {
     this.dialog.open(ConfirmOrderComponent, {
       width: '30%',
@@ -575,15 +573,13 @@ export class NuevaComponent {
           .OrganizationDEO___ORACO__ShoppingCart_Id_c,
         product.Id
       );
-    })
+    });
     this.router
       .navigateByUrl('inicio', { skipLocationChange: true })
       .then(() => this.router.navigate(['inicio/nueva']));
   }
 
-  refreshPage(): void {
-    window.location.reload();
-  }
+
 }
 
 function compareStrings(a: string, b: string) {
