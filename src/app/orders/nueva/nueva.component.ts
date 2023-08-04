@@ -235,15 +235,20 @@ export class NuevaComponent {
 
     this.grupoEmpresario = this.apiService.padre;
     this.territory = account.OrganizationDEO_Territorio_c;
+    this.totalAmountReachedfn();
+    this.repeatOrder = false;
+  }
+
+  totalAmountReachedfn() {
     this.totalAmountReached = false;
     if (
       (this.grupoEmpresario.OrganizationDEO_AmountDue_c > 0 ||
         this.grupoEmpresario.OrganizationDEO_AvailableCredit_c < 0 ||
         this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0) &&
-      this.formHeader.value.paymentType == 'GR'
+      this.gstValue == 'GR'
     )
       this.totalAmountReached = true;
-    this.repeatOrder = false;
+    console.log(this.gstValue)
   }
 
   async onSubmitProducto() {
@@ -393,7 +398,7 @@ export class NuevaComponent {
         }
         return seRepite;
       });
-    } catch (e) {}
+    } catch (e) { }
     return seRepite;
   }
 
@@ -487,7 +492,6 @@ export class NuevaComponent {
                 ).toFixed(2);
               });
           });
-          console.log('peso total getShoppingCartList', this.pesoTotal);
         } else {
           this.availableWidthUse = (
             this.pesoMaximo -
@@ -516,8 +520,8 @@ export class NuevaComponent {
       for (let i = 1; i <= 20; i++) {
         if (
           this.selectedProductDetails.CantidadPorPallet_c *
-            i *
-            this.selectedProductDetails.PesoProducto_c <
+          i *
+          this.selectedProductDetails.PesoProducto_c <
           this.pesoMaximo
         ) {
           this.pallets.push(

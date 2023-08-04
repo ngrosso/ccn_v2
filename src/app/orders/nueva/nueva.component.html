@@ -16,7 +16,7 @@
               <mat-form-field class="ancho" appearance="outline">
                 <mat-label>Payment Method</mat-label>
                 <mat-select matNativeControl required formControlName="paymentType" [disabled]="disabledPaymentType"
-                  [(ngModel)]="gstValue">
+                  [(ngModel)]="gstValue" (ngModelChange)="totalAmountReachedfn()">
                   <mat-option value="GR">Credit</mat-option>
                   <mat-option value="UN">Debit</mat-option>
                 </mat-select>
