@@ -6,12 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/services/api.service';
 
-export interface PeriodicElement {
-  product: string;
-  productName: string;
-  quantity: number;
-  totalAmount: number;
-}
+
 
 export interface tracking {
   received: string;
@@ -67,9 +62,6 @@ const ELEMENT_DATA: trackingDataInfo[] = [];
 })
 export class DetailsComponent implements OnInit {
   dataDetailsTable: MatTableDataSource<any>;
-
-  // colorShippedStatus = 'background-color: red';
-  // navStyle = 'background-color:red';
 
   checkStatusVar = "";
   
