@@ -23,7 +23,6 @@ export class InicioComponent implements OnInit {
   bodegas: any[] = [];
   grupoEmpresario: any = {};
   form: FormGroup;
-  userDataString: any;
   isSpinnerData: boolean = true;
 
 

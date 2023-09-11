@@ -44,7 +44,6 @@ const ELEMENT_DATA: Data[] = [];
   providers: [AddService],
 })
 export class NuevaComponent {
-
   // Metodos de pago
   pays: pay[] = [
     { value: 'GR', name: 'Credit' },
@@ -65,7 +64,6 @@ export class NuevaComponent {
   gstValue: string = 'GR';
   selectedProduct = {} as any;
   selectedProductDetails = {} as any;
-  selectedWarhouse = {} as any; //TODO: Revisar si sirve y si no, sacar
   incoterm: string = '';
   shipTo: string = '';
   hidden = false;
@@ -90,9 +88,6 @@ export class NuevaComponent {
   PesoTotalARepartir: number = 0;
   pallets: number[] = [];
   auxPallets: number[] = [];
-  cantidadDeProductosPorPallet = 0; //TODO: Revisar si sirve y si no, sacar
-  pesoPorPallet: number | undefined; //TODO: Revisar si sirve y si no, sacar
-  timeStampTest = Date.now(); //TODO: Revisar si sirve y si no, sacar
   pesoMaximo = 0;
   pesoMinimo = 10000;
   availableCapacity = 20000;
@@ -103,10 +98,8 @@ export class NuevaComponent {
   availableWidthUse: string = '0.00';
   selectedProductoWeight: string = '0.00';
   totalAmountReached = false;
-  businessGroupReached = false; //TODO: Revisar si sirve y si no, sacar
-  warehouseAmountAfterPurchase: number = 0; //TODO: Revisar si sirve y si no, sacar
-  businessGroupAfterPurchase: number = 0; //TODO: Revisar si sirve y si no, sacar
-  disableSelect = new FormControl(false); //TODO: Revisar si sirve y si no, sacar
+  warehouseAmountAfterPurchase: number = 0;
+  businessGroupAfterPurchase: number = 0;
   balanceStatus: any;
   outstandingBalance: any;
   days = 30;
@@ -126,7 +119,6 @@ export class NuevaComponent {
     const currentYear = today.getFullYear();
     const currentMonth = today.getMonth();
     const currentDay = today.getDate();
-    // this.minDate = new Date(currentYear, currentMonth, 54);
 
     this.minDate = new Date(
       today.getFullYear(),
@@ -196,7 +188,6 @@ export class NuevaComponent {
       .getAccountInfo(this.apiService.bodegaSeleccionada.PartyNumber)
       .subscribe((account: any) => {
         // TODO: unificar llamada del getAccountInfo
-        console.log('account', account);
         this.getItemShoppingCart(
           account.OrganizationDEO___ORACO__ShoppingCart_Id_c
         );
@@ -208,7 +199,6 @@ export class NuevaComponent {
       .getShoppingCartItems(shoppingCartId)
       .subscribe((shoppingCart: any) => {
         this.shoppingCartList = shoppingCart.items;
-        console.log('ShoppingCartList', this.shoppingCartList);
       });
   }
 
@@ -248,7 +238,7 @@ export class NuevaComponent {
       this.gstValue == 'GR'
     )
       this.totalAmountReached = true;
-    console.log(this.gstValue)
+    console.log(this.gstValue);
   }
 
   async onSubmitProducto() {
@@ -351,7 +341,6 @@ export class NuevaComponent {
                 this.apiService.bodegaSeleccionada.OrganizationDEO_Territorio_c
               )
               .subscribe((response) => console.info(response));
-            // console.log("PatchOrders")
             this.openDialog();
             this.repeatOrder = true;
             await this.shoppingCartList.forEach(async (product: any) => {
@@ -398,7 +387,7 @@ export class NuevaComponent {
         }
         return seRepite;
       });
-    } catch (e) { }
+    } catch (e) {}
     return seRepite;
   }
 
@@ -455,7 +444,8 @@ export class NuevaComponent {
           maxCapacity -= item.__ORACO__Quantity_c;
         });
         if (this.shoppingCartList.length > 0) {
-          this.gstValue = this.shoppingCartList[0].__ORACO__Tax1_c == 1 ? 'GR' : 'UN';
+          this.gstValue =
+            this.shoppingCartList[0].__ORACO__Tax1_c == 1 ? 'GR' : 'UN';
           this.disabledPaymentType = true;
         } else {
           this.disabledPaymentType = false;
@@ -471,8 +461,7 @@ export class NuevaComponent {
         this.businessGroupAfterPurchase -= parseFloat(totalAmount.toFixed(2));
 
         // TODO: Lógica para condición de grupo empresario, revisar
-        //if (this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0) this.businessGroupReached = true;
-        // console.log('DisponibleCredito', this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0);
+
         this.availableCapacity = maxCapacity;
         this.updatePallets();
         this.pesoTotal = 0;
@@ -520,8 +509,8 @@ export class NuevaComponent {
       for (let i = 1; i <= 20; i++) {
         if (
           this.selectedProductDetails.CantidadPorPallet_c *
-          i *
-          this.selectedProductDetails.PesoProducto_c <
+            i *
+            this.selectedProductDetails.PesoProducto_c <
           this.pesoMaximo
         ) {
           this.pallets.push(
@@ -582,8 +571,6 @@ export class NuevaComponent {
       .navigateByUrl('inicio', { skipLocationChange: true })
       .then(() => this.router.navigate(['inicio/nueva']));
   }
-
-
 }
 
 function compareStrings(a: string, b: string) {

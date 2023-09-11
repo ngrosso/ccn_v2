@@ -131,9 +131,6 @@ export class SeguimientoComponent implements OnInit {
     }
   }
 
-  ngAfterViewInit() {
-  }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -141,7 +138,6 @@ export class SeguimientoComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
 
   openDialog(element: any): void {
     const DETAILS = this.trackingDataListDetails.filter((item : any) => item.PEDNRO == element.PEDNRO )
