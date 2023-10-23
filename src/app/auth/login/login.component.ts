@@ -2,8 +2,6 @@ import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { MaterialModule } from 'src/app/material/material.module';
-import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { environment } from 'src/environments/environment';
 
@@ -34,6 +32,11 @@ export class LoginComponent implements OnInit {
   }
 
   ingresar() {
+    this.apiService.padre = {} as any
+    this.apiService.bodegas = []
+    this.apiService.bodegaSeleccionada = {} as any
+    this.apiService.account = {} as any
+    sessionStorage.clear();
     this.loading = true;
     sessionStorage.setItem('OrganizationDEO_EMPID_c', '1');
 
@@ -46,7 +49,6 @@ export class LoginComponent implements OnInit {
             expiresIn: res.expires_in,
             dateToken: new Date().getTime(),
           };
-
           sessionStorage.setItem(
             'userDataToken',
             JSON.stringify(userDataToken)
@@ -74,13 +76,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //sessionStorage.setItem("partyNumber", "1Yp")
   }
 
-  // loadingHome() {
-  //   this.loading = true;
-  //   setTimeout(() => {
-  //     this.router.navigate(['inicio']);
-  //   }, 500);
-  // }
 }

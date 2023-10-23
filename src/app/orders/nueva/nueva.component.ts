@@ -1,6 +1,18 @@
-import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { FormBuilder, FormControl, FormGroup, Validators, FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+  FormsModule,
+} from '@angular/forms';
 import { AddService, Orden } from 'src/app/services/add.service';
 import { Product } from './Product';
 import { Order } from './Order';
@@ -20,11 +32,10 @@ export interface Data {
 
 interface pay {
   value: string;
-  name: string
+  name: string;
 }
 
-const ELEMENT_DATA: Data[] = [
-];
+const ELEMENT_DATA: Data[] = [];
 
 @Component({
   selector: 'app-nueva',
@@ -33,11 +44,13 @@ const ELEMENT_DATA: Data[] = [
   providers: [AddService],
 })
 export class NuevaComponent {
+  // Metodos de pago
   pays: pay[] = [
     { value: 'GR', name: 'Credit' },
     { value: 'UN', name: 'Debit' },
   ];
 
+  // Orden de columnas para tabla
   displayedColumns: string[] = [
     'sku',
     'description',
@@ -46,23 +59,15 @@ export class NuevaComponent {
     'totalAmount',
     'action',
   ];
+
   bodegas: any[] = [];
   gstValue: string = 'GR';
   selectedProduct = {} as any;
   selectedProductDetails = {} as any;
-  selectedWarhouse = {} as any;
   incoterm: string = '';
   shipTo: string = '';
-  shipmentTypeList: any[] = [];
-  containerTypeList: any[] = [];
-  logic: logicFilling = {
-    pallets: 0,
-    quantity: 0,
-  };
   hidden = false;
   cantidad: any;
-  cantidadMul: any = 20;
-  confirmaCantidad: boolean = false;
   selected = 'Truck';
   shipmentType: string = '';
   buttonDisabled: boolean = true;
@@ -75,19 +80,14 @@ export class NuevaComponent {
   maxDate: Date;
   productos: Product[] = [];
   warehouseAmount: number = 0;
-  warehouseAmountAux: number = 0;
   totalAmount: string = '';
   grupoEmpresario: any = {};
   dataSourceShoppingCarts: any[] = ELEMENT_DATA;
-  validoParaComprar: boolean = false;
   CantidadDeContenedorTotal: number = 1;
   territory: string = '';
   PesoTotalARepartir: number = 0;
   pallets: number[] = [];
   auxPallets: number[] = [];
-  cantidadDeProductosPorPallet = 0;
-  pesoPorPallet: number | undefined;
-  timeStampTest = Date.now();
   pesoMaximo = 0;
   pesoMinimo = 10000;
   availableCapacity = 20000;
@@ -98,17 +98,13 @@ export class NuevaComponent {
   availableWidthUse: string = '0.00';
   selectedProductoWeight: string = '0.00';
   totalAmountReached = false;
-  businessGroupReached = false;
   warehouseAmountAfterPurchase: number = 0;
   businessGroupAfterPurchase: number = 0;
-  disableSelect = new FormControl(false);
   balanceStatus: any;
   outstandingBalance: any;
   days = 30;
   addEnabled = true;
   repeatOrder = false;
-  auxShoppingCartList: any = [];
-
 
   constructor(
     private fb: FormBuilder,
@@ -123,7 +119,6 @@ export class NuevaComponent {
     const currentYear = today.getFullYear();
     const currentMonth = today.getMonth();
     const currentDay = today.getDate();
-    // this.minDate = new Date(currentYear, currentMonth, 54);
 
     this.minDate = new Date(
       today.getFullYear(),
@@ -167,9 +162,6 @@ export class NuevaComponent {
     });
   }
 
-  listaProductos: any = [];
-  productoSeleccionado = '';
-
   ngOnInit(): void {
     if (
       this.userValidation.isLoggedIn() != null &&
@@ -196,7 +188,6 @@ export class NuevaComponent {
       .getAccountInfo(this.apiService.bodegaSeleccionada.PartyNumber)
       .subscribe((account: any) => {
         // TODO: unificar llamada del getAccountInfo
-        console.log('account', account);
         this.getItemShoppingCart(
           account.OrganizationDEO___ORACO__ShoppingCart_Id_c
         );
@@ -208,7 +199,6 @@ export class NuevaComponent {
       .getShoppingCartItems(shoppingCartId)
       .subscribe((shoppingCart: any) => {
         this.shoppingCartList = shoppingCart.items;
-        console.log('ShoppingCartList', this.shoppingCartList);
       });
   }
 
@@ -235,15 +225,20 @@ export class NuevaComponent {
 
     this.grupoEmpresario = this.apiService.padre;
     this.territory = account.OrganizationDEO_Territorio_c;
+    this.totalAmountReachedfn();
+    this.repeatOrder = false;
+  }
+
+  totalAmountReachedfn() {
     this.totalAmountReached = false;
     if (
       (this.grupoEmpresario.OrganizationDEO_AmountDue_c > 0 ||
         this.grupoEmpresario.OrganizationDEO_AvailableCredit_c < 0 ||
         this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0) &&
-      this.formHeader.value.paymentType == 'GR'
+      this.gstValue == 'GR'
     )
       this.totalAmountReached = true;
-    this.repeatOrder = false;
+    console.log(this.gstValue);
   }
 
   async onSubmitProducto() {
@@ -319,10 +314,8 @@ export class NuevaComponent {
   }
 
   async completarOrden() {
-
     // ConfimarOrden - Boton de confirmación
-    // console.log(new Order(this.formHeader.value.poNbr, this.formHeader.value.shipTo, this.formHeader.value.incortem, this.formHeader.value.soldTo, this.formHeader.value.etd, this.formProduct.value.shipmentType, this.addService.productos))
-    // console.log(this.formHeader.value)
+
     await this.apiService
       .confirmationShoppingCart(
         this.apiService.bodegaSeleccionada
@@ -348,7 +341,6 @@ export class NuevaComponent {
                 this.apiService.bodegaSeleccionada.OrganizationDEO_Territorio_c
               )
               .subscribe((response) => console.info(response));
-            // console.log("PatchOrders")
             this.openDialog();
             this.repeatOrder = true;
             await this.shoppingCartList.forEach(async (product: any) => {
@@ -361,16 +353,18 @@ export class NuevaComponent {
                   product.__ORACO__Quantity_c,
                   product.__ORACO__Tax1_c,
                   product.__ORACO__Tax2_c
-                ).pipe(retry(3)).subscribe((response: any) => {
+                )
+                .pipe(retry(3))
+                .subscribe((response: any) => {
                   this.RESPONSE = response;
                 });
             });
           });
-        });
-        this.shoppingCartList = await this.getShoppingCartList(
-          this.apiService.bodegaSeleccionada
-            .OrganizationDEO___ORACO__ShoppingCart_Id_c
-        );
+      });
+    this.shoppingCartList = await this.getShoppingCartList(
+      this.apiService.bodegaSeleccionada
+        .OrganizationDEO___ORACO__ShoppingCart_Id_c
+    );
   }
 
   calculo(cantidadDeProducto: number) {
@@ -393,8 +387,7 @@ export class NuevaComponent {
         }
         return seRepite;
       });
-    } catch (e) {
-    }
+    } catch (e) {}
     return seRepite;
   }
 
@@ -454,7 +447,6 @@ export class NuevaComponent {
           this.gstValue =
             this.shoppingCartList[0].__ORACO__Tax1_c == 1 ? 'GR' : 'UN';
           this.disabledPaymentType = true;
-          // console.log('SCPrinceUOM', this.shoppingCartList[0]);
         } else {
           this.disabledPaymentType = false;
         }
@@ -469,8 +461,7 @@ export class NuevaComponent {
         this.businessGroupAfterPurchase -= parseFloat(totalAmount.toFixed(2));
 
         // TODO: Lógica para condición de grupo empresario, revisar
-        //if (this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0) this.businessGroupReached = true;
-        // console.log('DisponibleCredito', this.grupoEmpresario.OrganizationDEO_DisponibleDeCredito_c < 0);
+
         this.availableCapacity = maxCapacity;
         this.updatePallets();
         this.pesoTotal = 0;
@@ -490,7 +481,6 @@ export class NuevaComponent {
                 ).toFixed(2);
               });
           });
-          console.log("peso total getShoppingCartList", this.pesoTotal)
         } else {
           this.availableWidthUse = (
             this.pesoMaximo -
@@ -519,8 +509,8 @@ export class NuevaComponent {
       for (let i = 1; i <= 20; i++) {
         if (
           this.selectedProductDetails.CantidadPorPallet_c *
-          i *
-          this.selectedProductDetails.PesoProducto_c <
+            i *
+            this.selectedProductDetails.PesoProducto_c <
           this.pesoMaximo
         ) {
           this.pallets.push(
@@ -548,13 +538,13 @@ export class NuevaComponent {
     if (this.availableCapacity >= 2000) {
       this.pallets = this.auxPallets;
     } else {
-      // console.log('pallets filtrado', this.pallets.filter(pallet => pallet < this.availableCapacity));
       this.pallets = this.pallets.filter(
         (pallet) => pallet < this.availableCapacity
       );
     }
   }
 
+  // Abre dialog para confirm pedido
   openDialog() {
     this.dialog.open(ConfirmOrderComponent, {
       width: '30%',
@@ -570,20 +560,16 @@ export class NuevaComponent {
   }
   // Funcion para redirect new order
   redirectTo() {
-    this.shoppingCartList.map(async (product: any) => {
+    this.dataSourceShoppingCarts.map(async (product: any) => {
       await this.deleteShoppingCartItem(
         this.apiService.bodegaSeleccionada
           .OrganizationDEO___ORACO__ShoppingCart_Id_c,
         product.Id
       );
-    })
+    });
     this.router
       .navigateByUrl('inicio', { skipLocationChange: true })
       .then(() => this.router.navigate(['inicio/nueva']));
-  }
-
-  refreshPage(): void {
-    window.location.reload();
   }
 }
 

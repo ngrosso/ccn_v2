@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "deploy": "ng run ccn:deploy",
-    "postinstall": "ngcc"
+    "postinstall": "ngcc",
+    "build:prod": "ng build --configuration production"
   },
   "private": true,
   "dependencies": {
