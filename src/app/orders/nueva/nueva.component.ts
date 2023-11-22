@@ -427,7 +427,7 @@ export class NuevaComponent {
             this.pesoMaximo =
               shipmentType.PartySiteEO_TIPODECONTENEDOR_c == 'Terrestre'
                 ? 21000
-                : 20500;
+                : 24000;
           });
       });
   }
