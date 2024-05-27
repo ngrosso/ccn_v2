@@ -427,7 +427,7 @@ export class NuevaComponent {
             this.pesoMaximo =
               shipmentType.PartySiteEO_TIPODECONTENEDOR_c == 'Terrestre'
                 ? 21000
-                : 20500;
+                : 24000;
           });
       });
   }
@@ -506,7 +506,7 @@ export class NuevaComponent {
     this.selectedProduct = producto;
     this.apiService.getItemById(producto.InvItemId).subscribe((item: any) => {
       this.selectedProductDetails = item;
-      for (let i = 1; i <= 20; i++) {
+      for (let i = 1; i <= 28; i++) {
         if (
           this.selectedProductDetails.CantidadPorPallet_c *
             i *
